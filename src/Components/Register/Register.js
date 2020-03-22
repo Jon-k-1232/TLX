@@ -50,7 +50,7 @@ export class Register extends React.Component{
                     <div className='newRegState'>
                         <label>State</label>
                         <select name="state" id="state">
-                            <option value="" selected="selected">Select a State</option>
+                            <option value="">Select a State</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
                             <option value="AZ">Arizona</option>
