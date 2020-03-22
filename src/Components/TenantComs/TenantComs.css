@@ -1,0 +1,37 @@
+
+.comPage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comPage h1{
+    text-align: center;
+}
+
+.messageOne, .messageTwo, .messageThree{
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#newCommLink, #historyCommLink{
+    text-align: right;
+    margin: 10px;
+}
+
+#newCommLink a, #historyCommLink a{
+    text-decoration: none;
+}
+
+#newCommLink a:hover{
+    color: brown;
+    cursor: pointer;
+}
+
+#historyCommLink a:hover{
+    color: brown;
+    cursor: pointer;
+}
+
+

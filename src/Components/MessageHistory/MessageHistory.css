@@ -1,0 +1,19 @@
+.messageHistoryPage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.messageHistoryPage h1, .messageHistoryPage p {
+    text-align: center;
+}
+
+#historyBack a{
+    text-decoration: none;
+}
+
+#historyBack a:hover{
+    color: brown;
+    cursor: pointer;
+}

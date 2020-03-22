@@ -1,0 +1,45 @@
+
+.signInPage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#homePicture{
+    border: 1px solid black;
+    height: 450px;
+    margin: 0px 10px 0px 10px;
+}
+
+.signContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signInForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+}
+
+#usernameInput, #passwordInput{
+    margin: 20px;
+    height: 30px;
+    width: 250px;
+}
+
+#signInButton{
+    width: 125px;
+    height: 35px;
+    margin: 15px;
+}
+
+#signInNewUser a{
+    text-decoration: none;
+}

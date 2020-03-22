@@ -1,0 +1,45 @@
+
+.newMessagePage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#messageText{
+    height: 300px;
+    width: 450px;
+}
+
+.newMessage form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.newMessagePage h1{
+    text-align: center;
+}
+
+#messageSubButton{
+    width: 125px;
+    height: 35px;
+    margin: 10px;
+    background-color: white;
+}
+
+#messageSubButton a, #messageDiscard a{
+    text-decoration: none;
+    color: black;
+}
+
+#messageSubButton :hover{
+    background-color: brown;
+    cursor: pointer;
+}
+
+#messageDiscard a:hover{
+    color: brown;
+    cursor: pointer;
+}
+

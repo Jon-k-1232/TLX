@@ -1,0 +1,39 @@
+
+.accountPage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.accountPage h1{
+    text-align: center;
+}
+
+.accountUsername, .accountPassword, .accountPropManager, .accountAddress{
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.accountUsername button, .accountPassword button, .accountAddress button, .accountPropManager p{
+    margin: 10px;
+}
+
+.accountPropManager{
+    display: inline-flex;
+    align-items: center;
+}
+
+.contactInformation{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+form input, form select{
+    margin: 5px;
+    border: 1px solid #c1c8cc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+}

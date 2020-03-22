@@ -1,0 +1,43 @@
+.RegisterPage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.RegisterPage h2{
+    text-align: center;
+    margin: 0px 0px 50px 0px;
+}
+
+.newRegUserName label, .newRegUserpassword label, .newRegCompany label, .newRegStreet label,
+.newRegCity label, .newRegState label, .newRegZip label, .newRegPhone label{
+    width: 150px;
+}
+
+.newRegUserName, .newRegUserpassword, .newRegCompany, .newRegStreet,
+.newRegCity, .newRegState, .newRegZip, .newRegPhone{
+    display: flex;
+    margin: 10px;
+}
+
+.newRegUserName div input, .newRegUserpassword div input, .newRegCompany div input, .newRegStreet div input,
+.newRegCity div input, .newRegState div input, .newRegZip div input, .newRegPhone div input{
+    width: 200px;
+    border: 1px solid #c1c8cc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#state{
+    border: 1px solid #c1c8cc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+}

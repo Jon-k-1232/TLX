@@ -1,0 +1,10 @@
+
+footer{
+    height: 7vh;
+    align-items: center;
+    display: flex;
+}
+
+footer p{
+    margin:10px;
+}
