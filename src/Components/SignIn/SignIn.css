@@ -43,3 +43,11 @@
 #signInNewUser a{
     text-decoration: none;
 }
+
+form input, form select, form textarea {
+    margin: 5px;
+    border: 1px solid #c1c8cc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+}

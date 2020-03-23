@@ -6,9 +6,13 @@
     justify-content: center;
 }
 
+#messageSubject{
+    width: 90%;
+}
+
 #messageText{
     height: 300px;
-    width: 450px;
+    width: 90%;
 }
 
 .newMessage form{

@@ -29,11 +29,3 @@
     flex-direction: column;
     width: 200px;
 }
-
-form input, form select{
-    margin: 5px;
-    border: 1px solid #c1c8cc;
-    border-radius: 4px;
-    font-size: 13px;
-    color: #333;
-}

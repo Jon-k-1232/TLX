@@ -8,12 +8,12 @@ export default class Billing extends React.Component {
         <h1>Account</h1>
 
         <div className="accountUsername">
-          <h3>Username</h3>
+          <h3>Change Username</h3>
           <form>
             <input
               id="username Display"
               type="text"
-              placeholder="UserName here"
+              placeholder="Username"
               required
             />
           </form>
@@ -21,12 +21,12 @@ export default class Billing extends React.Component {
         </div>
 
         <div className="accountPassword">
-          <h3>Password</h3>
+          <h3>Change Password</h3>
           <form>
             <input
               id="changePassword"
               type="text"
-              placeholder="Change Password"
+              placeholder="Password"
               required
             />
           </form>

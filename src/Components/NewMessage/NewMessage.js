@@ -10,7 +10,14 @@ export default function NewMessage(){
                 <h1>New Message</h1>
 
                 <div className='newMessage'>
-                    <form>
+                    <form className='newMessageForm'>
+                        <input
+                            id='messageSubject'
+                            placeholder='Subject'
+                            maxLength="65"
+                            required
+                        >
+                        </input>
                       <textarea
                           id="messageText"
                           type="text"

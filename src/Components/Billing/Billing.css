@@ -6,13 +6,6 @@
     justify-content: center;
 }
 
-.boxOne, .boxTwo, .boxThree{
-    display: flex;
-    justify-content: space-evenly;
-    border: 1px solid black;
-    margin: 10px;
-}
-
 .paymentHistory, .billingPage h1{
     text-align: center;
 }

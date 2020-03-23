@@ -1,0 +1,12 @@
+.messageDetailsPage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.messageDetailsReply{
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 10px;
+}

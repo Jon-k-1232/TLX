@@ -10,9 +10,8 @@
     text-align: center;
 }
 
-.messageOne, .messageTwo, .messageThree{
-    border: 1px solid black;
-    margin: 10px;
+.comPageNav{
+    display: inline-flex;
 }
 
 #newCommLink, #historyCommLink{
@@ -32,6 +31,11 @@
 #historyCommLink a:hover{
     color: brown;
     cursor: pointer;
+}
+
+.noMessageContainer{
+    display: flex;
+    justify-content: center;
 }
 
 
