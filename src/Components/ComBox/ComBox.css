@@ -1,9 +1,7 @@
 .messageBox{
     border: 1px solid black;
     margin: 10px;
+    height: 172px;
+    overflow: hidden;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}

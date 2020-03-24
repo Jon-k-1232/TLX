@@ -3,7 +3,7 @@ import "./Register.css"
 //import { Link } from "react-router-dom";
 
 
-export class Register extends React.Component{
+export default class Register extends React.Component{
 
 
     render(){

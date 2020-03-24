@@ -12,8 +12,8 @@ export default class Coms extends React.Component {
       let arr = this.context.messages;
       let messageHits = [];
 
-      // eslint-disable-next-line eqeqeq
-      if(arr == 0){
+
+      if(arr <= 0){
           messageHits.push(
               <div className="noMessageContainer">
                 <p> No Messages</p>
@@ -30,6 +30,8 @@ export default class Coms extends React.Component {
               )
           }
       }
+
+
 
     return (
       <main className="comPage">

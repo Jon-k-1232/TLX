@@ -1,6 +1,5 @@
 import React from 'react';
 import "./MessageDetails.css"
-import ComBox from "../ComBox/ComBox.js";
 import AppContext from "../../Context.js";
 import { Link } from "react-router-dom";
 
@@ -9,7 +8,36 @@ export default class  MessageDetails extends React.Component{
     static contextType = AppContext;
 
     render() {
+        // reading message id passed in params and searching context for matching ID. Setting the message to messageNumber
         let messageNumber = this.context.messages.find(res => res.messageId === this.props.match.params.id);
+
+        //reads the subject line of the message the user clicked on
+        let subjectId = messageNumber.subject;
+
+        // reads all messages in user messages
+        let messageArray = this.context.messages;
+
+        //sets empty array for which data is to be push for render
+        let threadMaker = [];
+
+        /*
+        this cycles the message data stored in context and outputs a div for each matching subject line based on the passed
+         param for which a user clicks. To further explain this will match the message that the user clicks on
+         with any other message that has a matching subject line.
+         */
+        for (let i = 0; i < messageArray.length; i++) {
+            if (subjectId === messageArray[i].subject) {
+                threadMaker.push(
+                    <div className="messageDetailsBox" key={i}>
+                        <p>{messageArray[i].date}</p>
+                        <h4>{messageArray[i].from}</h4>
+                        <h5>{messageArray[i].subject}</h5>
+                        <p>{messageArray[i].messageContent}</p>
+                    </div>
+                )
+            }
+        }
+
 
         return messageNumber ? (
             <main className="messageDetailsPage">
@@ -21,12 +49,12 @@ export default class  MessageDetails extends React.Component{
                         <Link to="/Communications/New">Reply</Link>
                     </p>
                 </div>
-                <ComBox messageInfo={messageNumber}/>
+
+                    {threadMaker}
+
             </main>
         ) : (
             ""
         );
     }
 }
-
-

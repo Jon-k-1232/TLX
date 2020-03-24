@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Register } from "../Components/Register/Register.js";
+import Register from "../Components/Register/Register.js";
 import MessageHistory from "../Components/MessageHistory/MessageHistory.js";
 import NewMessage from "../Components/NewMessage/NewMessage.js";
-import { Footer } from "../Components/Footer/Footer.js";
-import { Header } from "../Components/Header/Header.js";
+import Footer from "../Components/Footer/Footer.js";
+import Header from "../Components/Header/Header.js";
 import Account from "../Components/Account/Account.js";
 import Coms from "../Components/Coms/Coms.js";
 import SignIn from "../Components/SignIn/SignIn.js";
@@ -17,6 +17,7 @@ export default class App extends React.Component {
     super();
     // state is being set in order to mimic api data inbound.
     this.state = {
+      // mimics emails, as well as the ability for subject match threads
       messages: [
         {
           userId: 'uXolWvg49Co5EfCo',
@@ -24,11 +25,23 @@ export default class App extends React.Component {
           date: '3/10/20',
           to: 'Jon Kimmel',
           from: 'Property Manager',
-          subject: 'This is the subject line',
-          messageContent: 'This is a test of a short message content.',
+          subject: 'This is the subject line. This is a test of a longer',
+          messageContent: 'This is a test of a short message content. "Lorem ipsum dolor sit amet, consectetur ' +
+              'adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ' +
+              'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute ' +
+              'irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
         },
         {
-          companyId: 'uXolWvg49Co5EfCo',
+          userId: 'uXolWvg49Co5EfCo',
+          messageId:'jndics7sc8scs',
+          date: '3/12/20',
+          to: 'Property Manager',
+          from: 'jon',
+          subject: 'This is the subject line. This is a test of a longer',
+          messageContent: 'test test',
+        },
+        {
+          userId: 'uXolWvgbui79',
           messageId:'jndicbuwc87a12342',
           date: '3/8/20',
           to: 'Jon Kimmel',
@@ -36,7 +49,6 @@ export default class App extends React.Component {
           subject: 'Another subject line test',
           messageContent: 'This is a test of a slightly longer message. Text limits will have a 500 character limit.',
         }],
-
     };
   }
 
