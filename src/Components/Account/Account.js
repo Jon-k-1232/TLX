@@ -109,6 +109,7 @@ export default class Account extends React.Component {
     });
   };
 
+  // handles submit for contact info update
   handleSubmit = e => {
     e.preventDefault();
     this.context.setContactInfo({ ...this.state });
@@ -116,6 +117,7 @@ export default class Account extends React.Component {
 
   render() {
     let contactInfo = this.context.contactInfo;
+    console.log(contactInfo)
 
     return (
       <main className="accountPage">
@@ -173,21 +175,22 @@ export default class Account extends React.Component {
             <input type="text"
                    placeholder="Company Name"
                    onChange={e => this.updateName(e.target.value)}
-
+                   required
             />
             <input type="text"
                    placeholder="Street Address"
                    onChange={e => this.updateAddress(e.target.value)}
-
+                   required
             />
             <input type="text"
                    placeholder="City"
                    onChange={e => this.updateCity(e.target.value)}
-
+                   required
             />
             <select name="state"
                     id="state"
                     onChange={e => this.updateState(e.target.value)}
+                    required
                     >
               <option value="">
                 Select a State
@@ -248,17 +251,17 @@ export default class Account extends React.Component {
             <input type="text"
                    placeholder="Zip"
                    onChange={e => this.updateZip(e.target.value)}
-
+                   required
             />
             <input type="text"
                    placeholder="Email"
                    onChange={e => this.updateEmail(e.target.value)}
-
+                   required
             />
             <input type="text"
                    placeholder="Phone"
                    onChange={e => this.updatePhone(e.target.value)}
-
+                   required
             />
             <button type="submit">Save</button>
           </form>

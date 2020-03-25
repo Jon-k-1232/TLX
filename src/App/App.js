@@ -19,7 +19,15 @@ export default class App extends React.Component {
     this.state = {
       userName: 'Bob@BobTheBuilder.com',
       password:'',
-      contactInfo: {},
+      contactInfo: {
+        company: "bob",
+        street: "1232 w butt street",
+        city: "scottsdale",
+        state: "AZ",
+        zip: "85308",
+        email: "jon@jon.com",
+        phone: "6028812412"
+      },
       propertyManager:'ABC Management',
       messages: [
         {
@@ -53,22 +61,10 @@ export default class App extends React.Component {
           messageContent: 'This is a test of a slightly longer message. Text limits will have a 500 character limit.',
         }],
         setContactInfo: (company) => {
-        this.setState({
-          contactInfo: company
-        });
+        this.setState({contactInfo: company});
         },
     };
   }
-
-  /*
-          company:'Bob The Builder',
-        street:'1234 W. North Street',
-        city:'Phoenix',
-        state:'AZ',
-        zip:'85308',
-        phone:'(602)881-2412',
-        email:'Bob@BobTheBuilder.com'
-   */
 
   render() {
     return (
