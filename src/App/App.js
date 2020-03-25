@@ -17,12 +17,15 @@ export default class App extends React.Component {
     super();
     // state is being set in order to mimic api data inbound.
     this.state = {
-      // mimics emails, as well as the ability for subject match threads
+      userName: 'Bob@BobTheBuilder.com',
+      password:'',
+      contactInfo: {},
+      propertyManager:'ABC Management',
       messages: [
         {
           userId: 'uXolWvg49Co5EfCo',
           messageId:'jndicbuwc87adc78vds',
-          date: '3/10/20',
+          date: '3/12/20',
           to: 'Jon Kimmel',
           from: 'Property Manager',
           subject: 'This is the subject line. This is a test of a longer',
@@ -34,7 +37,7 @@ export default class App extends React.Component {
         {
           userId: 'uXolWvg49Co5EfCo',
           messageId:'jndics7sc8scs',
-          date: '3/12/20',
+          date: '3/10/20',
           to: 'Property Manager',
           from: 'jon',
           subject: 'This is the subject line. This is a test of a longer',
@@ -49,8 +52,23 @@ export default class App extends React.Component {
           subject: 'Another subject line test',
           messageContent: 'This is a test of a slightly longer message. Text limits will have a 500 character limit.',
         }],
+        setContactInfo: (company) => {
+        this.setState({
+          contactInfo: company
+        });
+        },
     };
   }
+
+  /*
+          company:'Bob The Builder',
+        street:'1234 W. North Street',
+        city:'Phoenix',
+        state:'AZ',
+        zip:'85308',
+        phone:'(602)881-2412',
+        email:'Bob@BobTheBuilder.com'
+   */
 
   render() {
     return (

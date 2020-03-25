@@ -5,15 +5,16 @@
     justify-content: center;
 }
 
-.messageHistoryPage h1, .messageHistoryPage p {
+.messageHistoryPage h1, #historyBack {
     text-align: center;
-}
-
-#historyBack a{
-    text-decoration: none;
 }
 
 #historyBack a:hover{
     color: brown;
     cursor: pointer;
 }
+
+.historyContainer{
+    text-align: left;
+}
+

@@ -17,7 +17,7 @@ render() {
 
     if(arr <= 0){
         messageHits.push(
-            <div className="noMessageContainer">
+            <div className="noMessageHistory">
                 <p> No Messages</p>
             </div>
         )
@@ -25,7 +25,7 @@ render() {
     }else{
         for (let i = 0; i < arr.length; i++) {
             messageHits.push(
-                <div className="hitItemContainer" key={i}>
+                <div className="historyContainer" key={i}>
                     <Link to={`/communications/details/${arr[i].messageId}`}>
                         <ComBox messageInfo={arr[i]}/>
                     </Link>
@@ -37,11 +37,8 @@ render() {
     return (
         <main className="messageHistoryPage">
             <h1>Message History</h1>
-
             <p id='historyBack'><Link to="/Communications">Back</Link></p>
             {messageHits}
-
-
         </main>
     );
 }
