@@ -15,41 +15,56 @@ export default class Register extends React.Component{
                     <div className='newRegUserName'>
                         <label>Log In E-mail:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
 
                     <div className='newRegUserpassword'>
                         <label>Password:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
 
                     <div className='newRegCompany'>
                         <label>Company Name:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
 
                     <div className='newRegStreet'>
                         <label>Street:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
 
                     <div className='newRegCity'>
                         <label>City:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
 
                     <div className='newRegState'>
                         <label>State</label>
-                        <select name="state" id="state">
+                        <select name="state" id="state" required>
                             <option value="">Select a State</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
@@ -108,23 +123,38 @@ export default class Register extends React.Component{
                     <div className='newRegZip'>
                         <label>Zip Code:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
 
                     <div className='newRegPhone'>
                         <label>Phone:</label>
                         <div>
-                        <input/>
+                        <input
+                            type="text"
+                            required
+                        />
                         </div>
                     </div>
-                </form>
 
-                <div className="buttonContainer">
-                    <button type="submit" id="newRegSubmit">
-                        Create Account
-                    </button>
-                </div>
+                    <div className='newRegRegisterAs'>
+                        <label> Register As</label>
+                        <select name='registerOption' required>
+                            <option value="">Tenant/ Property Manager</option>
+                            <option value="Tenant">Tenant</option>
+                            <option value="Property Manager">Property Manager</option>
+                        </select>
+                    </div>
+
+                    <div className="buttonContainer">
+                        <button type="submit" id="newRegSubmit">
+                            Create Account
+                        </button>
+                    </div>
+                </form>
             </main>
         );
     }

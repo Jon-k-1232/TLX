@@ -14,12 +14,12 @@ export default class Account extends React.Component {
       state: "",
       zip: "",
       email: "",
-      phone: "",
+      phone: ""
     };
   }
 
   // updates name of company account state
-  updateName = (company) => {
+  updateName = company => {
     this.setState({
       company: company,
       street: this.state.street,
@@ -27,25 +27,25 @@ export default class Account extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
       email: this.state.email,
-      phone: this.state.phone,
+      phone: this.state.phone
     });
   };
 
   // updates address account state
-  updateAddress = (street) => {
+  updateAddress = street => {
     this.setState({
       company: this.state.company,
-      street:street,
+      street: street,
       city: this.state.city,
       state: this.state.state,
       zip: this.state.zip,
       email: this.state.email,
-      phone: this.state.phone,
+      phone: this.state.phone
     });
   };
 
   // updates city of account state
-  updateCity = (city) => {
+  updateCity = city => {
     this.setState({
       company: this.state.company,
       street: this.state.street,
@@ -53,12 +53,12 @@ export default class Account extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
       email: this.state.email,
-      phone: this.state.phone,
+      phone: this.state.phone
     });
   };
 
   // updates state of account state
-  updateState = (state) => {
+  updateState = state => {
     this.setState({
       company: this.state.company,
       street: this.state.street,
@@ -66,12 +66,12 @@ export default class Account extends React.Component {
       state: state,
       zip: this.state.zip,
       email: this.state.email,
-      phone: this.state.phone,
+      phone: this.state.phone
     });
   };
 
   // updates zip of account state
-  updateZip = (zip) => {
+  updateZip = zip => {
     this.setState({
       company: this.state.company,
       street: this.state.street,
@@ -79,12 +79,12 @@ export default class Account extends React.Component {
       state: this.state.state,
       zip: zip,
       email: this.state.email,
-      phone: this.state.phone,
+      phone: this.state.phone
     });
   };
 
   // updates email of account state
-  updateEmail = (email) => {
+  updateEmail = email => {
     this.setState({
       company: this.state.company,
       street: this.state.street,
@@ -92,12 +92,12 @@ export default class Account extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
       email: email,
-      phone: this.state.phone,
+      phone: this.state.phone
     });
   };
 
   // updates phone of account state
-  updatePhone = (phone) => {
+  updatePhone = phone => {
     this.setState({
       company: this.state.company,
       street: this.state.street,
@@ -105,7 +105,7 @@ export default class Account extends React.Component {
       state: this.state.state,
       zip: this.state.zip,
       email: this.state.email,
-      phone: phone,
+      phone: phone
     });
   };
 
@@ -117,7 +117,6 @@ export default class Account extends React.Component {
 
   render() {
     let contactInfo = this.context.contactInfo;
-    console.log(contactInfo)
 
     return (
       <main className="accountPage">
@@ -139,18 +138,20 @@ export default class Account extends React.Component {
         <div className="accountContact">
           <h3>Contact information</h3>
 
-          <div className='contactCompanyName'>
+          <div className="contactCompanyName">
             <h5>Company: </h5>
             <div>
               <p>{contactInfo.company}</p>
             </div>
           </div>
 
-          <div className='contactAddress'>
+          <div className="contactAddress">
             <h5>Address: </h5>
             <div>
-              <p>{contactInfo.street}</p> <br/>
-              <p>{contactInfo.city}, {contactInfo.state} {contactInfo.zip}</p>
+              <p>{contactInfo.street}</p> <br />
+              <p>
+                {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
+              </p>
             </div>
           </div>
 
@@ -161,7 +162,7 @@ export default class Account extends React.Component {
             </div>
           </div>
 
-          <div className='contactEmail'>
+          <div className="contactEmail">
             <h5>Email: </h5>
             <div>
               <p>{contactInfo.email}</p>
@@ -172,29 +173,31 @@ export default class Account extends React.Component {
         <div className="accountAddress">
           <h3>Update your contact information</h3>
           <form className="contactInformation" onSubmit={this.handleSubmit}>
-            <input type="text"
-                   placeholder="Company Name"
-                   onChange={e => this.updateName(e.target.value)}
-                   required
+            <input
+              type="text"
+              placeholder="Company Name"
+              onChange={e => this.updateName(e.target.value)}
+              required
             />
-            <input type="text"
-                   placeholder="Street Address"
-                   onChange={e => this.updateAddress(e.target.value)}
-                   required
+            <input
+              type="text"
+              placeholder="Street Address"
+              onChange={e => this.updateAddress(e.target.value)}
+              required
             />
-            <input type="text"
-                   placeholder="City"
-                   onChange={e => this.updateCity(e.target.value)}
-                   required
+            <input
+              type="text"
+              placeholder="City"
+              onChange={e => this.updateCity(e.target.value)}
+              required
             />
-            <select name="state"
-                    id="state"
-                    onChange={e => this.updateState(e.target.value)}
-                    required
-                    >
-              <option value="">
-                Select a State
-              </option>
+            <select
+              name="state"
+              id="state"
+              onChange={e => this.updateState(e.target.value)}
+              required
+            >
+              <option value="">Select a State</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -248,22 +251,28 @@ export default class Account extends React.Component {
               <option value="WY">Wyoming</option>
             </select>
 
-            <input type="text"
-                   placeholder="Zip"
-                   onChange={e => this.updateZip(e.target.value)}
-                   required
+            <input
+              type="text"
+              placeholder="Zip"
+              onChange={e => this.updateZip(e.target.value)}
+              required
             />
-            <input type="text"
-                   placeholder="Email"
-                   onChange={e => this.updateEmail(e.target.value)}
-                   required
+            <input
+              type="text"
+              placeholder="Email"
+              onChange={e => this.updateEmail(e.target.value)}
+              required
             />
-            <input type="text"
-                   placeholder="Phone"
-                   onChange={e => this.updatePhone(e.target.value)}
-                   required
+            <input
+              type="text"
+              placeholder="Phone"
+              onChange={e => this.updatePhone(e.target.value)}
+              required
             />
-            <button type="submit">Save</button>
+            <div className='buttonContainer'>
+              <button type="submit">Save</button>
+            </div>
+
           </form>
         </div>
 

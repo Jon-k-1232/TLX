@@ -11,18 +11,19 @@
 }
 
 .newRegUserName label, .newRegUserpassword label, .newRegCompany label, .newRegStreet label,
-.newRegCity label, .newRegState label, .newRegZip label, .newRegPhone label{
+.newRegCity label, .newRegState label, .newRegZip label, .newRegPhone label, .newRegRegisterAs label{
     width: 150px;
 }
 
 .newRegUserName, .newRegUserpassword, .newRegCompany, .newRegStreet,
-.newRegCity, .newRegState, .newRegZip, .newRegPhone{
-    display: flex;
+.newRegCity, .newRegState, .newRegZip, .newRegPhone, .newRegRegisterAs{
+    display: inline-flex;
+    align-items: baseline;
     margin: 10px;
 }
 
 .newRegUserName div input, .newRegUserpassword div input, .newRegCompany div input, .newRegStreet div input,
-.newRegCity div input, .newRegState div input, .newRegZip div input, .newRegPhone div input{
+.newRegCity div input, .newRegState div input, .newRegZip div input, .newRegPhone div input, .newRegRegisterAs div input{
     width: 200px;
     border: 1px solid #c1c8cc;
     border-radius: 4px;

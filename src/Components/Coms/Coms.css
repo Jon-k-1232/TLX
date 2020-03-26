@@ -1,41 +1,47 @@
-
-.comPage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.comPage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.comPage h1{
-    text-align: center;
+.comPage h1 {
+  text-align: center;
 }
 
-.comPageNav{
-    display: inline-flex;
+.comPageNav {
+  display: inline-flex;
 }
 
-#newCommLink, #historyCommLink{
-    text-align: right;
-    margin: 10px;
+#newCommLink,
+#historyCommLink {
+  text-align: right;
+  margin: 10px;
 }
 
-#newCommLink a, #historyCommLink a{
-    text-decoration: none;
+#newCommLink a,
+#historyCommLink a {
+  text-decoration: none;
 }
 
-#newCommLink a:hover{
-    color: brown;
-    cursor: pointer;
+#newCommLink a:hover {
+  color: brown;
+  cursor: pointer;
 }
 
-#historyCommLink a:hover{
-    color: brown;
-    cursor: pointer;
+#historyCommLink a:hover {
+  color: brown;
+  cursor: pointer;
 }
 
-.noMessageContainer{
-    display: flex;
-    justify-content: center;
+.noMessageContainer {
+  display: flex;
+  justify-content: center;
 }
 
-
+.messageBox p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 8px;
+}
