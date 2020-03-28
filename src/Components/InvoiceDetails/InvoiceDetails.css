@@ -1,0 +1,45 @@
+.invoicePage{
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.invoicePage h1, .invoicePage h2, .billIsPaid h2{
+    text-align: center;
+}
+
+.billToContainer, .billDueContainer, .invoiceDetailsContainer, .billIsPaid, .makePaymentTo{
+    border: 1px solid black;
+    margin:10px
+}
+
+
+.paidStatus,
+.paidDate,
+.paidAmount,
+.paidWith,
+.invoiceDetailsMaintenance,
+.invoiceDetailsWater,
+.invoiceDetailsRent,
+.invoiceDetailsPast,
+.invoiceDetailsTotal {
+    display: flex;
+    align-items: baseline;
+}
+
+.paidStatus p,
+.paidDate p,
+.paidAmount p,
+.paidWith p,
+.invoiceDetailsMaintenance p,
+.invoiceDetailsWater p,
+.invoiceDetailsRent p,
+.invoiceDetailsPast p,
+.invoiceDetailsTotal h4 {
+    width: 145px;
+}
+
+#backLink{
+    margin: 10px;
+}

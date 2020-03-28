@@ -10,30 +10,34 @@ export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: null,
       username: null,
       password: null,
       type: null,
     };
   }
 
-  updateSignInUser = user => {
+  updateSignInUser = (user, loginData) => {
     this.setState({
+      userId: loginData.userId,
       username: user,
       password: this.state.password,
       type: this.state.type,
     });
   };
 
-  updateSignInPassword = password => {
+  updateSignInPassword = (password, loginData) => {
     this.setState({
+      userId: loginData.userId,
       username: this.state.user,
       password: password,
       type: this.state.type,
     });
   };
 
-  updateSignInType= type => {
+  updateSignInType= (type, loginData) => {
     this.setState({
+      userId: loginData.userId,
       username: this.state.user,
       password: this.state.password,
       type: type,
@@ -43,10 +47,13 @@ export default class SignIn extends React.Component {
   handleSubmit = (e, newUser) => {
     e.preventDefault();
     this.context.setUser({ ...this.state });
-    this.props.history.push('/Billing')
+    this.props.history.push('/Billing');
+    console.log(this.context.user)
   };
 
   render() {
+    const loginData = this.context.user;
+
     return (
       <main className="signInPage">
         <div id="homePicture">
@@ -60,7 +67,7 @@ export default class SignIn extends React.Component {
               id="usernameInput"
               type="text"
               placeholder="Username"
-              onChange={e => this.updateSignInUser(e.target.value)}
+              onChange={e => this.updateSignInUser(e.target.value,loginData)}
               required
             />
 
@@ -68,7 +75,7 @@ export default class SignIn extends React.Component {
               id="passwordInput"
               type="text"
               placeholder="Password"
-              onChange={e => this.updateSignInPassword(e.target.value)}
+              onChange={e => this.updateSignInPassword(e.target.value,loginData)}
               required
             />
 
@@ -76,11 +83,11 @@ export default class SignIn extends React.Component {
               <select
                   name='registerOption'
                   required
-                  onChange={e => this.updateSignInType(e.target.value)}
+                  onChange={e => this.updateSignInType(e.target.value,loginData)}
               >
-                <option value="">Tenant/ Property Manager</option>
+                <option value="">Login As</option>
                 <option value="Tenant">Tenant</option>
-                <option value="Property Manager">Property Manager</option>
+
               </select>
             </div>
 

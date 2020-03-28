@@ -9,6 +9,7 @@ import Account from "../Components/Account/Account.js";
 import Coms from "../Components/Coms/Coms.js";
 import SignIn from "../Components/SignIn/SignIn.js";
 import Billing from "../Components/Billing/Billing.js";
+import InvoiceDetails from "../Components/InvoiceDetails/InvoiceDetails.js";
 import MessageDetails from "../Components/MessageDetails/MessageDetails.js";
 import AppContext from "../Context.js";
 import LoggedOut from "../Components/LoggedOut/LoggedOut.js";
@@ -19,24 +20,36 @@ export default class App extends React.Component {
     // state is being set in order to mimic api data inbound.
     this.state = {
       user:{
+        userId:'uXolWvg49Co5EfCo',
         username: null,
         password: null,
-        type: null,
+        type: "Tenant",
       },
       contactInfo: {
-        company: "bob",
+        userId:'uXolWvg49Co5EfCo',
+        company: "Bob Builder",
         street: "1232 w south street",
-        city: "scottsdale",
+        city: "Scottsdale",
         state: "AZ",
         zip: "85308",
-        email: "jon@jon.com",
-        phone: "6028812412"
+        email: "jon@BobBuilder.com",
+        phone: "602-881-2412",
       },
-      propertyManager: "ABC Management",
+      propertyInfo:{
+        UserId: '23-19',
+        propertyManager: "Monsters, Inc",
+        street: '1345 N. Fake St.',
+        city:'Phoenix',
+        state:'Az',
+        zip:'85254',
+        phone: '123-456-7898',
+        email: 'Jake@AbcManagement.com',
+      },
       messages: [
         {
           userId: "uXolWvg49Co5EfCo",
           messageId: "jndicbuwc87adc78vds",
+          subjectId: "1",
           date: "3/12/20",
           to: "Jon Kimmel",
           from: "Property Manager",
@@ -50,6 +63,7 @@ export default class App extends React.Component {
         {
           userId: "uXolWvg49Co5EfCo",
           messageId: "jndics7sc8scs",
+          subjectId: "1",
           date: "3/10/20",
           to: "Property Manager",
           from: "Jon",
@@ -59,6 +73,7 @@ export default class App extends React.Component {
         {
           userId: "uXolWvgbui79",
           messageId: "jndicbuwc87a12342",
+          subjectId: "2",
           date: "3/8/20",
           to: "Jon Kimmel",
           from: "Property Manager",
@@ -67,6 +82,38 @@ export default class App extends React.Component {
             "This is a test of a slightly longer message. Text limits will have a 500 character limit."
         }
       ],
+      bills:[
+          {
+            userId:'uXolWvg49Co5EfCo',
+            billsId:'lnkbd7vferkc94323f',
+            rentFor: 'April 2020',
+            due: '$1200',
+            dueDate:'April 1, 2020',
+            status:'Outstanding',
+            paidAmount: '$0',
+            paidDate: '',
+            paidWith:'',
+            maintenance:'$300',
+            water:'$100',
+            pastDue:'0.00',
+            rent:'$800',
+        },
+        {
+            userId:'uXolWvg49Co5EfCo',
+            billsId:'knjsvd9s69s8dv09',
+            rentFor: 'March 2020',
+            due: '$1300',
+            dueDate:'March 1, 2020',
+            status:'Paid',
+            paidAmount:'$1300',
+            paidDate: 'February 1, 2020',
+            paidWith:'Check',
+            maintenance:'$300',
+            water:'$200',
+            pastDue:'0.00',
+            rent:'$800',
+        },
+          ],
       setContactInfo: company => {
         this.setState({ contactInfo: company });
       },
@@ -77,22 +124,6 @@ export default class App extends React.Component {
   }
 
 
-
-
-  saveUser(newUser){
-    localStorage.setItem("user", newUser.username);
-    this.setState({ user:newUser });
-  }
-
-  logout(){
-    localStorage.clear();
-    this.setState({ user:null });
-  }
-
-
-
-
-
   render() {
     return (
       <AppContext.Provider value={this.state}>
@@ -100,38 +131,66 @@ export default class App extends React.Component {
           <BrowserRouter>
             <Header />
             <Switch>
-              <Route exact path="/" component={SignIn} />
-              <Route path="/register" component={Register} />
-
-              {this.state.user.type === "Tenant" ? (
-                <Route path="/Billing" component={Billing}/>
-              ) : <LoggedOut/>}
-
-              {this.state.user.type === "Tenant" ? (
-                <Route exact path="/Communications" component={Coms} />
-              ) : <LoggedOut/>}
+              <Route
+                  exact
+                  path="/"
+                  component={SignIn}
+              />
+              <Route
+                  path="/register"
+                  component={Register}
+              />
 
               {this.state.user.type === "Tenant" ? (
                 <Route
-                exact
-                path="/Communications/details/:id"
-                component={MessageDetails}
+                    exact
+                    path="/Billing"
+                    component={Billing}
                 />
               ) : <LoggedOut/>}
 
               {this.state.user.type === "Tenant" ? (
-                <Route path="/Communications/New" component={NewMessage} />
+                  <Route
+                      path="/Billing/invoice/:id"
+                      component={InvoiceDetails}
+                  />
               ) : <LoggedOut/>}
 
               {this.state.user.type === "Tenant" ? (
                 <Route
-                path="/Communications/History"
-                component={MessageHistory}
+                    exact
+                    path="/Communications"
+                    component={Coms}
                 />
               ) : <LoggedOut/>}
 
               {this.state.user.type === "Tenant" ? (
-                <Route path="/Account" component={Account} />
+                <Route
+                  exact
+                  path="/Communications/details/:id"
+                  component={MessageDetails}
+                />
+              ) : <LoggedOut/>}
+
+              {this.state.user.type === "Tenant" ? (
+                <Route
+                    path="/Communications/New/:id"
+                    component={NewMessage}
+                />
+              ) : <LoggedOut/>}
+
+              {this.state.user.type === "Tenant" ? (
+                <Route
+                  path="/Communications/History"
+                  component={MessageHistory}
+                />
+              ) : <LoggedOut/>}
+
+              {this.state.user.type === "Tenant" ? (
+                <Route
+                    path="/Account"
+                    component={Account}
+                />
               ) : <LoggedOut/>}
 
             </Switch>
@@ -142,56 +201,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-render() {
-    return (
-      <AppContext.Provider value={this.state}>
-        <main className="App">
-          <BrowserRouter>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={SignIn} />
-              <Route path="/register" component={Register} />
-              <Route path="/Billing" component={Billing} />
-              <Route exact path="/Communications" component={Coms} />
-              <Route
-                exact
-                path="/Communications/details/:id"
-                component={MessageDetails}
-              />
-              <Route path="/Communications/New" component={NewMessage} />
-              <Route
-                path="/Communications/History"
-                component={MessageHistory}
-              />
-              {this.state.user.username.type === "Tenant" ? (
-                <Route path="/Account" component={Account} />
-              ) : (
-                <Route path="/Account" component={ManagerAccount} />
-              )}
-<Route path="/Account" component={Account} />
-</Switch>
-<Footer />
-</BrowserRouter>
-</main>
-</AppContext.Provider>
-);
-}
-}
-
-
- */

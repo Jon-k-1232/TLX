@@ -26,10 +26,7 @@
 }
 
 #messageSubButton{
-    width: 125px;
-    height: 35px;
     margin: 10px;
-    background-color: white;
 }
 
 #messageSubButton a, #messageDiscard a{

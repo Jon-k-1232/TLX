@@ -12,7 +12,7 @@ export default class  MessageDetails extends React.Component{
         let messageNumber = this.context.messages.find(res => res.messageId === this.props.match.params.id);
 
         //reads the subject line of the message the user clicked on
-        let subjectId = messageNumber.subject;
+        let subjectId = messageNumber.subjectId;
 
         // reads all messages in user messages
         let messageArray = this.context.messages;
@@ -26,7 +26,7 @@ export default class  MessageDetails extends React.Component{
          with any other message that has a matching subject line.
          */
         for (let i = 0; i < messageArray.length; i++) {
-            if (subjectId === messageArray[i].subject) {
+            if (subjectId === messageArray[i].subjectId) {
                 threadMaker.push(
                     <div className="messageDetailsBox" key={i}>
                         <p>{messageArray[i].date}</p>
@@ -38,7 +38,6 @@ export default class  MessageDetails extends React.Component{
             }
         }
 
-
         return messageNumber ? (
             <main className="messageDetailsPage">
                 <div className="messageDetailsReply">
@@ -46,7 +45,7 @@ export default class  MessageDetails extends React.Component{
                         <Link to="/Communications">Back</Link>
                     </p>
                     <p>
-                        <Link to="/Communications/New">Reply</Link>
+                        <Link to={`/Communications/New/${messageNumber.subjectId}`}>Reply</Link>
                     </p>
                 </div>
 

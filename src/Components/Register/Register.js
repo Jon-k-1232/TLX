@@ -1,10 +1,8 @@
 import React from 'react';
 import "./Register.css"
-//import { Link } from "react-router-dom";
 
 
 export default class Register extends React.Component{
-
 
     render(){
         return(
@@ -143,9 +141,7 @@ export default class Register extends React.Component{
                     <div className='newRegRegisterAs'>
                         <label> Register As</label>
                         <select name='registerOption' required>
-                            <option value="">Tenant/ Property Manager</option>
                             <option value="Tenant">Tenant</option>
-                            <option value="Property Manager">Property Manager</option>
                         </select>
                     </div>
 

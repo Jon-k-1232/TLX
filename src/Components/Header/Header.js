@@ -65,9 +65,16 @@ export default class Header extends React.Component {
             <li>
               <Link to="/Account">Account</Link>
             </li>
+
+            {this.context.user.type === "Tenant" ? (
             <li>
               <button onClick={this.handleLogOut}><Link to='/'>Logout</Link></button>
             </li>
+            ) :
+                <li>
+                  <button><Link to='/'>Sign In</Link></button>
+                </li>
+            }
           </ol>
         </div>
       </header>

@@ -12,7 +12,6 @@ export default class Coms extends React.Component {
       let arr = this.context.messages;
       let messageHits = [];
 
-
       if(arr <= 0){
           messageHits.push(
               <div className="noMessageContainer">
@@ -31,14 +30,12 @@ export default class Coms extends React.Component {
           }
       }
 
-
-
     return (
       <main className="comPage">
         <h1>Communications</h1>
           <div className="comPageNav">
             <p id="newCommLink">
-              <Link to="/Communications/New">New</Link>
+                <Link to={`/Communications/New/${arr.length + 1}`}>New</Link>
             </p>
             <p id="historyCommLink">
               <Link to="/Communications/History">History</Link>
