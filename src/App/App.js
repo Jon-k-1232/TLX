@@ -23,7 +23,7 @@ export default class App extends React.Component {
         userId: "uXolWvg49Co5EfCo",
         username: "",
         password: "",
-        type: "Tenant"
+        type: ""
       },
       contactInfo: {
         userId: "uXolWvg49Co5EfCo",
