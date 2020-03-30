@@ -1,45 +1,53 @@
-
-.accountPage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.accountPage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.accountPage h1{
-    text-align: center;
+.accountPage h1 {
+  text-align: center;
 }
 
-.accountContact, .accountPassword, .accountPropManager, .accountAddress{
-    border: 1px solid black;
-    margin: 10px;
+.accountContact,
+.accountPassword,
+.accountPropManager,
+.accountAddress {
+  border: 1px solid black;
+  margin: 10px;
 }
 
-.accountContact button, .accountPassword button, .accountAddress button, .accountPropManager p{
-    margin: 10px;
+.accountContact button,
+.accountPassword button,
+.accountAddress button,
+.accountPropManager p {
+  margin: 10px;
 }
 
-.accountPropManager{
-    display: inline-flex;
-    align-items: center;
+.accountPropManager {
+  display: inline-flex;
+  align-items: center;
 }
 
-.contactInformation{
-    display: flex;
-    flex-direction: column;
-    width: 200px;
+.contactInformation {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
 }
 
-.contactCompanyName, .contactAddress, .contactPhone, .contactEmail{
-    display: flex;
-    align-items: baseline;
+.contactCompanyName,
+.contactAddress,
+.contactPhone,
+.contactEmail {
+  display: flex;
+  align-items: baseline;
 }
 
-.accountContact p{
-    font-size: 15px;
-    margin: 0;
+.accountContact p {
+  font-size: 15px;
+  margin: 0;
 }
 
-.accountContact h5{
-    width:90px;
+.accountContact h5 {
+  width: 90px;
 }

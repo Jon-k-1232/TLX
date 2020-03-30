@@ -1,20 +1,20 @@
-.messageHistoryPage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.messageHistoryPage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.messageHistoryPage h1, #historyBack {
-    text-align: center;
+.messageHistoryPage h1,
+#historyBack {
+  text-align: center;
 }
 
-#historyBack a:hover{
-    color: brown;
-    cursor: pointer;
+#historyBack a:hover {
+  color: brown;
+  cursor: pointer;
 }
 
-.historyContainer{
-    text-align: left;
+.historyContainer {
+  text-align: left;
 }
-

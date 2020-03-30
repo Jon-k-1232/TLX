@@ -2,6 +2,8 @@ import React from "react";
 import "./Account.css";
 import AppContext from "../../Context.js";
 
+// User account page
+
 export default class Account extends React.Component {
   static contextType = AppContext;
 
@@ -15,105 +17,71 @@ export default class Account extends React.Component {
       state: "",
       zip: "",
       email: "",
-      phone: ""
+      phone: "",
+      username: "",
+      password: "",
+      type: ""
     };
   }
 
   // updates name of company account state
-  updateName = (company,contactInfo) => {
+  updateName = (company, contactInfo) => {
     this.setState({
       userId: contactInfo.userId,
-      company: company,
-      street: this.state.street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      email: this.state.email,
-      phone: this.state.phone
+      company: company
     });
   };
 
   // updates address account state
-  updateAddress = (street,contactInfo) => {
+  updateAddress = (street, contactInfo) => {
     this.setState({
-      userId: contactInfo.userId,
-      company: this.state.company,
-      street: street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      email: this.state.email,
-      phone: this.state.phone
+      street: street
     });
   };
 
   // updates city of account state
-  updateCity = (city,contactInfo) => {
+  updateCity = (city, contactInfo) => {
     this.setState({
-      userId: contactInfo.userId,
-      company: this.state.company,
-      street: this.state.street,
-      city: city,
-      state: this.state.state,
-      zip: this.state.zip,
-      email: this.state.email,
-      phone: this.state.phone
+      city: city
     });
   };
 
   // updates state of account state
-  updateState = (state,contactInfo) => {
+  updateState = (state, contactInfo) => {
     this.setState({
-      userId: contactInfo.userId,
-      company: this.state.company,
-      street: this.state.street,
-      city: this.state.city,
-      state: state,
-      zip: this.state.zip,
-      email: this.state.email,
-      phone: this.state.phone
+      state: state
     });
   };
 
   // updates zip of account state
-  updateZip = (zip,contactInfo) => {
+  updateZip = (zip, contactInfo) => {
     this.setState({
-      userId: contactInfo.userId,
-      company: this.state.company,
-      street: this.state.street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: zip,
-      email: this.state.email,
-      phone: this.state.phone
+      zip: zip
     });
   };
 
   // updates email of account state
-  updateEmail = (email,contactInfo) => {
+  updateEmail = (email, contactInfo) => {
     this.setState({
-      userId: contactInfo.userId,
-      company: this.state.company,
-      street: this.state.street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      email: email,
-      phone: this.state.phone
+      email: email
     });
   };
 
   // updates phone of account state
-  updatePhone = (phone,contactInfo) => {
+  updatePhone = (phone, contactInfo) => {
+    this.setState({
+      phone: phone
+    });
+  };
+
+  // updates password state
+  updatePassword = password => {
+    let contactInfo = this.context.contactInfo;
+
     this.setState({
       userId: contactInfo.userId,
-      company: this.state.company,
-      street: this.state.street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      email: this.state.email,
-      phone: phone
+      password: password,
+      type: contactInfo.role
     });
   };
 
@@ -123,23 +91,31 @@ export default class Account extends React.Component {
     this.context.setContactInfo({ ...this.state });
   };
 
+  // handles submit for password
+  handleSubmitPassword = e => {
+    e.preventDefault();
+    this.context.setResetPassword({ ...this.state });
+  };
+
   render() {
     let contactInfo = this.context.contactInfo;
+
     return (
       <main className="accountPage">
         <h1>Account</h1>
 
         <div className="accountPassword">
           <h3>Change Password</h3>
-          <form>
+          <form onSubmit={this.handleSubmitPassword}>
             <input
               id="changePassword"
               type="text"
               placeholder="Password"
+              onChange={e => this.updatePassword(e.target.value)}
               required
             />
+            <button type="submit">Save</button>
           </form>
-          <button>Save</button>
         </div>
 
         <div className="accountContact">
@@ -276,16 +252,15 @@ export default class Account extends React.Component {
               onChange={e => this.updatePhone(e.target.value, contactInfo)}
               required
             />
-            <div className='buttonContainer'>
+            <div className="buttonContainer">
               <button type="submit">Save</button>
             </div>
-
           </form>
         </div>
 
         <div className="accountPropManager">
           <h3>Property Manager:</h3>
-          <p>{this.context.propertyInfo.propertyManager}</p>
+          <p>{this.context.propertyInfo.company}</p>
         </div>
       </main>
     );

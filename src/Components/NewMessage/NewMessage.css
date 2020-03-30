@@ -1,46 +1,46 @@
-
-.newMessagePage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.newMessagePage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#messageSubject{
-    width: 90%;
+#messageSubject {
+  width: 90%;
 }
 
-#messageText{
-    height: 300px;
-    width: 90%;
+#messageText {
+  height: 300px;
+  width: 90%;
 }
 
-.newMessage form{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.newMessage form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.newMessagePage h1{
-    text-align: center;
+.newMessagePage h1 {
+  text-align: center;
 }
 
-#messageSubButton{
-    margin: 10px;
+#messageSubButton,
+#messageDiscard {
+  margin: 10px;
 }
 
-#messageSubButton a, #messageDiscard a{
-    text-decoration: none;
-    color: black;
+#messageSubButton a,
+#messageDiscard a {
+  text-decoration: none;
+  color: black;
 }
 
-#messageSubButton :hover{
-    background-color: brown;
-    cursor: pointer;
+#messageSubButton :hover {
+  background-color: brown;
+  cursor: pointer;
 }
 
-#messageDiscard a:hover{
-    color: brown;
-    cursor: pointer;
+#messageDiscard a:hover {
+  color: brown;
+  cursor: pointer;
 }
-

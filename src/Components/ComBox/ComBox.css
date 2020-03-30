@@ -1,7 +1,15 @@
-.messageBox{
-    border: 1px solid black;
-    margin: 10px;
-    height: 172px;
-    overflow: hidden;
+.messageBox {
+  border: 1px solid black;
+  margin: 10px;
+  overflow: hidden;
 }
 
+#quickView {
+  position: absolute;
+  right: 20px;
+  font-size: 14px;
+}
+
+#quickView:hover {
+  color: brown;
+}

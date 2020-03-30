@@ -32,6 +32,7 @@ header h1 a {
   border: 1px solid black;
   padding: 20px;
   background: white;
+  z-index: 1;
 }
 
 .menuItems li {

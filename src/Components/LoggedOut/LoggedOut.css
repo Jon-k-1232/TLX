@@ -1,10 +1,10 @@
 .loggedOutPage {
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.loggedOutView{
-    text-align: center;
+.loggedOutView {
+  text-align: center;
 }

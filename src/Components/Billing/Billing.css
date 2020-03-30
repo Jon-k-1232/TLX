@@ -1,38 +1,49 @@
-
-.billingPage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.billingPage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.paymentHistory, .billingPage h1, .noPaymentsHistory{
-    text-align: center;
+.paymentHistory,
+.billingPage h1,
+.noPaymentsHistory {
+  text-align: center;
 }
 
-.balance{
-    text-align: center;
-    margin:30px;
+.balance {
+  text-align: center;
+  margin: 30px;
 }
 
-.paymentInvoiceHistory{
-    border: 1px solid black;
-    margin: 10px;
+.paymentInvoiceHistory {
+  border: 1px solid black;
+  margin: 10px;
 }
 
-.quickViewPaid, .quickViewOutstanding, .quickViewPaidBy, .quickViewRentFor,
-.quickViewPaidOn{
-    display: flex;
-    align-items: baseline;
-    height: 40px;
+.quickViewPaid,
+.quickViewOutstanding,
+.quickViewPaidBy,
+.quickViewRentFor,
+.quickViewPaidOn {
+  display: flex;
+  align-items: baseline;
+  height: 40px;
 }
 
-.quickViewPaid h4, .quickViewOutstanding h4, .quickViewPaidBy h4,
-.quickViewRentFor h4, .quickViewPaidOn h4{
-    width: 125px;
+.quickViewPaid h4,
+.quickViewOutstanding h4,
+.quickViewPaidBy h4,
+.quickViewRentFor h4,
+.quickViewPaidOn h4 {
+  width: 125px;
 }
 
-#billingViewDetails{
-    text-align: end;
-    margin: 10px;
+#billingViewDetails {
+  text-align: end;
+  margin: 10px;
+}
+
+#billingViewDetails:hover {
+  color: brown;
 }

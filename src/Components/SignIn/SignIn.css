@@ -1,58 +1,64 @@
-
-.signInPage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.signInPage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#homePicture{
-    border: 1px solid black;
-    height: 450px;
-    margin: 0px 10px 0px 10px;
+#homePicture {
+  border: 1px solid black;
+  height: 450px;
+  margin: 0px 10px 0px 10px;
 }
 
-.signContainer{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.signContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.signInForm{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 30px;
+.signInForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
 }
 
-#usernameInput, #passwordInput{
-    margin: 20px;
-    height: 30px;
-    width: 250px;
+#usernameInput,
+#passwordInput {
+  margin: 20px;
+  height: 30px;
+  width: 250px;
 }
 
-#signInButton{
-    width: 125px;
-    height: 35px;
-    margin: 15px;
+#signInButton {
+  width: 125px;
+  height: 35px;
+  margin: 15px;
 }
 
-#signInNewUser a{
-    text-decoration: none;
+#signInNewUser a {
+  text-decoration: none;
 }
 
-form input, form select, form textarea {
-    margin: 5px;
-    border: 1px solid #c1c8cc;
-    border-radius: 4px;
-    font-size: 13px;
-    color: #333;
+form input,
+form select,
+form textarea {
+  margin: 5px;
+  border: 1px solid #c1c8cc;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
 }
 
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
+}
+
+button:hover {
+  color: brown;
 }

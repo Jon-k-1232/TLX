@@ -3,7 +3,7 @@ import "./SignIn.css";
 import { Link } from "react-router-dom";
 import AppContext from "../../Context.js";
 
-
+// Sign in page
 export default class SignIn extends React.Component {
   static contextType = AppContext;
 
@@ -13,46 +13,37 @@ export default class SignIn extends React.Component {
       userId: null,
       username: null,
       password: null,
-      type: null,
+      type: null
     };
   }
 
   updateSignInUser = (user, loginData) => {
     this.setState({
       userId: loginData.userId,
-      username: user,
-      password: this.state.password,
-      type: this.state.type,
+      username: user
     });
   };
 
-  updateSignInPassword = (password, loginData) => {
+  updateSignInPassword = password => {
     this.setState({
-      userId: loginData.userId,
-      username: this.state.user,
-      password: password,
-      type: this.state.type,
+      password: password
     });
   };
 
-  updateSignInType= (type, loginData) => {
+  updateSignInType = type => {
     this.setState({
-      userId: loginData.userId,
-      username: this.state.user,
-      password: this.state.password,
-      type: type,
+      type: type
     });
   };
 
   handleSubmit = (e, newUser) => {
     e.preventDefault();
     this.context.setUser({ ...this.state });
-    this.props.history.push('/Billing');
-    console.log(this.context.user)
+    this.props.history.push("/Billing");
   };
 
   render() {
-    const loginData = this.context.user;
+    const loginData = this.context.contactInfo;
 
     return (
       <main className="signInPage">
@@ -62,12 +53,11 @@ export default class SignIn extends React.Component {
 
         <div className="signContainer">
           <form className="signInForm" onSubmit={this.handleSubmit}>
-
             <input
               id="usernameInput"
               type="text"
               placeholder="Username"
-              onChange={e => this.updateSignInUser(e.target.value,loginData)}
+              onChange={e => this.updateSignInUser(e.target.value, loginData)}
               required
             />
 
@@ -75,26 +65,28 @@ export default class SignIn extends React.Component {
               id="passwordInput"
               type="text"
               placeholder="Password"
-              onChange={e => this.updateSignInPassword(e.target.value,loginData)}
+              onChange={e =>
+                this.updateSignInPassword(e.target.value, loginData)
+              }
               required
             />
 
-            <div className='newRegRegisterAs'>
+            <div className="newRegRegisterAs">
               <select
-                  name='registerOption'
-                  required
-                  onChange={e => this.updateSignInType(e.target.value,loginData)}
+                name="registerOption"
+                required
+                onChange={e => this.updateSignInType(e.target.value, loginData)}
               >
                 <option value="">Login As</option>
                 <option value="Tenant">Tenant</option>
-
               </select>
             </div>
 
-            <div className='buttonContainer'>
-                <button type="submit" id="signInButton">SIGN ME IN</button>
+            <div className="buttonContainer">
+              <button type="submit" id="signInButton">
+                Sign Me In
+              </button>
             </div>
-
           </form>
 
           <p id="signInNewUser">

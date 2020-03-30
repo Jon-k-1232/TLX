@@ -1,19 +1,24 @@
-.invoicePage{
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.invoicePage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.invoicePage h1, .invoicePage h2, .billIsPaid h2{
-    text-align: center;
+.invoicePage h1,
+.invoicePage h2,
+.billIsPaid h2 {
+  text-align: center;
 }
 
-.billToContainer, .billDueContainer, .invoiceDetailsContainer, .billIsPaid, .makePaymentTo{
-    border: 1px solid black;
-    margin:10px
+.billToContainer,
+.billDueContainer,
+.invoiceDetailsContainer,
+.billIsPaid,
+.makePaymentTo {
+  border: 1px solid black;
+  margin: 10px;
 }
-
 
 .paidStatus,
 .paidDate,
@@ -24,8 +29,8 @@
 .invoiceDetailsRent,
 .invoiceDetailsPast,
 .invoiceDetailsTotal {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
 .paidStatus p,
@@ -37,9 +42,13 @@
 .invoiceDetailsRent p,
 .invoiceDetailsPast p,
 .invoiceDetailsTotal h4 {
-    width: 145px;
+  width: 145px;
 }
 
-#backLink{
-    margin: 10px;
+#backLink {
+  margin: 10px;
+}
+
+#backLink a:hover {
+  color: brown;
 }

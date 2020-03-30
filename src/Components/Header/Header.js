@@ -3,6 +3,8 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import AppContext from "../../Context.js";
 
+// Header and hamburger menu
+
 export default class Header extends React.Component {
   static contextType = AppContext;
 
@@ -12,9 +14,9 @@ export default class Header extends React.Component {
       user: {
         username: null,
         password: null,
-        type: null,
-        },
-      menuDisplay: false,
+        type: null
+      },
+      menuDisplay: false
     };
   }
 
@@ -24,20 +26,22 @@ export default class Header extends React.Component {
   // handles log out and redirects back to login screen
   handleLogOut = e => {
     e.preventDefault();
-    this.context.setUser({...this.state.user});
+    this.context.setUser({ ...this.state.user });
   };
-
 
   render() {
     return (
       <header>
         <h1>
-          <Link
-              to="/"
-              onClick={() => this.setState({ menuDisplay: false })}
-          > TLX
+          <Link to="/" onClick={() => this.setState({ menuDisplay: false })}>
+            {" "}
+            TLX
           </Link>{" "}
         </h1>
+
+        {/*
+        Creates lines for hamburger menu
+        */}
         <div className="topNav">
           <div
             className={
@@ -52,6 +56,9 @@ export default class Header extends React.Component {
             <div className="bar3"></div>
           </div>
 
+          {/*
+          Items in menu
+        */}
           <ol
             className={this.state.menuDisplay ? "menuItems open" : "menuItems"}
             onClick={() => this.setState({ menuDisplay: false })}
@@ -66,15 +73,22 @@ export default class Header extends React.Component {
               <Link to="/Account">Account</Link>
             </li>
 
+            {/*
+              Conditionally renders the login and logout button in menu
+            */}
             {this.context.user.type === "Tenant" ? (
-            <li>
-              <button onClick={this.handleLogOut}><Link to='/'>Logout</Link></button>
-            </li>
-            ) :
-                <li>
-                  <button><Link to='/'>Sign In</Link></button>
-                </li>
-            }
+              <li>
+                <button onClick={this.handleLogOut}>
+                  <Link to="/">Logout</Link>
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button>
+                  <Link to="/">Sign In</Link>
+                </button>
+              </li>
+            )}
           </ol>
         </div>
       </header>
