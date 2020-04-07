@@ -11,13 +11,13 @@ export default class InvoiceDetails extends React.Component {
   render() {
     // reads the passed prop and finds the matching ID in the bills array.
     let bills = this.context.bills.find(
-      res => res.billsId === this.props.match.params.id
+      (res) => res.billId === parseInt(this.props.match.params.id)
     );
 
     let company = this.context.contactInfo;
-    let manager = this.context.propertyInfo;
+    let manager = this.context.managerInfo;
 
-    return (
+    return bills ? (
       <main className="invoicePage">
         <h1>Invoice</h1>
 
@@ -30,7 +30,7 @@ export default class InvoiceDetails extends React.Component {
         */}
         <div className="billDueContainer">
           <h3>Invoice: {bills.rentFor}</h3>
-          <h4>Pay: {bills.due}</h4>
+          <h4>Pay: {bills.totalDue}</h4>
           <h5>Due: {bills.dueDate}</h5>
         </div>
 
@@ -39,7 +39,6 @@ export default class InvoiceDetails extends React.Component {
         */}
         <div className="makePaymentTo">
           <h3>Make payment to:</h3>
-          <h4>{manager.propertyManager}</h4>
           <h4>{manager.company}</h4>
           <p>{manager.street}</p>
           <p>
@@ -82,7 +81,7 @@ export default class InvoiceDetails extends React.Component {
           <div className="invoiceDetailsRent">
             <p>Rent:</p>
             <div>
-              <p>{bills.rent}</p>
+              <p>{bills.basicRent}</p>
             </div>
           </div>
 
@@ -96,7 +95,7 @@ export default class InvoiceDetails extends React.Component {
           <div className="invoiceDetailsTotal">
             <h4>Total:</h4>
             <div>
-              <h4>{bills.due}</h4>
+              <h4>{bills.totalDue}</h4>
             </div>
           </div>
         </div>
@@ -145,7 +144,7 @@ export default class InvoiceDetails extends React.Component {
                 <div className="paidAmount">
                   <p>Amount Paid:</p>
                   <div>
-                    <p>{bills.paidAmount}</p>
+                    <p>{bills.amountPaid}</p>
                   </div>
                 </div>
               </div>
@@ -162,6 +161,8 @@ export default class InvoiceDetails extends React.Component {
           </div>
         )}
       </main>
+    ) : (
+      ""
     );
   }
 }

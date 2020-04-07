@@ -1,6 +1,7 @@
 import React from "react";
 import "./Coms.css";
 import { Link } from "react-router-dom";
+import config from "../../config.js";
 import AppContext from "../../Context.js";
 import ComBox from "../ComBox/ComBox.js";
 
@@ -8,6 +9,26 @@ import ComBox from "../ComBox/ComBox.js";
 
 export default class Coms extends React.Component {
   static contextType = AppContext;
+
+  componentDidMount() {
+    // Gets user messages
+    fetch(`${config.API_ENDPOINT}/messages/2`, {
+      //--- 2 needs updated to ${this.props.match.params.id} once login done
+      method: "GET",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setMessage(data.userMessages);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 
   render() {
     let arr = this.context.messages;
@@ -25,7 +46,7 @@ export default class Coms extends React.Component {
       for (let i = 0; i < arr.length; i++) {
         messageHits.push(
           <div className="hitItemContainer" key={i}>
-            <Link to={`/communications/details/${arr[i].messageId}`}>
+            <Link to={`/communications/details/${arr[i].messageid}`}>
               <ComBox messageInfo={arr[i]} />
             </Link>
           </div>

@@ -57,6 +57,7 @@ export default class SignIn extends React.Component {
               id="usernameInput"
               type="text"
               placeholder="Username"
+              maxLength="35"
               onChange={e => this.updateSignInUser(e.target.value, loginData)}
               required
             />
@@ -65,6 +66,7 @@ export default class SignIn extends React.Component {
               id="passwordInput"
               type="text"
               placeholder="Password"
+              maxLength="25"
               onChange={e =>
                 this.updateSignInPassword(e.target.value, loginData)
               }

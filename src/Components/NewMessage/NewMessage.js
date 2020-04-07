@@ -1,6 +1,7 @@
 import React from "react";
 import "./NewMessage.css";
 import { Link } from "react-router-dom";
+import config from "../../config.js";
 import AppContext from "../../Context.js";
 
 // New message form page. Used to type a new message.
@@ -11,88 +12,107 @@ export default class NewMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: "",
       messageId: "",
-      subjectId: "",
       date: "",
       to: "",
+      toUserId: "",
       from: "",
+      fromUserId: "",
       subject: "",
-      messageContent: ""
+      subjectId: "",
+      messageContent: "",
+      groupId: "",
     };
   }
 
-  updateSubject = subject => {
+  // Sets the subject and initial message data when no subject is being passed
+  updateSubject = (subject) => {
     var d = new Date();
     var curr_date = d.getDate();
     var curr_month = d.getMonth() + 1; //Months are zero based
     var curr_year = d.getFullYear();
 
+    let contactInfo = this.context.contactInfo;
+    let managerInfo = this.context.managerInfo;
+
     this.setState({
-      userId: this.context.contactInfo.userId,
-      messageId: this.context.messages.length + 1 + "",
-      subjectId: this.props.match.params.id,
+      messageId: this.context.messages.length + 1,
       date: curr_month + "/" + curr_date + "/" + curr_year,
-      to: this.context.propertyInfo.company,
-      from: this.context.contactInfo.company,
+      to: managerInfo.company,
+      toUserId: managerInfo.userid,
+      from: contactInfo.company,
+      fromUserId: contactInfo.userid,
       subject: subject,
-      messageContent: this.state.message
+      subjectId: parseInt(this.props.match.params.id),
+      groupId: contactInfo.groupId,
     });
   };
 
-  updateMessageBody = messageBody => {
-    var d = new Date();
-    var curr_date = d.getDate();
-    var curr_month = d.getMonth() + 1; //Months are zero based
-    var curr_year = d.getFullYear();
-
+  // Updates message body when no subject id is present.
+  updateMessageBody = (messageBody) => {
     this.setState({
-      userId: this.context.contactInfo.userId,
-      messageId: this.context.messages.length + 1 + "",
-      subjectId: this.props.match.params.id,
-      date: curr_month + "/" + curr_date + "/" + curr_year,
-      to: this.context.propertyInfo.company,
-      from: this.context.contactInfo.company,
-      subject: this.state.subject,
-      messageContent: messageBody
+      messageContent: messageBody,
     });
   };
 
-  // this function is iterated to second version as the subject text needs set
-  updateMessageBodyTwo = messageBody => {
+  /*
+    This updates the message body and sets the fixed subject line
+  */
+  updateMessageBodyTwo = (messageBody) => {
     var d = new Date();
     var curr_date = d.getDate();
     var curr_month = d.getMonth() + 1; //Months are zero based
     var curr_year = d.getFullYear();
+
+    let contactInfo = this.context.contactInfo;
+    let managerInfo = this.context.managerInfo;
 
     // recalling as message not passing through onChange.
     let message = this.context.messages.find(
-      res => res.subjectId === this.props.match.params.id
+      (res) => res.subjectId === parseInt(this.props.match.params.id)
     );
 
     this.setState({
-      userId: this.context.contactInfo.userId,
-      messageId: this.context.messages.length + 1 + "",
-      subjectId: this.props.match.params.id,
+      messageId: this.context.messages.length + 1,
       date: curr_month + "/" + curr_date + "/" + curr_year,
-      to: this.context.propertyInfo.company,
-      from: this.context.contactInfo.company,
+      to: managerInfo.company,
+      toUserId: managerInfo.userid,
+      from: contactInfo.company,
+      fromUserId: contactInfo.userid,
       subject: message.subject,
-      messageContent: messageBody
+      subjectId: parseInt(this.props.match.params.id),
+      messageContent: messageBody,
+      groupId: contactInfo.groupId,
     });
   };
 
-  // submits to update context.
-  handleSubmit = e => {
+  // submits form
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.context.setMessage({ ...this.state });
+
+    const sendMessage = { ...this.state };
+
+    fetch(
+      `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Origin: `${config.FRONT_WEB}`,
+        },
+        body: JSON.stringify(sendMessage),
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => alert(error));
+
     this.props.history.push("/Communications");
   };
 
   render() {
     // Reads passed prop in address like and searches for matching message subject Id.
     let message = this.context.messages.find(
-      res => res.subjectId === this.props.match.params.id
+      (res) => res.subjectId === parseInt(this.props.match.params.id)
     );
 
     return (
@@ -116,7 +136,7 @@ export default class NewMessage extends React.Component {
                 // conditionally renders a place holder, allows user to update the subject line
                 placeholder="Subject"
                 maxLength="45"
-                onChange={e => this.updateSubject(e.target.value)}
+                onChange={(e) => this.updateSubject(e.target.value)}
                 required
               ></input>
 
@@ -126,7 +146,7 @@ export default class NewMessage extends React.Component {
                 wrap="soft"
                 placeholder="Write a review in 500 characters..."
                 maxLength="500"
-                onChange={e => this.updateMessageBody(e.target.value)}
+                onChange={(e) => this.updateMessageBody(e.target.value)}
                 required
               />
 
@@ -135,14 +155,14 @@ export default class NewMessage extends React.Component {
               </button>
             </form>
           ) : (
-            // If there is a  pre-existing subject Id then will render the below.
+            // If there is a  pre-existing subject Id then this will render the below.
             <form className="newMessageForm" onSubmit={this.handleSubmit}>
               <input
                 id="messageSubject"
                 // conditionally renders and inserts subject line as value if a reply to a prior message
                 value={message.subject}
                 maxLength="65"
-                onChange={e => this.updateSubject(e.target.value)}
+                onChange={(e) => this.updateSubject(e.target.value)}
                 required
               ></input>
 
@@ -152,7 +172,7 @@ export default class NewMessage extends React.Component {
                 wrap="soft"
                 placeholder="Write a review in 500 characters..."
                 maxLength="500"
-                onChange={e => this.updateMessageBodyTwo(e.target.value)}
+                onChange={(e) => this.updateMessageBodyTwo(e.target.value)}
                 required
               />
 

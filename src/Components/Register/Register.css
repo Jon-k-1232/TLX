@@ -18,7 +18,8 @@
 .newRegState label,
 .newRegZip label,
 .newRegPhone label,
-.newRegRegisterAs label {
+.newRegRegisterAs label,
+.newManagerList label{
   width: 150px;
 }
 
@@ -30,7 +31,8 @@
 .newRegState,
 .newRegZip,
 .newRegPhone,
-.newRegRegisterAs {
+.newRegRegisterAs,
+.newManagerList{
   display: inline-flex;
   align-items: baseline;
   margin: 10px;
@@ -44,7 +46,8 @@
 .newRegState div input,
 .newRegZip div input,
 .newRegPhone div input,
-.newRegRegisterAs div input {
+.newRegRegisterAs div input,
+.newManagerList div input{
   width: 200px;
   border: 1px solid #c1c8cc;
   border-radius: 4px;

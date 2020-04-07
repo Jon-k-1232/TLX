@@ -1,5 +1,6 @@
 import React from "react";
 import "./Register.css";
+import config from "../../config.js";
 import AppContext from "../../Context.js";
 
 export default class Register extends React.Component {
@@ -8,7 +9,6 @@ export default class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: "",
       company: "",
       street: "",
       city: "",
@@ -16,72 +16,171 @@ export default class Register extends React.Component {
       zip: "",
       email: "",
       phone: "",
-      role: ""
+      password: "",
+      role: "",
+      managerName: "",
+      managerId: "",
+      groupId: "",
+      managerList: "",
     };
   }
 
-  updateLogin = Login => {
+  componentDidMount() {
+    // Gets a list of managers who are registered
+    fetch(`${config.API_ENDPOINT}/registration/new`, {
+      method: "GET",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.setState({ managerList: data.managerList });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
+  updateLogin = (email) => {
     this.setState({
-      Login: Login
+      email: email,
     });
   };
 
-  updatePassword = password => {
+  updatePassword = (password) => {
     this.setState({
-      password: password
+      password: password,
     });
   };
 
-  updateCompany = company => {
+  updateCompany = (company) => {
     this.setState({
-      userId: "blkjsbdlvjbio334f",
-      company: company
+      company: company,
     });
   };
 
-  updateStreet = street => {
+  updateStreet = (street) => {
     this.setState({
-      street: street
+      street: street,
     });
   };
 
-  updateCity = city => {
+  updateCity = (city) => {
     this.setState({
-      city: city
+      city: city,
     });
   };
 
-  updateState = state => {
+  updateState = (state) => {
     this.setState({
-      state: state
+      state: state,
     });
   };
 
-  updateZip = zip => {
+  updateZip = (zip) => {
     this.setState({
-      zip: zip
+      zip: zip,
     });
   };
 
-  updatePhone = phone => {
+  updatePhone = (phone) => {
     this.setState({
-      phone: phone
+      phone: phone,
     });
   };
 
-  updateRole = role => {
-    this.setState({
-      role: role
-    });
+  updateRole = (role) => {
+    // Logic add'd in case a user clicks on tenant then clicks back to manager option.
+    if (role === "tenant") {
+      this.setState({
+        role: role,
+      });
+    } else {
+      // If manager selected this will reset state, which needs to be clear for manager role to properly process on backend.
+      this.setState({
+        role: role,
+        managerName: "",
+        managerId: "",
+        groupId: "",
+      });
+    }
   };
 
-  handleSubmit = (e, newUser) => {
+  updateManager = (selectedManager) => {
+    // logic add'd to clear bug when switching managers, then selecting none or switching role to manager
+    if (selectedManager === "none") {
+      this.setState({
+        managerName: "",
+        managerId: "",
+        groupId: "",
+      });
+    } else {
+      // locate the user id for the selected option
+      let selectedManagerId = this.state.managerList.find(
+        (res) => res.company === selectedManager
+      );
+
+      this.setState({
+        managerName: selectedManager,
+        managerId: selectedManagerId.userid,
+        groupId: selectedManagerId.groupId,
+      });
+    }
+  };
+
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.context.setContactInfo({ ...this.state });
+    const registrationForm = { ...this.state };
+
+    fetch(`${config.API_ENDPOINT}/registration/new`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Origin: `${config.FRONT_WEB}`,
+      },
+      body: JSON.stringify(registrationForm),
+    })
+      .then((res) => res.json())
+      .catch((error) => alert(error));
+
     this.props.history.push("/");
   };
 
   render() {
+    let arr = this.state.managerList;
+    let managerOption = [];
+
+    // Iterates through the list of registered property managers and creates an option in the property manger drop down.
+    for (let i = 0; i < arr.length; i++) {
+      managerOption.push(
+        <option value={arr[i].company} key={i}>
+          {arr[i].company}
+        </option>
+      );
+    }
+
+    // conditionally renders the option to select a manager if the new user registers as a tenant vs a property manager
+    const managerOptionMenu = () => {
+      if (this.state.role === "tenant") {
+        return (
+          <div className="newManagerList">
+            <label>Property Manager</label>
+            <select
+              name="managerOption"
+              onChange={(e) => this.updateManager(e.target.value)}
+              required
+            >
+              <option value="none">Select a Property Manager</option>
+              {managerOption}
+            </select>
+          </div>
+        );
+      }
+    };
+
     return (
       <main className="RegisterPage">
         <h2>Create a TLX Account</h2>
@@ -92,7 +191,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updateLogin(e.target.value)}
+                maxLength="45"
+                onChange={(e) => this.updateLogin(e.target.value)}
                 required
               />
             </div>
@@ -103,7 +203,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updatePassword(e.target.value)}
+                maxLength="25"
+                onChange={(e) => this.updatePassword(e.target.value)}
                 required
               />
             </div>
@@ -114,7 +215,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updateCompany(e.target.value)}
+                maxLength="35"
+                onChange={(e) => this.updateCompany(e.target.value)}
                 required
               />
             </div>
@@ -125,7 +227,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updateStreet(e.target.value)}
+                maxLength="45"
+                onChange={(e) => this.updateStreet(e.target.value)}
                 required
               />
             </div>
@@ -136,7 +239,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updateCity(e.target.value)}
+                maxLength="25"
+                onChange={(e) => this.updateCity(e.target.value)}
                 required
               />
             </div>
@@ -147,7 +251,7 @@ export default class Register extends React.Component {
             <select
               name="state"
               id="state"
-              onChange={e => this.updateState(e.target.value)}
+              onChange={(e) => this.updateState(e.target.value)}
               required
             >
               <option value="">Select a State</option>
@@ -210,7 +314,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updateZip(e.target.value)}
+                maxLength="6"
+                onChange={(e) => this.updateZip(e.target.value)}
                 required
               />
             </div>
@@ -221,7 +326,8 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
-                onChange={e => this.updatePhone(e.target.value)}
+                maxLength="14"
+                onChange={(e) => this.updatePhone(e.target.value)}
                 required
               />
             </div>
@@ -231,13 +337,16 @@ export default class Register extends React.Component {
             <label> Register As</label>
             <select
               name="registerOption"
-              onChange={e => this.updateRole(e.target.value)}
+              onChange={(e) => this.updateRole(e.target.value)}
               required
             >
               <option value="">Role</option>
-              <option value="Tenant">Tenant</option>
+              <option value="tenant">Tenant</option>
+              <option value="manager">Property Manager</option>
             </select>
           </div>
+
+          {managerOptionMenu()}
 
           <div className="buttonContainer">
             <button type="submit" id="newRegSubmit">

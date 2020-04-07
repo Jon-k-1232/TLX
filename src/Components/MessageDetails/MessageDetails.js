@@ -4,7 +4,7 @@ import AppContext from "../../Context.js";
 import { Link } from "react-router-dom";
 
 /*
- Message details. when a user Clicks on a message in the communications page the user is routed here.
+ Message details. When a user Clicks on a message in the communications page the user is routed here.
  */
 export default class MessageDetails extends React.Component {
   static contextType = AppContext;
@@ -12,7 +12,7 @@ export default class MessageDetails extends React.Component {
   render() {
     // reading message id passed in params and searching context for matching ID. Setting the message to messageNumber
     let messageNumber = this.context.messages.find(
-      res => res.messageId === this.props.match.params.id
+      (res) => res.messageid === parseInt(this.props.match.params.id)
     );
 
     //reads the subject line of the message the user clicked on

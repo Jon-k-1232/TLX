@@ -1,12 +1,52 @@
 import React from "react";
 import "./Billing.css";
 import { Link } from "react-router-dom";
+import config from "../../config.js";
 import AppContext from "../../Context.js";
 
 // Billing page
 
 export default class Billing extends React.Component {
   static contextType = AppContext;
+
+  componentDidMount() {
+    // Gets user contact info along with linked property manager
+    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+      //--- 2 needs updated to ${this.props.match.params.id} once login done
+      method: "GET",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
+        this.context.setManagerInfo(data.userManagerInfo[0]);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
+    // Gets user bills
+    fetch(`${config.API_ENDPOINT}/bills/2`, {
+      //--- 2 needs updated to ${this.props.match.params.id} once login done
+      method: "GET",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setBillsInfo(data.userBills);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 
   render() {
     let currentBill = this.context.bills[0];
@@ -49,7 +89,7 @@ export default class Billing extends React.Component {
                 <div className="quickViewPaid">
                   <h4>Due:</h4>
                   <div>
-                    <p>{bills[i].due}</p>
+                    <p>${bills[i].totalDue}</p>
                   </div>
                 </div>
               ) : (
@@ -57,7 +97,7 @@ export default class Billing extends React.Component {
                   <div className="quickViewPaid">
                     <h4>Paid:</h4>
                     <div>
-                      <p>{bills[i].paidAmount}</p>
+                      <p>${bills[i].amountPaid}</p>
                     </div>
                   </div>
 
@@ -77,7 +117,7 @@ export default class Billing extends React.Component {
                 </div>
               )}
 
-              <Link to={`/Billing/invoice/${bills[i].billsId}`}>
+              <Link to={`/Billing/invoice/${bills[i].billId}`}>
                 <p id="billingViewDetails">View Details</p>
               </Link>
             </div>
@@ -86,12 +126,12 @@ export default class Billing extends React.Component {
       }
     }
 
-    return (
+    return currentBill ? (
       <main className="billingPage">
         <h1>Billing</h1>
         <div className="balance">
           <h2>Balance</h2>
-          <h3>{currentBill.due}</h3>
+          <h3>${currentBill.totalDue}</h3>
           <p>Due {currentBill.dueDate}</p>
         </div>
 
@@ -101,6 +141,8 @@ export default class Billing extends React.Component {
 
         {billingHistory}
       </main>
+    ) : (
+      ""
     );
   }
 }
