@@ -46,6 +46,28 @@ export default class Billing extends React.Component {
       .catch((error) => {
         alert(error);
       });
+
+    // Gets INBOX, SENT, and ALL messages. Updating here to help with rendering should user navigate
+    fetch(
+      `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
+      {
+        method: "GET",
+      }
+    )
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setInboxMessage(data.inboxMessages);
+        this.context.setSentMessage(data.sentMessages);
+        this.context.setMessage(data.allMessages);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Register from "../Components/Register/Register.js";
-import MessageHistory from "../Components/MessageHistory/MessageHistory.js";
+import SentMessages from "../Components/SentMessages/SentMessages.js";
 import NewMessage from "../Components/NewMessage/NewMessage.js";
 import Footer from "../Components/Footer/Footer.js";
 import Header from "../Components/Header/Header.js";
@@ -28,6 +28,8 @@ export default class App extends React.Component {
       contactInfo: {},
       managerInfo: {},
       messages: [],
+      inboxMessages: [],
+      sentMessages: [],
       bills: [],
       setContactInfo: (company) => {
         this.setState({ contactInfo: company });
@@ -37,6 +39,12 @@ export default class App extends React.Component {
       },
       setMessage: (message) => {
         this.setState({ messages: message });
+      },
+      setInboxMessage: (inboxMessage) => {
+        this.setState({ inboxMessages: inboxMessage });
+      },
+      setSentMessage: (sentMessage) => {
+        this.setState({ sentMessages: sentMessage });
       },
       setBillsInfo: (bills) => {
         this.setState({ bills: bills });
@@ -89,10 +97,7 @@ export default class App extends React.Component {
               )}
 
               {this.state.user.type === "Tenant" ? (
-                <Route
-                  path="/Communications/History"
-                  component={MessageHistory}
-                />
+                <Route path="/Communications/Sent" component={SentMessages} />
               ) : (
                 <LoggedOut />
               )}

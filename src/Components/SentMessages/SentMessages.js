@@ -1,13 +1,13 @@
 import React from "react";
-import "./Coms.css";
+import "./SentMessages.css";
 import { Link } from "react-router-dom";
-import config from "../../config.js";
-import AppContext from "../../Context.js";
 import ComBox from "../ComBox/ComBox.js";
+import AppContext from "../../Context.js";
+import config from "../../config.js";
 
-// Communications page
+// Message history page. All messages appear here regardless if they are hidden or not in communications page.
 
-export default class Coms extends React.Component {
+export default class SentMessages extends React.Component {
   static contextType = AppContext;
 
   componentDidMount() {
@@ -34,6 +34,7 @@ export default class Coms extends React.Component {
     fetch(
       `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
       {
+        //--- 2 needs updated to ${this.props.match.params.id} once login done
         method: "GET",
       }
     )
@@ -54,28 +55,20 @@ export default class Coms extends React.Component {
   }
 
   render() {
-    // gets all messages
-    let allMessages = this.context.messages.length + 1;
-
-    // set for the rendering of the new messages only
-    let arr = this.context.inboxMessages;
+    let arr = this.context.sentMessages;
     let messageHits = [];
 
-    /*
-    Conditionally renders no messages if no messages in messages context array,
-    or generates message if messages in the messages context array.
-    */
-    if (arr.length <= 0) {
+    // cycles through messages in context and renders the quick view boxes.
+    if (arr <= 0) {
       messageHits.push(
-        <div className="noMessageContainer" key={1}>
+        <div className="noMessageHistory" key={1}>
           <p> No Messages</p>
         </div>
       );
     } else {
-      // Cycles through the context messages context array to display messages
       for (let i = 0; i < arr.length; i++) {
         messageHits.push(
-          <div className="hitItemContainer" key={i}>
+          <div className="historyContainer" key={i}>
             <Link to={`/communications/details/${arr[i].messageid}`}>
               <ComBox messageInfo={arr[i]} />
             </Link>
@@ -85,16 +78,11 @@ export default class Coms extends React.Component {
     }
 
     return (
-      <main className="comPage">
-        <h1>Communications</h1>
-        <div className="comPageNav">
-          <p id="newCommLink">
-            <Link to={`/Communications/New/${allMessages}`}>New</Link>
-          </p>
-          <p id="historyCommLink">
-            <Link to="/Communications/Sent">Sent Box</Link>
-          </p>
-        </div>
+      <main className="messageHistoryPage">
+        <h1>Sent Box</h1>
+        <p id="historyBack">
+          <Link to="/Communications">Back</Link>
+        </p>
         {messageHits}
       </main>
     );

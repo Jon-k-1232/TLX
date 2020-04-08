@@ -2,12 +2,57 @@ import React from "react";
 import "./MessageDetails.css";
 import AppContext from "../../Context.js";
 import { Link } from "react-router-dom";
+import config from "../../config.js";
 
 /*
  Message details. When a user Clicks on a message in the communications page the user is routed here.
  */
 export default class MessageDetails extends React.Component {
   static contextType = AppContext;
+
+  componentDidMount() {
+    // Sent in case user sets inbox as a browser favorite, will update context info.
+    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+      //--- 2 needs updated to ${this.props.match.params.id} once login done
+      method: "GET",
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
+        this.context.setManagerInfo(data.userManagerInfo[0]);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
+    // Gets INBOX, SENT, and ALL messages
+    fetch(
+      `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
+      {
+        //--- 2 needs updated to ${this.props.match.params.id} once login done
+        method: "GET",
+      }
+    )
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setInboxMessage(data.inboxMessages);
+        this.context.setSentMessage(data.sentMessages);
+        this.context.setMessage(data.allMessages);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 
   render() {
     // reading message id passed in params and searching context for matching ID. Setting the message to messageNumber
