@@ -9,9 +9,9 @@ import AppContext from "../../Context.js";
 export default class Billing extends React.Component {
   static contextType = AppContext;
 
-  componentDidMount() {
+  async componentDidMount() {
     // Gets user contact info along with linked property manager
-    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
       //--- 2 needs updated to ${this.props.match.params.id} once login done
       method: "GET",
     })
@@ -30,7 +30,7 @@ export default class Billing extends React.Component {
       });
 
     // Gets user bills
-    fetch(`${config.API_ENDPOINT}/bills/2`, {
+    fetch(`${config.API_ENDPOINT}/bills/${this.context.contactInfo.userid}`, {
       //--- 2 needs updated to ${this.props.match.params.id} once login done
       method: "GET",
     })
@@ -42,28 +42,6 @@ export default class Billing extends React.Component {
       })
       .then((data) => {
         this.context.setBillsInfo(data.userBills);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-
-    // Gets INBOX, SENT, and ALL messages. Updating here to help with rendering should user navigate
-    fetch(
-      `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
-      {
-        method: "GET",
-      }
-    )
-      .then((resp) => {
-        if (!resp.ok) {
-          throw new Error(resp.status);
-        }
-        return resp.json();
-      })
-      .then((data) => {
-        this.context.setInboxMessage(data.inboxMessages);
-        this.context.setSentMessage(data.sentMessages);
-        this.context.setMessage(data.allMessages);
       })
       .catch((error) => {
         alert(error);

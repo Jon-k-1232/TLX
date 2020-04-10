@@ -10,9 +10,9 @@ import ComBox from "../ComBox/ComBox.js";
 export default class Coms extends React.Component {
   static contextType = AppContext;
 
-  componentDidMount() {
+  async componentDidMount() {
     // Sent in case user sets inbox as a browser favorite, will update context info.
-    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
       //--- 2 needs updated to ${this.props.match.params.id} once login done
       method: "GET",
     })
@@ -31,7 +31,7 @@ export default class Coms extends React.Component {
       });
 
     // Gets INBOX, SENT, and ALL messages
-    fetch(
+     fetch(
       `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
       {
         method: "GET",

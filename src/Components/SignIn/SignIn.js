@@ -1,6 +1,7 @@
 import React from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
+import config from "../../config.js";
 import AppContext from "../../Context.js";
 
 // Sign in page
@@ -10,40 +11,43 @@ export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: null,
-      username: null,
-      password: null,
-      type: null
+      email: '',
+      password: '',
+      role: ''
     };
+    this.change = this.change.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
-  updateSignInUser = (user, loginData) => {
+change(e){
     this.setState({
-      userId: loginData.userId,
-      username: user
-    });
-  };
+      [e.target.name]: e.target.value
+    })
+}
 
-  updateSignInPassword = password => {
-    this.setState({
-      password: password
-    });
-  };
-
-  updateSignInType = type => {
-    this.setState({
-      type: type
-    });
-  };
-
-  handleSubmit = (e, newUser) => {
+submit(e){
     e.preventDefault();
-    this.context.setUser({ ...this.state });
-    this.props.history.push("/Billing");
-  };
+
+    let credentials = {...this.state}
+
+  fetch(
+      `${config.API_ENDPOINT}/getToken`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Origin: `${config.FRONT_WEB}`,
+        },
+        body: JSON.stringify(credentials),
+      }
+  )
+      .then((res) => {localStorage.setItem('jwt-auth', res.data)
+      this.props.history.push('/Billing')})
+      .catch((error) => alert(error));
+}
+
 
   render() {
-    const loginData = this.context.contactInfo;
 
     return (
       <main className="signInPage">
@@ -52,35 +56,35 @@ export default class SignIn extends React.Component {
         </div>
 
         <div className="signContainer">
-          <form className="signInForm" onSubmit={this.handleSubmit}>
+          <form className="signInForm" onSubmit={e => this.submit(e)}>
             <input
               id="usernameInput"
               type="text"
+              name="email"
               placeholder="Username"
               maxLength="35"
-              onChange={e => this.updateSignInUser(e.target.value, loginData)}
+              onChange={e => this.change(e)} value={this.state.email}
               required
             />
 
             <input
               id="passwordInput"
-              type="text"
+              type="password"
+              name="password"
               placeholder="Password"
               maxLength="25"
-              onChange={e =>
-                this.updateSignInPassword(e.target.value, loginData)
-              }
+              onChange={e => this.change(e)} value={this.state.password}
               required
             />
 
             <div className="newRegRegisterAs">
               <select
-                name="registerOption"
+                name="role"
                 required
-                onChange={e => this.updateSignInType(e.target.value, loginData)}
+                onChange={e => this.change(e)} value={this.state.role}
               >
                 <option value="">Login As</option>
-                <option value="Tenant">Tenant</option>
+                <option value="tenant">Tenant</option>
               </select>
             </div>
 

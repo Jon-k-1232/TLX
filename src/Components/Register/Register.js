@@ -23,10 +23,13 @@ export default class Register extends React.Component {
       groupId: "",
       managerList: "",
     };
+    this.change = this.change.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
+
+  // Gets a list of managers who are registered
   componentDidMount() {
-    // Gets a list of managers who are registered
     fetch(`${config.API_ENDPOINT}/registration/new`, {
       method: "GET",
     })
@@ -44,54 +47,16 @@ export default class Register extends React.Component {
       });
   }
 
-  updateLogin = (email) => {
+  // updates state from input name with value of input
+  change(e){
     this.setState({
-      email: email,
-    });
-  };
+      [e.target.name]: e.target.value
+    })
+    console.table({...this.state})
+  }
 
-  updatePassword = (password) => {
-    this.setState({
-      password: password,
-    });
-  };
 
-  updateCompany = (company) => {
-    this.setState({
-      company: company,
-    });
-  };
-
-  updateStreet = (street) => {
-    this.setState({
-      street: street,
-    });
-  };
-
-  updateCity = (city) => {
-    this.setState({
-      city: city,
-    });
-  };
-
-  updateState = (state) => {
-    this.setState({
-      state: state,
-    });
-  };
-
-  updateZip = (zip) => {
-    this.setState({
-      zip: zip,
-    });
-  };
-
-  updatePhone = (phone) => {
-    this.setState({
-      phone: phone,
-    });
-  };
-
+  // Updates role user is registering for
   updateRole = (role) => {
     // Logic add'd in case a user clicks on tenant then clicks back to manager option.
     if (role === "tenant") {
@@ -109,6 +74,7 @@ export default class Register extends React.Component {
     }
   };
 
+  // This function will update state with the property manager info in order to link tenant to property manager
   updateManager = (selectedManager) => {
     // logic add'd to clear bug when switching managers, then selecting none or switching role to manager
     if (selectedManager === "none") {
@@ -131,7 +97,9 @@ export default class Register extends React.Component {
     }
   };
 
-  handleSubmit = (e) => {
+
+  // submits form to back end to create new user
+  submit(e){
     e.preventDefault();
     const registrationForm = { ...this.state };
 
@@ -185,14 +153,15 @@ export default class Register extends React.Component {
       <main className="RegisterPage">
         <h2>Create a TLX Account</h2>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={e => this.submit(e)}>
           <div className="newRegUserName">
             <label>Log In E-mail:</label>
             <div>
               <input
                 type="text"
+                name="email"
                 maxLength="45"
-                onChange={(e) => this.updateLogin(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.email}
                 required
               />
             </div>
@@ -203,8 +172,9 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
+                name="password"
                 maxLength="25"
-                onChange={(e) => this.updatePassword(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.password}
                 required
               />
             </div>
@@ -215,8 +185,9 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
+                name="company"
                 maxLength="35"
-                onChange={(e) => this.updateCompany(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.company}
                 required
               />
             </div>
@@ -227,8 +198,9 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
+                name="street"
                 maxLength="45"
-                onChange={(e) => this.updateStreet(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.street}
                 required
               />
             </div>
@@ -239,8 +211,9 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
+                name="city"
                 maxLength="25"
-                onChange={(e) => this.updateCity(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.city}
                 required
               />
             </div>
@@ -251,7 +224,7 @@ export default class Register extends React.Component {
             <select
               name="state"
               id="state"
-              onChange={(e) => this.updateState(e.target.value)}
+              onChange={e => this.change(e)} value={this.state.state}
               required
             >
               <option value="">Select a State</option>
@@ -314,8 +287,9 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
+                name="zip"
                 maxLength="6"
-                onChange={(e) => this.updateZip(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.zip}
                 required
               />
             </div>
@@ -326,8 +300,9 @@ export default class Register extends React.Component {
             <div>
               <input
                 type="text"
+                name="phone"
                 maxLength="14"
-                onChange={(e) => this.updatePhone(e.target.value)}
+                onChange={e => this.change(e)} value={this.state.phone}
                 required
               />
             </div>
@@ -336,7 +311,7 @@ export default class Register extends React.Component {
           <div className="newRegRegisterAs">
             <label> Register As</label>
             <select
-              name="registerOption"
+              name="role"
               onChange={(e) => this.updateRole(e.target.value)}
               required
             >

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+//import AuthenticatedComponent from "../Components/AuthenticatedComponent/AuthenticatedComponent.js";
 import Register from "../Components/Register/Register.js";
 import SentMessages from "../Components/SentMessages/SentMessages.js";
 import NewMessage from "../Components/NewMessage/NewMessage.js";
@@ -12,7 +13,6 @@ import Billing from "../Components/Billing/Billing.js";
 import InvoiceDetails from "../Components/InvoiceDetails/InvoiceDetails.js";
 import MessageDetails from "../Components/MessageDetails/MessageDetails.js";
 import AppContext from "../Context.js";
-import LoggedOut from "../Components/LoggedOut/LoggedOut.js";
 
 export default class App extends React.Component {
   constructor() {
@@ -20,10 +20,9 @@ export default class App extends React.Component {
     // state is being set in order to mimic api data inbound.
     this.state = {
       user: {
-        userId: "uXolWvg49Co5EfCo",
         username: "",
         password: "",
-        type: "Tenant",
+        role: "",
       },
       contactInfo: {},
       managerInfo: {},
@@ -62,51 +61,20 @@ export default class App extends React.Component {
               <Route exact path="/" component={SignIn} />
               <Route path="/register" component={Register} />
 
-              {this.state.user.type === "Tenant" ? (
+              {/*  <AuthenticatedComponent> */}
                 <Route exact path="/Billing" component={Billing} />
-              ) : (
-                <LoggedOut />
-              )}
-
-              {this.state.user.type === "Tenant" ? (
                 <Route path="/Billing/invoice/:id" component={InvoiceDetails} />
-              ) : (
-                <LoggedOut />
-              )}
-
-              {this.state.user.type === "Tenant" ? (
                 <Route exact path="/Communications" component={Coms} />
-              ) : (
-                <LoggedOut />
-              )}
-
-              {this.state.user.type === "Tenant" ? (
                 <Route
                   exact
                   path="/Communications/details/:id"
                   component={MessageDetails}
                 />
-              ) : (
-                <LoggedOut />
-              )}
-
-              {this.state.user.type === "Tenant" ? (
                 <Route path="/Communications/New/:id" component={NewMessage} />
-              ) : (
-                <LoggedOut />
-              )}
-
-              {this.state.user.type === "Tenant" ? (
                 <Route path="/Communications/Sent" component={SentMessages} />
-              ) : (
-                <LoggedOut />
-              )}
-
-              {this.state.user.type === "Tenant" ? (
                 <Route path="/Account/" component={Account} />
-              ) : (
-                <LoggedOut />
-              )}
+              {/* </AuthenticatedComponent>  */}
+
             </Switch>
             <Footer />
           </BrowserRouter>

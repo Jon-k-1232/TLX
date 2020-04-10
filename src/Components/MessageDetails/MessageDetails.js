@@ -10,9 +10,9 @@ import config from "../../config.js";
 export default class MessageDetails extends React.Component {
   static contextType = AppContext;
 
-  componentDidMount() {
+  async componentDidMount() {
     // Sent in case user sets inbox as a browser favorite, will update context info.
-    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
       //--- 2 needs updated to ${this.props.match.params.id} once login done
       method: "GET",
     })

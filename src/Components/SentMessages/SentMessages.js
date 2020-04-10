@@ -5,14 +5,14 @@ import ComBox from "../ComBox/ComBox.js";
 import AppContext from "../../Context.js";
 import config from "../../config.js";
 
-// Message history page. All messages appear here regardless if they are hidden or not in communications page.
+// Sent message page, similar to a sent box in email.
 
 export default class SentMessages extends React.Component {
   static contextType = AppContext;
 
-  componentDidMount() {
+  async componentDidMount() {
     // Sent in case user sets inbox as a browser favorite, will update context info.
-    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
       //--- 2 needs updated to ${this.props.match.params.id} once login done
       method: "GET",
     })

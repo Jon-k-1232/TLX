@@ -20,59 +20,33 @@ export default class Account extends React.Component {
       phone: "",
       password: "",
     };
+    this.change = this.change.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
-  // updates name of company account state
-  updateName = (company, contactInfo) => {
-    this.setState({
-      company: company,
-    });
-  };
-
-  // updates address account state
-  updateAddress = (street, contactInfo) => {
-    this.setState({
-      street: street,
-    });
-  };
-
-  // updates city of account state
-  updateCity = (city, contactInfo) => {
-    this.setState({
-      city: city,
-    });
-  };
-
-  // updates state of account state
-  updateState = (state, contactInfo) => {
-    this.setState({
-      state: state,
-    });
-  };
-
-  // updates zip of account state
-  updateZip = (zip, contactInfo) => {
-    this.setState({
-      zip: zip,
-    });
-  };
-
-  // updates email of account state
-  updateEmail = (email, contactInfo) => {
-    this.setState({
-      email: email,
-    });
-  };
-
-  // updates phone of account state
-  updatePhone = (phone, contactInfo) => {
-    this.setState({
-      phone: phone,
-    });
-  };
+  async componentDidMount() {
+    // Gets user contact info along with linked property manager
+    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+      //--- 2 needs updated to ${this.props.match.params.id} once login done
+      method: "GET",
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            throw new Error(resp.status);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setContactInfo(data.userContactInfo[0]);
+          this.context.setManagerInfo(data.userManagerInfo[0]);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+  }
 
   // handles submit for contact info update
-  handleSubmit = (e) => {
+  handleSubmit(e){
     e.preventDefault();
 
     const updateCntct = {
@@ -100,15 +74,8 @@ export default class Account extends React.Component {
       .catch((error) => alert(error));
   };
 
-  // updates password state
-  updatePassword = (password) => {
-    this.setState({
-      password: password,
-    });
-  };
-
   // handles submit for password
-  handleSubmitPassword = (e) => {
+   handleSubmitPassword(e){
     e.preventDefault();
     const newPassword = { password: this.state.password };
 
@@ -125,6 +92,20 @@ export default class Account extends React.Component {
       .catch((error) => alert(error));
   };
 
+  // updates the input state
+  change(e){
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  // updates password state
+  updatePassword = (password) => {
+    this.setState({
+      password: password,
+    });
+  };
+
   render() {
     let contactInfo = this.context.contactInfo;
 
@@ -134,13 +115,14 @@ export default class Account extends React.Component {
 
         <div className="accountPassword">
           <h3>Change Password</h3>
-          <form onSubmit={this.handleSubmitPassword}>
+          <form onSubmit={e => this.handleSubmitPassword(e)}>
             <input
               id="changePassword"
               type="text"
+              name='password'
               placeholder="Password"
               maxLength="25"
-              onChange={(e) => this.updatePassword(e.target.value)}
+              onChange={e => this.change(e)} value={this.state.password}
               required
             />
             <button type="submit">Save</button>
@@ -184,32 +166,35 @@ export default class Account extends React.Component {
 
         <div className="accountAddress">
           <h3>Update your contact information</h3>
-          <form className="contactInformation" onSubmit={this.handleSubmit}>
+          <form className="contactInformation" onSubmit={e => this.handleSubmit(e)}>
             <input
               type="text"
+              name="company"
               placeholder="Company Name"
               maxLength="35"
-              onChange={(e) => this.updateName(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.company}
               required
             />
             <input
               type="text"
+              name="street"
               maxLength="45"
               placeholder="Street Address"
-              onChange={(e) => this.updateAddress(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.street}
               required
             />
             <input
               type="text"
+              name="city"
               placeholder="City"
               maxLength="25"
-              onChange={(e) => this.updateCity(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.city}
               required
             />
             <select
               name="state"
               id="state"
-              onChange={(e) => this.updateState(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.state}
               required
             >
               <option value="">Select a State</option>
@@ -268,23 +253,26 @@ export default class Account extends React.Component {
 
             <input
               type="text"
+              name="zip"
               placeholder="Zip"
               maxLength="6"
-              onChange={(e) => this.updateZip(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.zip}
               required
             />
             <input
               type="text"
+              name="email"
               placeholder="Email"
               maxLength="35"
-              onChange={(e) => this.updateEmail(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.email}
               required
             />
             <input
               type="text"
+              name="phone"
               placeholder="Phone"
               maxLength="14"
-              onChange={(e) => this.updatePhone(e.target.value, contactInfo)}
+              onChange={e => this.change(e)} value={this.state.phone}
               required
             />
             <div className="buttonContainer">
