@@ -8,45 +8,40 @@ import config from "../../config.js";
 export default class Account extends React.Component {
   static contextType = AppContext;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      company: "",
-      street: "",
-      city: "",
-      state: "",
-      zip: "",
-      email: "",
-      phone: "",
-      password: "",
-    };
-    this.change = this.change.bind(this);
-    this.submit = this.submit.bind(this);
-  }
+  state = {
+    company: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
+    email: "",
+    phone: "",
+    password: "",
+  };
 
-  async componentDidMount() {
+  componentDidMount() {
     // Gets user contact info along with linked property manager
-    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
+    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
       //--- 2 needs updated to ${this.props.match.params.id} once login done
       method: "GET",
     })
-        .then((resp) => {
-          if (!resp.ok) {
-            throw new Error(resp.status);
-          }
-          return resp.json();
-        })
-        .then((data) => {
-          this.context.setContactInfo(data.userContactInfo[0]);
-          this.context.setManagerInfo(data.userManagerInfo[0]);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.status);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
+        this.context.setManagerInfo(data.userManagerInfo[0]);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   // handles submit for contact info update
-  handleSubmit(e){
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const updateCntct = {
@@ -71,11 +66,14 @@ export default class Account extends React.Component {
       }
     )
       .then((res) => res.json())
+      .then((res) => {
+        alert("Contact information changed successfully");
+      })
       .catch((error) => alert(error));
   };
 
   // handles submit for password
-   handleSubmitPassword(e){
+  handleSubmitPassword(e) {
     e.preventDefault();
     const newPassword = { password: this.state.password };
 
@@ -88,21 +86,16 @@ export default class Account extends React.Component {
       body: JSON.stringify(newPassword),
     })
       .then((res) => res.json())
-      //.then(data => {console.log(data)}) // add'd for debug
+      .then((res) => {
+        alert("Password changed successfully");
+      })
       .catch((error) => alert(error));
-  };
-
-  // updates the input state
-  change(e){
-    this.setState({
-      [e.target.name]: e.target.value
-    })
   }
 
-  // updates password state
-  updatePassword = (password) => {
+  // updates the input state
+  change = (e) => {
     this.setState({
-      password: password,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -115,14 +108,15 @@ export default class Account extends React.Component {
 
         <div className="accountPassword">
           <h3>Change Password</h3>
-          <form onSubmit={e => this.handleSubmitPassword(e)}>
+          <form onSubmit={(e) => this.handleSubmitPassword(e)}>
             <input
               id="changePassword"
               type="text"
-              name='password'
+              name="password"
               placeholder="Password"
               maxLength="25"
-              onChange={e => this.change(e)} value={this.state.password}
+              onChange={(e) => this.change(e)}
+              value={this.state.password}
               required
             />
             <button type="submit">Save</button>
@@ -166,13 +160,17 @@ export default class Account extends React.Component {
 
         <div className="accountAddress">
           <h3>Update your contact information</h3>
-          <form className="contactInformation" onSubmit={e => this.handleSubmit(e)}>
+          <form
+            className="contactInformation"
+            onSubmit={(e) => this.handleSubmit(e)}
+          >
             <input
               type="text"
               name="company"
               placeholder="Company Name"
               maxLength="35"
-              onChange={e => this.change(e)} value={this.state.company}
+              onChange={(e) => this.change(e)}
+              value={this.state.company}
               required
             />
             <input
@@ -180,7 +178,8 @@ export default class Account extends React.Component {
               name="street"
               maxLength="45"
               placeholder="Street Address"
-              onChange={e => this.change(e)} value={this.state.street}
+              onChange={(e) => this.change(e)}
+              value={this.state.street}
               required
             />
             <input
@@ -188,13 +187,15 @@ export default class Account extends React.Component {
               name="city"
               placeholder="City"
               maxLength="25"
-              onChange={e => this.change(e)} value={this.state.city}
+              onChange={(e) => this.change(e)}
+              value={this.state.city}
               required
             />
             <select
               name="state"
               id="state"
-              onChange={e => this.change(e)} value={this.state.state}
+              onChange={(e) => this.change(e)}
+              value={this.state.state}
               required
             >
               <option value="">Select a State</option>
@@ -256,7 +257,8 @@ export default class Account extends React.Component {
               name="zip"
               placeholder="Zip"
               maxLength="6"
-              onChange={e => this.change(e)} value={this.state.zip}
+              onChange={(e) => this.change(e)}
+              value={this.state.zip}
               required
             />
             <input
@@ -264,7 +266,8 @@ export default class Account extends React.Component {
               name="email"
               placeholder="Email"
               maxLength="35"
-              onChange={e => this.change(e)} value={this.state.email}
+              onChange={(e) => this.change(e)}
+              value={this.state.email}
               required
             />
             <input
@@ -272,7 +275,8 @@ export default class Account extends React.Component {
               name="phone"
               placeholder="Phone"
               maxLength="14"
-              onChange={e => this.change(e)} value={this.state.phone}
+              onChange={(e) => this.change(e)}
+              value={this.state.phone}
               required
             />
             <div className="buttonContainer">

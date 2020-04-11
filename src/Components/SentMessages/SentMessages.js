@@ -10,34 +10,12 @@ import config from "../../config.js";
 export default class SentMessages extends React.Component {
   static contextType = AppContext;
 
-  async componentDidMount() {
-    // Sent in case user sets inbox as a browser favorite, will update context info.
-    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
-      //--- 2 needs updated to ${this.props.match.params.id} once login done
+  // Gets INBOX, SENT, and ALL messages
+  componentDidMount() {
+    const userId = this.context.contactInfo.userid;
+    fetch(`${config.API_ENDPOINT}/messages/${userId}`, {
       method: "GET",
     })
-      .then((resp) => {
-        if (!resp.ok) {
-          throw new Error(resp.status);
-        }
-        return resp.json();
-      })
-      .then((data) => {
-        this.context.setContactInfo(data.userContactInfo[0]);
-        this.context.setManagerInfo(data.userManagerInfo[0]);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-
-    // Gets INBOX, SENT, and ALL messages
-    fetch(
-      `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
-      {
-        //--- 2 needs updated to ${this.props.match.params.id} once login done
-        method: "GET",
-      }
-    )
       .then((resp) => {
         if (!resp.ok) {
           throw new Error(resp.status);

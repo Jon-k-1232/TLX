@@ -1,54 +1,52 @@
 import React from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
-import config from "../../config.js";
 import AppContext from "../../Context.js";
+import AuthApiService from "../Services/auth-api-service.js";
+import TokenService from "../Services/token-service.js";
 
 // Sign in page
 export default class SignIn extends React.Component {
   static contextType = AppContext;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      role: ''
-    };
-    this.change = this.change.bind(this);
-    this.submit = this.submit.bind(this);
+  state = {
+    email: "",
+    password: "",
+    error: null,
+  };
+
+  change = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // logs in
+  submit(e) {
+    e.preventDefault();
+    this.setState({ error: null });
+
+    const email = this.state.email;
+    const password = this.state.password;
+
+    AuthApiService.postLogin({
+      email: email,
+      password: password,
+    })
+      .then((res) => {
+        TokenService.saveAuthToken(res.authToken);
+        // Manages the rendering of the login and log out in header menu
+        this.context.setLoggedIn(true);
+        // Sets user info so the rest of the api calls work
+        this.context.setContactInfo(res.dbUser);
+        this.props.history.push("/Billing");
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   }
 
-change(e){
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-}
-
-submit(e){
-    e.preventDefault();
-
-    let credentials = {...this.state}
-
-  fetch(
-      `${config.API_ENDPOINT}/getToken`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Origin: `${config.FRONT_WEB}`,
-        },
-        body: JSON.stringify(credentials),
-      }
-  )
-      .then((res) => {localStorage.setItem('jwt-auth', res.data)
-      this.props.history.push('/Billing')})
-      .catch((error) => alert(error));
-}
-
-
   render() {
-
     return (
       <main className="signInPage">
         <div id="homePicture">
@@ -56,14 +54,15 @@ submit(e){
         </div>
 
         <div className="signContainer">
-          <form className="signInForm" onSubmit={e => this.submit(e)}>
+          <form className="signInForm" onSubmit={(e) => this.submit(e)}>
             <input
               id="usernameInput"
               type="text"
               name="email"
               placeholder="Username"
               maxLength="35"
-              onChange={e => this.change(e)} value={this.state.email}
+              onChange={(e) => this.change(e)}
+              value={this.state.email}
               required
             />
 
@@ -73,20 +72,10 @@ submit(e){
               name="password"
               placeholder="Password"
               maxLength="25"
-              onChange={e => this.change(e)} value={this.state.password}
+              onChange={(e) => this.change(e)}
+              value={this.state.password}
               required
             />
-
-            <div className="newRegRegisterAs">
-              <select
-                name="role"
-                required
-                onChange={e => this.change(e)} value={this.state.role}
-              >
-                <option value="">Login As</option>
-                <option value="tenant">Tenant</option>
-              </select>
-            </div>
 
             <div className="buttonContainer">
               <button type="submit" id="signInButton">

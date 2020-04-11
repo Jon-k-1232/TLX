@@ -9,10 +9,10 @@ import AppContext from "../../Context.js";
 export default class Billing extends React.Component {
   static contextType = AppContext;
 
-  async componentDidMount() {
-    // Gets user contact info along with linked property manager
-    await fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
-      //--- 2 needs updated to ${this.props.match.params.id} once login done
+  componentDidMount() {
+    const userId = this.context.contactInfo.userid;
+
+    fetch(`${config.API_ENDPOINT}/contacts/data/${userId}`, {
       method: "GET",
     })
       .then((resp) => {
@@ -22,7 +22,6 @@ export default class Billing extends React.Component {
         return resp.json();
       })
       .then((data) => {
-        this.context.setContactInfo(data.userContactInfo[0]);
         this.context.setManagerInfo(data.userManagerInfo[0]);
       })
       .catch((error) => {
@@ -30,8 +29,7 @@ export default class Billing extends React.Component {
       });
 
     // Gets user bills
-    fetch(`${config.API_ENDPOINT}/bills/${this.context.contactInfo.userid}`, {
-      //--- 2 needs updated to ${this.props.match.params.id} once login done
+    fetch(`${config.API_ENDPOINT}/bills/${userId}`, {
       method: "GET",
     })
       .then((resp) => {

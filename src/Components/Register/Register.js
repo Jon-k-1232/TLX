@@ -6,27 +6,21 @@ import AppContext from "../../Context.js";
 export default class Register extends React.Component {
   static contextType = AppContext;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      company: "",
-      street: "",
-      city: "",
-      state: "",
-      zip: "",
-      email: "",
-      phone: "",
-      password: "",
-      role: "",
-      managerName: "",
-      managerId: "",
-      groupId: "",
-      managerList: "",
-    };
-    this.change = this.change.bind(this);
-    this.submit = this.submit.bind(this);
-  }
-
+  state = {
+    company: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
+    email: "",
+    phone: "",
+    password: "",
+    role: "",
+    managerName: "none",
+    managerId: 0,
+    groupId: 0,
+    managerList: "",
+  };
 
   // Gets a list of managers who are registered
   componentDidMount() {
@@ -48,13 +42,11 @@ export default class Register extends React.Component {
   }
 
   // updates state from input name with value of input
-  change(e){
+  change = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
-    })
-    console.table({...this.state})
-  }
-
+      [e.target.name]: e.target.value,
+    });
+  };
 
   // Updates role user is registering for
   updateRole = (role) => {
@@ -67,9 +59,9 @@ export default class Register extends React.Component {
       // If manager selected this will reset state, which needs to be clear for manager role to properly process on backend.
       this.setState({
         role: role,
-        managerName: "",
-        managerId: "",
-        groupId: "",
+        managerName: "none",
+        managerId: 0,
+        groupId: 0,
       });
     }
   };
@@ -79,9 +71,9 @@ export default class Register extends React.Component {
     // logic add'd to clear bug when switching managers, then selecting none or switching role to manager
     if (selectedManager === "none") {
       this.setState({
-        managerName: "",
-        managerId: "",
-        groupId: "",
+        managerName: "none",
+        managerId: 0,
+        groupId: 0,
       });
     } else {
       // locate the user id for the selected option
@@ -97,9 +89,8 @@ export default class Register extends React.Component {
     }
   };
 
-
   // submits form to back end to create new user
-  submit(e){
+  submit(e) {
     e.preventDefault();
     const registrationForm = { ...this.state };
 
@@ -115,7 +106,7 @@ export default class Register extends React.Component {
       .catch((error) => alert(error));
 
     this.props.history.push("/");
-  };
+  }
 
   render() {
     let arr = this.state.managerList;
@@ -153,7 +144,7 @@ export default class Register extends React.Component {
       <main className="RegisterPage">
         <h2>Create a TLX Account</h2>
 
-        <form onSubmit={e => this.submit(e)}>
+        <form onSubmit={(e) => this.submit(e)}>
           <div className="newRegUserName">
             <label>Log In E-mail:</label>
             <div>
@@ -161,7 +152,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="email"
                 maxLength="45"
-                onChange={e => this.change(e)} value={this.state.email}
+                onChange={(e) => this.change(e)}
+                value={this.state.email}
                 required
               />
             </div>
@@ -174,7 +166,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="password"
                 maxLength="25"
-                onChange={e => this.change(e)} value={this.state.password}
+                onChange={(e) => this.change(e)}
+                value={this.state.password}
                 required
               />
             </div>
@@ -187,7 +180,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="company"
                 maxLength="35"
-                onChange={e => this.change(e)} value={this.state.company}
+                onChange={(e) => this.change(e)}
+                value={this.state.company}
                 required
               />
             </div>
@@ -200,7 +194,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="street"
                 maxLength="45"
-                onChange={e => this.change(e)} value={this.state.street}
+                onChange={(e) => this.change(e)}
+                value={this.state.street}
                 required
               />
             </div>
@@ -213,7 +208,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="city"
                 maxLength="25"
-                onChange={e => this.change(e)} value={this.state.city}
+                onChange={(e) => this.change(e)}
+                value={this.state.city}
                 required
               />
             </div>
@@ -224,7 +220,8 @@ export default class Register extends React.Component {
             <select
               name="state"
               id="state"
-              onChange={e => this.change(e)} value={this.state.state}
+              onChange={(e) => this.change(e)}
+              value={this.state.state}
               required
             >
               <option value="">Select a State</option>
@@ -289,7 +286,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="zip"
                 maxLength="6"
-                onChange={e => this.change(e)} value={this.state.zip}
+                onChange={(e) => this.change(e)}
+                value={this.state.zip}
                 required
               />
             </div>
@@ -302,7 +300,8 @@ export default class Register extends React.Component {
                 type="text"
                 name="phone"
                 maxLength="14"
-                onChange={e => this.change(e)} value={this.state.phone}
+                onChange={(e) => this.change(e)}
+                value={this.state.phone}
                 required
               />
             </div>

@@ -2,31 +2,25 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import AppContext from "../../Context.js";
+import TokenService from "../Services/token-service.js";
 
 // Header and hamburger menu
 
 export default class Header extends React.Component {
   static contextType = AppContext;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        username: null,
-        password: null,
-        type: null
-      },
-      menuDisplay: false
-    };
-  }
+  state = {
+    menuDisplay: false,
+  };
 
   // handles pop out menu showing
   hamburger = () => this.setState({ menuDisplay: !this.state.menuDisplay });
 
   // handles log out and redirects back to login screen
-  handleLogOut = e => {
+  handleLogOut = (e) => {
     e.preventDefault();
-    this.context.setUser({ ...this.state.user });
+    this.context.setLoggedIn(false);
+    TokenService.clearAuthToken();
   };
 
   render() {
@@ -76,7 +70,7 @@ export default class Header extends React.Component {
             {/*
               Conditionally renders the login and logout button in menu
             */}
-            {this.context.user.type === "Tenant" ? (
+            {this.context.loggedIn === true ? (
               <li>
                 <button onClick={this.handleLogOut}>
                   <Link to="/">Logout</Link>

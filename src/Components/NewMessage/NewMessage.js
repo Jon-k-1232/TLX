@@ -9,21 +9,18 @@ import AppContext from "../../Context.js";
 export default class NewMessage extends React.Component {
   static contextType = AppContext;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      messageId: "",
-      date: "",
-      to: "",
-      toUserId: "",
-      from: "",
-      fromUserId: "",
-      subject: "",
-      subjectId: "",
-      messageContent: "",
-      groupId: "",
-    };
-  }
+  state = {
+    messageId: "",
+    date: "",
+    to: "",
+    toUserId: "",
+    from: "",
+    fromUserId: "",
+    subject: "",
+    subjectId: "",
+    messageContent: "",
+    groupId: "",
+  };
 
   // Sets the subject and initial message data when no subject is being passed
   updateSubject = (subject) => {
@@ -33,13 +30,12 @@ export default class NewMessage extends React.Component {
     var curr_year = d.getFullYear();
 
     let contactInfo = this.context.contactInfo;
-    let managerInfo = this.context.managerInfo;
 
     this.setState({
       messageId: this.context.messages.length + 1,
       date: curr_month + "/" + curr_date + "/" + curr_year,
-      to: managerInfo.company,
-      toUserId: managerInfo.userid,
+      to: contactInfo.managerName,
+      toUserId: contactInfo.managerId,
       from: contactInfo.company,
       fromUserId: contactInfo.userid,
       subject: subject,
@@ -61,11 +57,10 @@ export default class NewMessage extends React.Component {
   updateMessageBodyTwo = (messageBody) => {
     var d = new Date();
     var curr_date = d.getDate();
-    var curr_month = d.getMonth() + 1; //Months are zero based
+    var curr_month = d.getMonth() + 1;
     var curr_year = d.getFullYear();
 
     let contactInfo = this.context.contactInfo;
-    let managerInfo = this.context.managerInfo;
 
     // recalling as message not passing through onChange.
     let message = this.context.messages.find(
@@ -75,8 +70,8 @@ export default class NewMessage extends React.Component {
     this.setState({
       messageId: this.context.messages.length + 1,
       date: curr_month + "/" + curr_date + "/" + curr_year,
-      to: managerInfo.company,
-      toUserId: managerInfo.userid,
+      to: contactInfo.managerName,
+      toUserId: contactInfo.managerId,
       from: contactInfo.company,
       fromUserId: contactInfo.userid,
       subject: message.subject,
@@ -91,19 +86,20 @@ export default class NewMessage extends React.Component {
     e.preventDefault();
 
     const sendMessage = { ...this.state };
+    const userId = this.context.contactInfo.userid;
 
-    fetch(
-      `${config.API_ENDPOINT}/messages/${this.context.contactInfo.userid}`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Origin: `${config.FRONT_WEB}`,
-        },
-        body: JSON.stringify(sendMessage),
-      }
-    )
+    fetch(`${config.API_ENDPOINT}/messages/${userId}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Origin: `${config.FRONT_WEB}`,
+      },
+      body: JSON.stringify(sendMessage),
+    })
       .then((res) => res.json())
+      .then((res) => {
+        alert("Message sent successfully");
+      })
       .catch((error) => alert(error));
 
     this.props.history.push("/Communications");
