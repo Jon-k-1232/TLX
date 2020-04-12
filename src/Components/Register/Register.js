@@ -149,9 +149,10 @@ export default class Register extends React.Component {
             <label>Log In E-mail:</label>
             <div>
               <input
-                type="text"
+                type="email"
                 name="email"
                 maxLength="45"
+                placeholder="Bob@Bobs.com"
                 onChange={(e) => this.change(e)}
                 value={this.state.email}
                 required
@@ -166,6 +167,7 @@ export default class Register extends React.Component {
                 type="text"
                 name="password"
                 maxLength="25"
+                placeholder="Password"
                 onChange={(e) => this.change(e)}
                 value={this.state.password}
                 required
@@ -179,13 +181,16 @@ export default class Register extends React.Component {
               <input
                 type="text"
                 name="company"
-                maxLength="35"
+                placeholder="Bobs, Inc"
+                maxLength="40"
                 onChange={(e) => this.change(e)}
                 value={this.state.company}
                 required
               />
             </div>
           </div>
+
+
 
           <div className="newRegStreet">
             <label>Street:</label>
@@ -194,6 +199,7 @@ export default class Register extends React.Component {
                 type="text"
                 name="street"
                 maxLength="45"
+                placeholder="123 N. Washington St. #1"
                 onChange={(e) => this.change(e)}
                 value={this.state.street}
                 required
@@ -208,6 +214,7 @@ export default class Register extends React.Component {
                 type="text"
                 name="city"
                 maxLength="25"
+                placeholder="Phoenix"
                 onChange={(e) => this.change(e)}
                 value={this.state.city}
                 required
@@ -286,6 +293,7 @@ export default class Register extends React.Component {
                 type="text"
                 name="zip"
                 maxLength="6"
+                placeholder="85254"
                 onChange={(e) => this.change(e)}
                 value={this.state.zip}
                 required
@@ -297,9 +305,12 @@ export default class Register extends React.Component {
             <label>Phone:</label>
             <div>
               <input
-                type="text"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 name="phone"
-                maxLength="14"
+                minLength="12"
+                maxLength="12"
+                placeholder="602-123-4567"
                 onChange={(e) => this.change(e)}
                 value={this.state.phone}
                 required

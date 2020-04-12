@@ -37,13 +37,6 @@ export default class SentMessages extends React.Component {
     let messageHits = [];
 
     // cycles through messages in context and renders the quick view boxes.
-    if (arr <= 0) {
-      messageHits.push(
-        <div className="noMessageHistory" key={1}>
-          <p> No Messages</p>
-        </div>
-      );
-    } else {
       for (let i = 0; i < arr.length; i++) {
         messageHits.push(
           <div className="historyContainer" key={i}>
@@ -53,9 +46,8 @@ export default class SentMessages extends React.Component {
           </div>
         );
       }
-    }
 
-    return (
+    return arr ? (
       <main className="messageHistoryPage">
         <h1>Sent Box</h1>
         <p id="historyBack">
@@ -63,6 +55,14 @@ export default class SentMessages extends React.Component {
         </p>
         {messageHits}
       </main>
+    ):(
+        <main className="messageHistoryPage">
+            <h1>Sent Box</h1>
+            <p id="historyBack">
+                <Link to="/Communications">Back</Link>
+            </p>
+            <p>No Messages</p>
+        </main>
     );
   }
 }

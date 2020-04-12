@@ -21,8 +21,9 @@ export default class Account extends React.Component {
 
   componentDidMount() {
     // Gets user contact info along with linked property manager
-    fetch(`${config.API_ENDPOINT}/contacts/data/2`, {
-      //--- 2 needs updated to ${this.props.match.params.id} once login done
+    const userId = this.context.contactInfo.userid;
+
+    fetch(`${config.API_ENDPOINT}/contacts/data/${userId}`, {
       method: "GET",
     })
       .then((resp) => {
@@ -111,9 +112,10 @@ export default class Account extends React.Component {
           <form onSubmit={(e) => this.handleSubmitPassword(e)}>
             <input
               id="changePassword"
-              type="text"
+              type="password"
               name="password"
-              placeholder="Password"
+              placeholder="8 Character Minimum"
+              minLength="8"
               maxLength="25"
               onChange={(e) => this.change(e)}
               value={this.state.password}
@@ -168,7 +170,7 @@ export default class Account extends React.Component {
               type="text"
               name="company"
               placeholder="Company Name"
-              maxLength="35"
+              maxLength="40"
               onChange={(e) => this.change(e)}
               value={this.state.company}
               required
@@ -186,6 +188,7 @@ export default class Account extends React.Component {
               type="text"
               name="city"
               placeholder="City"
+              minLength="3"
               maxLength="25"
               onChange={(e) => this.change(e)}
               value={this.state.city}
@@ -256,25 +259,27 @@ export default class Account extends React.Component {
               type="text"
               name="zip"
               placeholder="Zip"
-              maxLength="6"
+              maxLength="5"
               onChange={(e) => this.change(e)}
               value={this.state.zip}
               required
             />
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="Email"
-              maxLength="35"
+              maxLength="45"
               onChange={(e) => this.change(e)}
               value={this.state.email}
               required
             />
             <input
-              type="text"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               name="phone"
-              placeholder="Phone"
-              maxLength="14"
+                minLength="12"
+                maxLength="12"
+                placeholder="Phone"
               onChange={(e) => this.change(e)}
               value={this.state.phone}
               required
