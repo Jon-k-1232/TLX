@@ -4,10 +4,7 @@ import MessageDetails from "./MessageDetails.js";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  const subjectId={
-    subjectId: 1
-  }
 
-  ReactDOM.render(<MessageDetails{...subjectId} />, div);
+  ReactDOM.render(<MessageDetails />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

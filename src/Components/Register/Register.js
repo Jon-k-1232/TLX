@@ -190,8 +190,6 @@ export default class Register extends React.Component {
             </div>
           </div>
 
-
-
           <div className="newRegStreet">
             <label>Street:</label>
             <div>

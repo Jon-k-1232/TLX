@@ -1,5 +1,6 @@
 import React from "react";
 import "./Account.css";
+import TokenService from "../Services/token-service.js";
 import AppContext from "../../Context.js";
 import config from "../../config.js";
 
@@ -25,6 +26,9 @@ export default class Account extends React.Component {
 
     fetch(`${config.API_ENDPOINT}/contacts/data/${userId}`, {
       method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -61,6 +65,7 @@ export default class Account extends React.Component {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          authorization: `bearer ${TokenService.getAuthToken()}`,
           Origin: `${config.FRONT_WEB}`,
         },
         body: JSON.stringify(updateCntct),
@@ -82,6 +87,7 @@ export default class Account extends React.Component {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`,
         Origin: `${config.FRONT_WEB}`,
       },
       body: JSON.stringify(newPassword),
@@ -274,12 +280,12 @@ export default class Account extends React.Component {
               required
             />
             <input
-                type="tel"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              type="tel"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               name="phone"
-                minLength="12"
-                maxLength="12"
-                placeholder="Phone"
+              minLength="12"
+              maxLength="12"
+              placeholder="Phone"
               onChange={(e) => this.change(e)}
               value={this.state.phone}
               required

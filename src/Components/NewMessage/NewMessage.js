@@ -1,6 +1,7 @@
 import React from "react";
 import "./NewMessage.css";
 import { Link } from "react-router-dom";
+import TokenService from "../Services/token-service.js";
 import config from "../../config.js";
 import AppContext from "../../Context.js";
 
@@ -92,6 +93,7 @@ export default class NewMessage extends React.Component {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${TokenService.getAuthToken()}`,
         Origin: `${config.FRONT_WEB}`,
       },
       body: JSON.stringify(sendMessage),

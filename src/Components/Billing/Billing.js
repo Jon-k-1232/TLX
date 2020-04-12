@@ -3,6 +3,7 @@ import "./Billing.css";
 import { Link } from "react-router-dom";
 import config from "../../config.js";
 import AppContext from "../../Context.js";
+import TokenService from "../Services/token-service.js";
 
 // Billing page
 
@@ -14,6 +15,9 @@ export default class Billing extends React.Component {
 
     fetch(`${config.API_ENDPOINT}/contacts/data/${userId}`, {
       method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -31,6 +35,9 @@ export default class Billing extends React.Component {
     // Gets user bills
     fetch(`${config.API_ENDPOINT}/bills/${userId}`, {
       method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
     })
       .then((resp) => {
         if (!resp.ok) {

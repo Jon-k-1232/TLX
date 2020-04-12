@@ -6,41 +6,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 it("renders without crashing", () => {
   const div = document.createElement("div");
 
-  const arr = {
-    messageid: 1,
-    date: "12/12/12",
-    to: "bob",
-    toUserId: 1,
-    from: "manager",
-    fromUserId: 2,
-    subject: "test",
-    subjectId: 1,
-    messageContent: "test",
-    groupId: 1,
-  };
+ let userId = {userid:1}
 
   ReactDOM.render(
     <Router>
-      <SentMessages {...arr} />,
+      <SentMessages {...userId} />,
     </Router>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
 });
-
-
-/*
-  const props = [{
-    messageid: 1,
-    date: "12/12/12",
-    to: "bob",
-    toUserId: 1,
-    from: "manager",
-    fromUserId: 2,
-    subject: "test",
-    subjectId: 1,
-    messageContent: "test",
-    groupId: 1,
-  }];
-
- */

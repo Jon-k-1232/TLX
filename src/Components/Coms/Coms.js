@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import config from "../../config.js";
 import AppContext from "../../Context.js";
 import ComBox from "../ComBox/ComBox.js";
+import TokenService from "../Services/token-service.js";
 
 // Communications page
 
@@ -16,6 +17,9 @@ export default class Coms extends React.Component {
 
     fetch(`${config.API_ENDPOINT}/messages/${userId}`, {
       method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
     })
       .then((resp) => {
         if (!resp.ok) {

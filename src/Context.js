@@ -1,11 +1,12 @@
 import React from "react";
 
 const AppContext = React.createContext({
-  messages: [],
-  bills:[],
-  contactInfo:{},
+  contactInfo: {},
   managerInfo: {},
+  messages: [],
   inboxMessages: [],
+  sentMessages: [],
+  bills: [],
 });
 
 export default AppContext;
