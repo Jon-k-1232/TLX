@@ -45,6 +45,16 @@ export default class App extends React.Component {
     setBillsInfo: (bills) => {
       this.setState({ bills: bills });
     },
+    setReset: () => {
+      this.setState({
+        contactInfo: {},
+        managerInfo: {},
+        messages: [],
+        inboxMessages: [],
+        sentMessages: [],
+        bills: [],
+      });
+    },
   };
 
   render() {

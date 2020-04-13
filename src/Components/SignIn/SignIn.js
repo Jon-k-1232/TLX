@@ -12,9 +12,10 @@ export default class SignIn extends React.Component {
   state = {
     email: "",
     password: "",
-    error: null,
+    message: "",
   };
 
+  // Sets state
   change = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -24,7 +25,7 @@ export default class SignIn extends React.Component {
   // logs in
   submit(e) {
     e.preventDefault();
-    this.setState({ error: null });
+    this.setState({ message: "" });
 
     const email = this.state.email;
     const password = this.state.password;
@@ -42,7 +43,7 @@ export default class SignIn extends React.Component {
         this.props.history.push("/Billing");
       })
       .catch((res) => {
-        this.setState({ error: res.error });
+        this.setState({ message: res.error });
       });
   }
 
@@ -76,6 +77,9 @@ export default class SignIn extends React.Component {
               value={this.state.password}
               required
             />
+
+            {/* Should a username a password be wrong this will render and advise the user of the error */}
+            <p>{this.state.message}</p>
 
             <div className="buttonContainer">
               <button type="submit" id="signInButton">

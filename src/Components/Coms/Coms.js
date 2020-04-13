@@ -23,7 +23,11 @@ export default class Coms extends React.Component {
     })
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error(resp.status);
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          this.props.history.push("/");
+          this.context.setLoggedIn(false);
+          alert(`Your session has expired, please login.`);
         }
         return resp.json();
       })
@@ -38,35 +42,31 @@ export default class Coms extends React.Component {
   }
 
   render() {
-    // gets all messages
+    // gets all messages and add'd 1. This is needed in order to pass the prop to send new message
     let allMessages = this.context.messages.length + 1;
 
     // set for the rendering of the new messages only
     let arr = this.context.inboxMessages;
     let messageHits = [];
 
-    /*
-    Conditionally renders no messages if no messages in messages context array,
-    or generates message if messages in the messages context array.
-    */
-    if (arr.length <= 0) {
+    // Cycles through the context messages context array to display messages
+    for (let i = 0; i < arr.length; i++) {
       messageHits.push(
-        <div className="noMessageContainer" key={1}>
-          <p> No Messages</p>
+        <div className="hitItemContainer" key={i}>
+          <Link to={`/communications/details/${arr[i].messageid}`}>
+            <ComBox messageInfo={arr[i]} />
+          </Link>
         </div>
       );
-    } else {
-      // Cycles through the context messages context array to display messages
-      for (let i = 0; i < arr.length; i++) {
-        messageHits.push(
-          <div className="hitItemContainer" key={i}>
-            <Link to={`/communications/details/${arr[i].messageid}`}>
-              <ComBox messageInfo={arr[i]} />
-            </Link>
-          </div>
-        );
-      }
     }
+
+    /*
+      Since new messages are pushed onto end of the array from DB this will reverse
+      the array so that the newest will render to the top
+    */
+    let arraySort = () => {
+      return messageHits.reverse();
+    };
 
     return (
       <main className="comPage">
@@ -79,7 +79,18 @@ export default class Coms extends React.Component {
             <Link to="/Communications/Sent">Sent Box</Link>
           </p>
         </div>
-        {messageHits}
+
+        {/*
+          If there are no sent messages, no messages will render, but if there
+          are 1 or more messages the messages will render
+          */}
+        {arr <= 0 ? (
+          <div className="noMessageContainer">
+            <p> No Messages</p>
+          </div>
+        ) : (
+          arraySort()
+        )}
       </main>
     );
   }

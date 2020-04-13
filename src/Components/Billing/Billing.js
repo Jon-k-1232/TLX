@@ -21,15 +21,18 @@ export default class Billing extends React.Component {
     })
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error(resp.status);
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          this.context.setLoggedIn(false);
+          this.props.history.push("/");
+          alert(`Your session has expired, please login.`);
         }
         return resp.json();
       })
       .then((data) => {
         this.context.setManagerInfo(data.userManagerInfo[0]);
       })
-      .catch((error) => {
-        alert(error);
+      .catch((error) => {alert(error)
       });
 
     // Gets user bills
@@ -41,15 +44,17 @@ export default class Billing extends React.Component {
     })
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error(resp.status);
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          this.props.history.push("/");
+          this.context.setLoggedIn(false);
         }
         return resp.json();
       })
       .then((data) => {
         this.context.setBillsInfo(data.userBills);
       })
-      .catch((error) => {
-        alert(error);
+      .catch((error) => { alert(error)
       });
   }
 

@@ -18,6 +18,8 @@ export default class Account extends React.Component {
     email: "",
     phone: "",
     password: "",
+    confirmPassword: "",
+    checkMessage: "",
   };
 
   componentDidMount() {
@@ -32,7 +34,11 @@ export default class Account extends React.Component {
     })
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error(resp.status);
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          this.props.history.push("/");
+          this.context.setLoggedIn(false);
+          alert(`Your session has expired, please login.`);
         }
         return resp.json();
       })
@@ -78,25 +84,39 @@ export default class Account extends React.Component {
       .catch((error) => alert(error));
   };
 
-  // handles submit for password
+  // handles submit for password with password validation
   handleSubmitPassword(e) {
     e.preventDefault();
-    const newPassword = { password: this.state.password };
 
-    fetch(`${config.API_ENDPOINT}/amend/${this.context.contactInfo.userid}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${TokenService.getAuthToken()}`,
-        Origin: `${config.FRONT_WEB}`,
-      },
-      body: JSON.stringify(newPassword),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        alert("Password changed successfully");
-      })
-      .catch((error) => alert(error));
+    let newPassword = "";
+    let tempPassword = this.state.password;
+    let confirmPassword = this.state.confirmPassword;
+
+    if (tempPassword === confirmPassword) {
+      newPassword = { password: tempPassword };
+
+      fetch(
+        `${config.API_ENDPOINT}/contacts/change/${this.context.contactInfo.userid}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${TokenService.getAuthToken()}`,
+            Origin: `${config.FRONT_WEB}`,
+          },
+          body: JSON.stringify(newPassword),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          alert(res.status);
+          this.setState({ checkMessage: "" });
+        })
+        .catch((error) => alert(error));
+    } else {
+      // password validation
+      this.setState({ checkMessage: "Password does not match" });
+    }
   }
 
   // updates the input state
@@ -116,17 +136,34 @@ export default class Account extends React.Component {
         <div className="accountPassword">
           <h3>Change Password</h3>
           <form onSubmit={(e) => this.handleSubmitPassword(e)}>
-            <input
-              id="changePassword"
-              type="password"
-              name="password"
-              placeholder="8 Character Minimum"
-              minLength="8"
-              maxLength="25"
-              onChange={(e) => this.change(e)}
-              value={this.state.password}
-              required
-            />
+            <div>
+              <p>{this.state.checkMessage}</p>
+              <input
+                id="changePassword"
+                type="text"
+                name="password"
+                placeholder="8 Character Minimum"
+                minLength="8"
+                maxLength="25"
+                onChange={(e) => this.change(e)}
+                value={this.state.password}
+                required
+              />
+            </div>
+
+            <div>
+              <input
+                id="confirmPassword"
+                type="text"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                minLength="8"
+                maxLength="25"
+                onChange={(e) => this.change(e)}
+                value={this.state.confirmPassword}
+                required
+              />
+            </div>
             <button type="submit">Save</button>
           </form>
         </div>

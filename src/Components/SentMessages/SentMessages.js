@@ -23,7 +23,11 @@ export default class SentMessages extends React.Component {
     })
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error(resp.status);
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          this.props.history.push("/");
+          this.context.setLoggedIn(false);
+          alert(`Your session has expired, please login.`);
         }
         return resp.json();
       })
@@ -52,22 +56,35 @@ export default class SentMessages extends React.Component {
       );
     }
 
+    /*
+    Since new messages are pushed onto end of the array from DB this will reverse
+    the array so that the newest will render to the top
+     */
+    let arraySort = () => {
+      return messageHits.reverse();
+    };
+
     return arr ? (
       <main className="messageHistoryPage">
         <h1>Sent Box</h1>
         <p id="historyBack">
           <Link to="/Communications">Back</Link>
         </p>
-        {messageHits}
+
+        {/*
+          If there are no sent messages, no messages will render, but if there
+          are 1 or more messages the messages will render
+          */}
+        {arr <= 0 ? (
+          <div className="noMessageContainer">
+            <p> No Messages</p>
+          </div>
+        ) : (
+          arraySort()
+        )}
       </main>
     ) : (
-      <main className="messageHistoryPage">
-        <h1>Sent Box</h1>
-        <p id="historyBack">
-          <Link to="/Communications">Back</Link>
-        </p>
-        <p>No Messages</p>
-      </main>
+      ""
     );
   }
 }

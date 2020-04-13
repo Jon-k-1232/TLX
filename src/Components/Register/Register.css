@@ -11,7 +11,8 @@
 }
 
 .newRegUserName label,
-.newRegUserpassword label,
+.newRegUserPassword label,
+.newRegConfirmPassword label,
 .newRegCompany label,
 .newRegStreet label,
 .newRegCity label,
@@ -24,7 +25,8 @@
 }
 
 .newRegUserName,
-.newRegUserpassword,
+.newRegUserPassword,
+.newRegConfirmPassword,
 .newRegCompany,
 .newRegStreet,
 .newRegCity,
@@ -39,7 +41,8 @@
 }
 
 .newRegUserName div input,
-.newRegUserpassword div input,
+.newRegUserPassword div input,
+.newRegConfirmPassword div input,
 .newRegCompany div input,
 .newRegStreet div input,
 .newRegCity div input,

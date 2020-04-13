@@ -20,6 +20,8 @@ export default class Register extends React.Component {
     managerId: 0,
     groupId: 0,
     managerList: "",
+    confirmPassword: "",
+    checkMessage: "",
   };
 
   // Gets a list of managers who are registered
@@ -92,20 +94,33 @@ export default class Register extends React.Component {
   // submits form to back end to create new user
   submit(e) {
     e.preventDefault();
-    const registrationForm = { ...this.state };
 
-    fetch(`${config.API_ENDPOINT}/registration/new`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        Origin: `${config.FRONT_WEB}`,
-      },
-      body: JSON.stringify(registrationForm),
-    })
-      .then((res) => res.json())
-      .catch((error) => alert(error));
+    let tempPassword = this.state.password;
+    let confirmPassword = this.state.confirmPassword;
 
-    this.props.history.push("/");
+    if (tempPassword === confirmPassword) {
+      const registrationForm = { ...this.state };
+
+      fetch(`${config.API_ENDPOINT}/registration/new`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Origin: `${config.FRONT_WEB}`,
+        },
+        body: JSON.stringify(registrationForm),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          alert(res.status);
+          this.setState({ checkMessage: "" });
+        })
+        .catch((error) =>
+          alert(`${error}: Unable to add your account at this time.`)
+        );
+      this.props.history.push("/");
+    } else {
+      this.setState({ checkMessage: "Password does not match" });
+    }
   }
 
   render() {
@@ -160,9 +175,10 @@ export default class Register extends React.Component {
             </div>
           </div>
 
-          <div className="newRegUserpassword">
+          <div className="newRegUserPassword">
             <label>Password:</label>
             <div>
+              <p>{this.state.checkMessage}</p>
               <input
                 type="text"
                 name="password"
@@ -170,6 +186,21 @@ export default class Register extends React.Component {
                 placeholder="Password"
                 onChange={(e) => this.change(e)}
                 value={this.state.password}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="newRegConfirmPassword">
+            <label>Confirm Password:</label>
+            <div>
+              <input
+                type="text"
+                name="confirmPassword"
+                maxLength="25"
+                placeholder="Confirm Password"
+                onChange={(e) => this.change(e)}
+                value={this.state.confirmPassword}
                 required
               />
             </div>
