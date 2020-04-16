@@ -1,5 +1,5 @@
 export default {
-  API_ENDPOINT: process.env.REACT_APP_API_ENDPOINT,
+  API_ENDPOINT: "https://boiling-dawn-55684.herokuapp.com",
   FRONT_WEB: "*",
   TOKEN_KEY: "change-this-secret",
 };
