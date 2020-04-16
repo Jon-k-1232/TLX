@@ -30,7 +30,7 @@ export default class InvoiceDetails extends React.Component {
         */}
         <div className="billDueContainer">
           <h3>Invoice: {bills.rentFor}</h3>
-          <h4>Pay: {bills.totalDue}</h4>
+          <h4>Pay: ${bills.totalDue}</h4>
           <h5>Due: {bills.dueDate}</h5>
         </div>
 
@@ -67,35 +67,35 @@ export default class InvoiceDetails extends React.Component {
           <div className="invoiceDetailsMaintenance">
             <p>Maintenance:</p>
             <div>
-              <p>{bills.maintenance}</p>
+              <p>${bills.maintenance}</p>
             </div>
           </div>
 
           <div className="invoiceDetailsWater">
             <p>Water:</p>
             <div>
-              <p>{bills.water}</p>
+              <p>${bills.water}</p>
             </div>
           </div>
 
           <div className="invoiceDetailsRent">
             <p>Rent:</p>
             <div>
-              <p>{bills.basicRent}</p>
+              <p>${bills.basicRent}</p>
             </div>
           </div>
 
           <div className="invoiceDetailsPast">
             <p>Past due:</p>
             <div>
-              <p>{bills.pastDue}</p>
+              <p>${bills.pastDue}</p>
             </div>
           </div>
 
           <div className="invoiceDetailsTotal">
             <h4>Total:</h4>
             <div>
-              <h4>{bills.totalDue}</h4>
+              <h4>${bills.totalDue}</h4>
             </div>
           </div>
         </div>

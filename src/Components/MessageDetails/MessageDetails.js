@@ -46,7 +46,10 @@ export default class MessageDetails extends React.Component {
       <main className="messageDetailsPage">
         <div className="messageDetailsReply">
           <p>
-            <Link to="/Communications">Back</Link>
+            <Link to="/Communications">Inbox</Link>
+          </p>
+          <p>
+            <Link to="/Communications/Sent">Sent box</Link>
           </p>
           <p>
             <Link to={`/Communications/New/${messageNumber.subjectId}`}>

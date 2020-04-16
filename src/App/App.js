@@ -11,6 +11,7 @@ import SignIn from "../Components/SignIn/SignIn.js";
 import Billing from "../Components/Billing/Billing.js";
 import InvoiceDetails from "../Components/InvoiceDetails/InvoiceDetails.js";
 import MessageDetails from "../Components/MessageDetails/MessageDetails.js";
+import MainPage from "../Components/MainPage/MainPage.js";
 import AppContext from "../Context.js";
 import PublicOnlyRoute from "../Components/Utils/PublicOnlyRoute.js";
 import PrivateRoute from "../Components/Utils/PrivateRoute.js";
@@ -64,7 +65,8 @@ export default class App extends React.Component {
           <BrowserRouter>
             <Header />
             <Switch>
-              <Route exact path="/" component={SignIn} />
+              <Route exact path="/" component={MainPage} />
+              <Route exact path="/Sign-in" component={SignIn} />
               <PublicOnlyRoute path="/register" component={Register} />
 
               <PrivateRoute exact path="/Billing" component={Billing} />

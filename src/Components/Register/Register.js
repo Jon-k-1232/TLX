@@ -117,7 +117,7 @@ export default class Register extends React.Component {
         .catch((error) =>
           alert(`${error}: Unable to add your account at this time.`)
         );
-      this.props.history.push("/");
+      this.props.history.push("/Sign-in");
     } else {
       this.setState({ checkMessage: "Password does not match" });
     }

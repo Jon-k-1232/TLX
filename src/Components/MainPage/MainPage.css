@@ -1,0 +1,6 @@
+.mainPage {
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
