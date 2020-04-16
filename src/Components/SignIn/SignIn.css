@@ -1,22 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 .signInPage {
   min-height: 86vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-#homePicture {
-  border: 1px solid black;
-  height: 450px;
-  margin: 0px 10px 0px 10px;
+  align-items: center;
+  background: #efefef; /*    background: #67d8b2c7;  */
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .signContainer {
-  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  background: #515258;
+  border-radius: 2px; /*     border-radius: 10px; */
+  width: 300px;
 }
 
 .signInForm {
@@ -34,14 +35,24 @@
   width: 250px;
 }
 
+input[type="text"] {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 #signInButton {
-  width: 125px;
-  height: 35px;
+  width: 120px;
   margin: 15px;
+  border-radius: 2px;
+  border: #00aded;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #00aded;
+  color: #3f4149;
 }
 
 #signInNewUser a {
   text-decoration: none;
+  font-size: 18px;
 }
 
 form input,
@@ -49,14 +60,14 @@ form select,
 form textarea {
   margin: 5px;
   border: 1px solid #c1c8cc;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 13px;
   color: #333;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #00aded;
 }
 
 button:hover {

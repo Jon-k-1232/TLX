@@ -50,9 +50,6 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <main className="signInPage">
-        <div id="homePicture">
-          <h2>Picture box</h2>
-        </div>
 
         <div className="signContainer">
           <form className="signInForm" onSubmit={(e) => this.submit(e)}>

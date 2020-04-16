@@ -72,15 +72,15 @@ export default class Header extends React.Component {
             */}
             {this.context.loggedIn === true ? (
               <li>
-                <button onClick={this.handleLogOut}>
+                <p id='logButtonMenu' onClick={this.handleLogOut}>
                   <Link to="/">Logout</Link>
-                </button>
+                </p>
               </li>
             ) : (
               <li>
-                <button>
+                <p id="logButtonMenu">
                   <Link to="/">Sign In</Link>
-                </button>
+                </p>
               </li>
             )}
           </ol>

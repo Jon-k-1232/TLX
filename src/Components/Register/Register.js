@@ -159,7 +159,7 @@ export default class Register extends React.Component {
       <main className="RegisterPage">
         <h2>Create a TLX Account</h2>
 
-        <form onSubmit={(e) => this.submit(e)}>
+        <form className='regForm' onSubmit={(e) => this.submit(e)}>
           <div className="newRegUserName">
             <label>Log In E-mail:</label>
             <div>
