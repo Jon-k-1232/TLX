@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 
 .signInPage {
   min-height: 86vh;
@@ -6,8 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #efefef; /*    background: #67d8b2c7;  */
-  font-family: 'Source Sans Pro', sans-serif;
+  background: #efefef;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .signContainer {
@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   background: #515258;
-  border-radius: 2px; /*     border-radius: 10px; */
+  border-radius: 2px;
   width: 300px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 input[type="text"] {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 #signInButton {

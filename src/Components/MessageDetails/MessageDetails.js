@@ -16,7 +16,7 @@ export default class MessageDetails extends React.Component {
     );
 
     //reads the subject line of the message the user clicked on
-    let subjectId = messageNumber.subjectId;
+    let subjectId = messageNumber ? messageNumber.subjectId : "";
 
     // reads all messages in user messages
     let messageArray = this.context.messages;
