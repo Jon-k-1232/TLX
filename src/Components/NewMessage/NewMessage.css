@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: #00aded;
+  background: #363538;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #messageSubject {
@@ -29,18 +32,37 @@
   margin: 10px;
 }
 
-#messageSubButton a,
 #messageDiscard a {
   text-decoration: none;
-  color: black;
+  color:  #00aded;
 }
 
-#messageSubButton :hover {
-  background-color: brown;
+#messageSubButton{
+  width: 120px;
+  margin: 15px;
+  border-radius: 2px;
+  border: #00aded;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #00aded;
+  color: #363538;
+  cursor: pointer;
+}
+
+#messageSubButton:hover {
+  background-color:  #00adedb8;
   cursor: pointer;
 }
 
 #messageDiscard a:hover {
-  color: brown;
+  color:  #00adedb8;
   cursor: pointer;
+}
+
+input[type="text"] {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+textarea[type="text"] {
+  font-family: "Source Sans Pro", sans-serif;
 }

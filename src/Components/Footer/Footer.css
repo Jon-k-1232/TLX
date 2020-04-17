@@ -2,7 +2,7 @@ footer {
   height: 7vh;
   align-items: center;
   display: flex;
-
+  background: #363538;
 }
 
 footer p {

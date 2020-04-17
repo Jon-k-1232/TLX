@@ -1,5 +1,7 @@
 .messageBox {
-  border: 1px solid black;
+  border: 1px solid #00aded;
+  color: #00aded;
+  border-radius: 9px;
   margin: 10px;
   overflow: hidden;
 }
@@ -11,5 +13,11 @@
 }
 
 #quickView:hover {
-  color: brown;
+  color: #00adedb8;
+}
+
+.messageBox h4,
+.messageBox h5,
+.messageBox p{
+  margin-left: 5px;
 }

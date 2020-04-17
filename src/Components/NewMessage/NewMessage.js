@@ -94,7 +94,6 @@ export default class NewMessage extends React.Component {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`,
-        Origin: `${config.FRONT_WEB}`,
       },
       body: JSON.stringify(sendMessage),
     })
@@ -134,6 +133,7 @@ export default class NewMessage extends React.Component {
                 // conditionally renders a place holder, allows user to update the subject line
                 placeholder="Subject"
                 maxLength="45"
+                type="text"
                 onChange={(e) => this.updateSubject(e.target.value)}
                 required
               ></input>
@@ -160,6 +160,7 @@ export default class NewMessage extends React.Component {
                 // conditionally renders and inserts subject line as value if a reply to a prior message
                 value={message.subject}
                 maxLength="65"
+                type="text"
                 onChange={(e) => this.updateSubject(e.target.value)}
                 required
               ></input>

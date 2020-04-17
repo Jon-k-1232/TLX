@@ -31,7 +31,7 @@ export default class InvoiceDetails extends React.Component {
         <div className="billDueContainer">
           <h3>Invoice: {bills.rentFor}</h3>
           <h4>Pay: ${bills.totalDue}</h4>
-          <h5>Due: {bills.dueDate}</h5>
+          <h4>Due: {bills.dueDate}</h4>
         </div>
 
         {/*

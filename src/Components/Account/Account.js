@@ -65,23 +65,56 @@ export default class Account extends React.Component {
       phone: this.state.phone,
     };
 
-    fetch(
-      `${config.API_ENDPOINT}/contacts/data/${this.context.contactInfo.userid}`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${TokenService.getAuthToken()}`,
-          Origin: `${config.FRONT_WEB}`,
-        },
-        body: JSON.stringify(updateCntct),
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        alert("Contact information changed successfully");
-      })
-      .catch((error) => alert(error));
+    /*
+    This will allow either the user to stay logged in if the email is not changed or automatically be logged
+    out if the email is changed.
+     */
+    if(this.context.contactInfo.email === this.state.email){
+
+      fetch(
+          `${config.API_ENDPOINT}/contacts/data/${this.context.contactInfo.userid}`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${TokenService.getAuthToken()}`,
+              Origin: `${config.FRONT_WEB}`,
+            },
+            body: JSON.stringify(updateCntct),
+          }
+      )
+          .then((res) => res.json())
+          .then((res) => {
+            alert("Contact information changed successfully");
+          })
+          .catch((error) => alert(error));
+
+    }else{
+      fetch(
+          `${config.API_ENDPOINT}/contacts/data/${this.context.contactInfo.userid}`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${TokenService.getAuthToken()}`,
+              Origin: `${config.FRONT_WEB}`,
+            },
+            body: JSON.stringify(updateCntct),
+          }
+      )
+          .then((res) => res.json())
+          .then((res) => {
+            alert("Contact information changed successfully. You have been logged out for your security.");
+            this.props.history.push("/Sign-in");
+            this.context.setLoggedIn(false);
+            TokenService.clearAuthToken();
+          })
+          .catch((error) => alert(error));
+
+
+
+    }
+
   };
 
   // handles submit for password with password validation
@@ -164,7 +197,9 @@ export default class Account extends React.Component {
                 required
               />
             </div>
-            <button type="submit">Save</button>
+            <div className='updtPasswordButtonContainer'>
+            <button id="updatePasswordButton" type="submit">Save</button>
+            </div>
           </form>
         </div>
 
@@ -327,8 +362,11 @@ export default class Account extends React.Component {
               value={this.state.phone}
               required
             />
-            <div className="buttonContainer">
-              <button type="submit">Save</button>
+            <div>
+            <p id="emailWarn">* You will be logged out should your email be changed.</p>
+            </div>
+            <div className="infoButtonContainer">
+              <button id="updateContactButton" type="submit">Save</button>
             </div>
           </form>
         </div>

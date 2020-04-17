@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: #00aded;
+  background: #363538;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .messageDetailsReply {
@@ -11,11 +14,22 @@
   margin: 10px;
 }
 
+.messageDetailsReply p a {
+  color: #00aded;
+}
+
 .messageDetailsReply p a:hover {
-  color: brown;
+  color: #00adedb8;
 }
 
 .messageDetailsBox {
-  border: 1px solid black;
+  border: 1px solid #00aded;
+  border-radius: 9px;
   margin: 10px;
+}
+
+.messageDetailsBox h5,
+.messageDetailsBox h4,
+.messageDetailsBox p{
+  margin-left: 5px;
 }

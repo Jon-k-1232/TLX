@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #efefef;
+  background: #363538;
+  color: #00aded;
   font-family: 'Source Sans Pro', sans-serif;
 }
 

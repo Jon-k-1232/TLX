@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #efefef;
+  background: #363538;
   font-family: "Source Sans Pro", sans-serif;
 }
 
@@ -15,8 +15,8 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background: #515258;
-  border-radius: 2px;
+  border-radius: 9px;
+  border: 1px solid #00aded;
   width: 300px;
 }
 
@@ -47,29 +47,32 @@ input[type="text"] {
   font-size: 16px;
   font-weight: 600;
   background-color: #00aded;
-  color: #3f4149;
+  color: #363538;
+  cursor: pointer;
+}
+
+#signInButton:hover{
+  background-color:  #00adedb8;
 }
 
 #signInNewUser a {
   text-decoration: none;
   font-size: 18px;
+  color: #00aded;
+}
+
+#signInNewUser a:hover{
+  color: #00adedb8;
 }
 
 form input,
 form select,
 form textarea {
   margin: 5px;
-  border: 1px solid #c1c8cc;
+  border: 1px solid #00adedb8;
   border-radius: 2px;
   font-size: 13px;
   color: #333;
 }
 
-a {
-  text-decoration: none;
-  color: #00aded;
-}
 
-button:hover {
-  color: brown;
-}
