@@ -5,7 +5,7 @@
   justify-content: center;
   color: #00aded;
   background: #363538;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .messageDetailsReply {
@@ -30,6 +30,6 @@
 
 .messageDetailsBox h5,
 .messageDetailsBox h4,
-.messageDetailsBox p{
+.messageDetailsBox p {
   margin-left: 5px;
 }

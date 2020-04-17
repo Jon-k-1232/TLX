@@ -5,7 +5,7 @@
   justify-content: center;
   color: #00aded;
   background: #363538;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 #messageSubject {
@@ -34,10 +34,10 @@
 
 #messageDiscard a {
   text-decoration: none;
-  color:  #00aded;
+  color: #00aded;
 }
 
-#messageSubButton{
+#messageSubButton {
   width: 120px;
   margin: 15px;
   border-radius: 2px;
@@ -50,12 +50,12 @@
 }
 
 #messageSubButton:hover {
-  background-color:  #00adedb8;
+  background-color: #00adedb8;
   cursor: pointer;
 }
 
 #messageDiscard a:hover {
-  color:  #00adedb8;
+  color: #00adedb8;
   cursor: pointer;
 }
 

@@ -50,7 +50,6 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <main className="signInPage">
-
         <div className="signContainer">
           <form className="signInForm" onSubmit={(e) => this.submit(e)}>
             <input
@@ -86,7 +85,7 @@ export default class SignIn extends React.Component {
           </form>
 
           <p id="signInNewUser">
-            <Link to="/register">Create a New Account</Link>
+            <Link to="/Register">Create a New Account</Link>
           </p>
         </div>
       </main>

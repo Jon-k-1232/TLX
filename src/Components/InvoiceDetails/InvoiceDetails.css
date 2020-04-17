@@ -10,7 +10,7 @@
 
 .invoicePage h3,
 .invoicePage h4,
-.invoicePage p{
+.invoicePage p {
   margin-left: 5px;
 }
 
@@ -59,7 +59,7 @@
   margin: 10px;
 }
 
-#backLink a{
+#backLink a {
   color: #00aded;
 }
 

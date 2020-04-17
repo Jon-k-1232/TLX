@@ -28,6 +28,9 @@ export default class Register extends React.Component {
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/registration/new`, {
       method: "GET",
+      headers: {
+        Origin: `${config.FRONT_WEB}`,
+      },
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -159,7 +162,7 @@ export default class Register extends React.Component {
       <main className="RegisterPage">
         <h2>Create a TLX Account</h2>
 
-        <form className='regForm' onSubmit={(e) => this.submit(e)}>
+        <form className="regForm" onSubmit={(e) => this.submit(e)}>
           <div className="newRegUserName">
             <label>Log In E-mail:</label>
             <div>

@@ -17,6 +17,7 @@ export default class Billing extends React.Component {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
       },
     })
       .then((resp) => {
@@ -32,7 +33,8 @@ export default class Billing extends React.Component {
       .then((data) => {
         this.context.setManagerInfo(data.userManagerInfo[0]);
       })
-      .catch((error) => {alert(error)
+      .catch((error) => {
+        alert(error);
       });
 
     // Gets user bills
@@ -40,6 +42,7 @@ export default class Billing extends React.Component {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
       },
     })
       .then((resp) => {
@@ -54,7 +57,8 @@ export default class Billing extends React.Component {
       .then((data) => {
         this.context.setBillsInfo(data.userBills);
       })
-      .catch((error) => { alert(error)
+      .catch((error) => {
+        alert(error);
       });
   }
 

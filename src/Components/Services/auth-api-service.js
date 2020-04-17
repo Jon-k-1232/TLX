@@ -6,6 +6,7 @@ const AuthApiService = {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        Origin: `${config.FRONT_WEB}`,
       },
       body: JSON.stringify({ email, password }),
     }).then((res) =>

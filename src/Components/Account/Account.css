@@ -5,22 +5,22 @@
   justify-content: center;
   color: #00aded;
   background: #363538;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-.accountPage form{
+.accountPage form {
   margin: 5px;
   width: 200px;
 }
 
-.accountPage form input{
+.accountPage form input {
   width: 100%;
 }
 
 .accountPage h1,
 .accountPassword h3,
 .accountContact h3,
-.accountAddress h3{
+.accountAddress h3 {
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
 
 .accountContact h5,
 .accountPropManager h3,
-.accountPassword p{
+.accountPassword p {
   margin-left: 5px;
 }
 
@@ -71,13 +71,14 @@
   width: 90px;
 }
 
-#emailWarn{
+#emailWarn {
   width: 330px;
   margin-left: 5px;
   font-size: 13px;
 }
 
-#updateContactButton, #updatePasswordButton{
+#updateContactButton,
+#updatePasswordButton {
   width: 120px;
   margin: 10px 10px 10px 10px;
   border-radius: 2px;
@@ -89,10 +90,10 @@
   cursor: pointer;
 }
 
-#updateContactButton:hover{
-  background-color:  #00adedb8;
+#updateContactButton:hover {
+  background-color: #00adedb8;
 }
 
-#updatePasswordButton:hover{
-  background-color:  #00adedb8;
+#updatePasswordButton:hover {
+  background-color: #00adedb8;
 }

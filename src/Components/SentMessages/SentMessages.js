@@ -19,6 +19,7 @@ export default class SentMessages extends React.Component {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
       },
     })
       .then((resp) => {

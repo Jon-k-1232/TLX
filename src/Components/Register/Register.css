@@ -5,7 +5,7 @@
   justify-content: center;
   background: #363538;
   color: #00aded;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .RegisterPage h2 {
@@ -13,7 +13,7 @@
   margin: 0px 0px 50px 0px;
 }
 
-.regForm{
+.regForm {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -29,7 +29,7 @@
 .newRegZip label,
 .newRegPhone label,
 .newRegRegisterAs label,
-.newManagerList label{
+.newManagerList label {
   margin-left: 10px;
   width: 140px;
 }
@@ -44,11 +44,10 @@
 .newRegZip,
 .newRegPhone,
 .newRegRegisterAs,
-.newManagerList{
+.newManagerList {
   display: inline-flex;
   align-items: baseline;
   width: 100%;
-
 }
 
 .newRegUserName div input,
@@ -61,9 +60,8 @@
 .newRegZip div input,
 .newRegPhone div input,
 .newRegRegisterAs div input,
-.newManagerList div input{
+.newManagerList div input {
   width: 180px;
-  border: 1px solid #c1c8cc;
   border-radius: 4px;
   font-size: 13px;
   color: #333;
@@ -76,14 +74,13 @@
 }
 
 #state {
-  border: 1px solid #c1c8cc;
   border-radius: 4px;
   font-size: 13px;
   color: #333;
 }
 
-#newRegSubmit{
-  width: 150px;
+#newRegSubmit {
+  width: 160px;
   margin: 15px;
   border-radius: 2px;
   border: #00aded;

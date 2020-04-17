@@ -67,7 +67,7 @@ export default class App extends React.Component {
             <Switch>
               <Route exact path="/" component={MainPage} />
               <Route exact path="/Sign-in" component={SignIn} />
-              <PublicOnlyRoute path="/register" component={Register} />
+              <PublicOnlyRoute path="/Register" component={Register} />
 
               <PrivateRoute exact path="/Billing" component={Billing} />
               <PrivateRoute

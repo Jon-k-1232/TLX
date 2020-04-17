@@ -1,10 +1,23 @@
-.mainPage {
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+body {
+  background: #363538;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+form input,
+form select,
+form textarea {
+  border: #363538;
+}
+
+.mainPage {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #00aded;
+  background: #363538;
+  font-family: "Source Sans Pro", sans-serif;
 }

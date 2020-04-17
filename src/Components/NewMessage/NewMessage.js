@@ -94,6 +94,7 @@ export default class NewMessage extends React.Component {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
       },
       body: JSON.stringify(sendMessage),
     })
@@ -142,7 +143,7 @@ export default class NewMessage extends React.Component {
                 id="messageText"
                 type="text"
                 wrap="soft"
-                placeholder="Write a review in 500 characters..."
+                placeholder="Write a message in 500 characters..."
                 maxLength="500"
                 onChange={(e) => this.updateMessageBody(e.target.value)}
                 required

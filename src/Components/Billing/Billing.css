@@ -49,10 +49,9 @@
 #billingViewDetails {
   text-align: end;
   margin: 10px;
-  color: #00aded;;
+  color: #00aded;
 }
 
-#billingViewDetails:hover{
+#billingViewDetails:hover {
   color: #00adedb8;
 }
-

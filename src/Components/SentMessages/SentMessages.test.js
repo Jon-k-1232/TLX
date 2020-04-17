@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 it("renders without crashing", () => {
   const div = document.createElement("div");
 
- let userId = {userid:1}
+  let userId = { userid: 1 };
 
   ReactDOM.render(
     <Router>

@@ -20,6 +20,10 @@
   width: 300px;
 }
 
+.signContainer p {
+  color: #00aded;
+}
+
 .signInForm {
   display: flex;
   justify-content: center;
@@ -51,8 +55,8 @@ input[type="text"] {
   cursor: pointer;
 }
 
-#signInButton:hover{
-  background-color:  #00adedb8;
+#signInButton:hover {
+  background-color: #00adedb8;
 }
 
 #signInNewUser a {
@@ -61,7 +65,7 @@ input[type="text"] {
   color: #00aded;
 }
 
-#signInNewUser a:hover{
+#signInNewUser a:hover {
   color: #00adedb8;
 }
 
@@ -74,5 +78,3 @@ form textarea {
   font-size: 13px;
   color: #333;
 }
-
-
