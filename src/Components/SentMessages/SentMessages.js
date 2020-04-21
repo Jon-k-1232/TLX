@@ -68,21 +68,32 @@ export default class SentMessages extends React.Component {
     return arr ? (
       <main className="messageHistoryPage">
         <h1>Sent Box</h1>
-        <p id="historyBack">
-          <Link to="/Communications">Back</Link>
-        </p>
-
-        {/*
-          If there are no sent messages, no messages will render, but if there
-          are 1 or more messages the messages will render
-          */}
-        {arr <= 0 ? (
-          <div className="noMessageContainer">
-            <p> No Messages</p>
+        <div className="sentLarge">
+          <div className="sentNav">
+            <p>
+              <Link to={`/Communications/New/${this.context.messages.length + 1}`}>
+                New Message
+              </Link>
+            </p>
+            <p>
+              <Link to="/Communications">Inbox</Link>
+            </p>
           </div>
+
+          {/*
+            If there are no sent messages, no messages will render, but if there
+            are 1 or more messages the messages will render
+            */}
+          {arr <= 0 ? (
+            <div className="noMessageContainer">
+              <p> No Messages</p>
+            </div>
         ) : (
-          arraySort()
+              <div className="sentMessages">
+          {arraySort()}
+              </div>
         )}
+        </div>
       </main>
     ) : (
       ""

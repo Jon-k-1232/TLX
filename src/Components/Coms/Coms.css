@@ -16,9 +16,16 @@
   display: inline-flex;
 }
 
+.comPageNavNo{
+  display: inline-flex;
+}
+
+.sentNav p{
+  margin: 10px;
+}
+
 #newCommLink,
 #historyCommLink {
-  text-align: right;
   margin: 10px;
 }
 
@@ -47,4 +54,49 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.messagesContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hitItemContainer{
+  width: 100%;
+}
+
+
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+@media only screen and (min-width: 855px) {
+
+  .messagesContainer{
+    justify-content: center;
+  }
+
+  .comPageLarge{
+    display: flex;
+    justify-content: center;
+  }
+
+  .comPageNav{
+    margin: 0px 17px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  #newCommLink, #historyCommLink {
+    text-align: left;
+  }
+
+  .noMessageContainer{
+    text-align: center;
+    width: 70%;
+  }
+
+  .comPageNavNo{
+    width:20%
+  }
+
 }

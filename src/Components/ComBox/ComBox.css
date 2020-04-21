@@ -7,17 +7,33 @@
 }
 
 #quickView {
-  position: absolute;
-  right: 20px;
   font-size: 14px;
+  margin: 5px;
 }
 
 #quickView:hover {
   color: #00adedb8;
 }
 
+.infoWithLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .messageBox h4,
 .messageBox h5,
 .messageBox p {
   margin-left: 5px;
+}
+
+
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+@media only screen and (min-width: 800px) {
+
+  .messageBox {
+    width: 740px;
+  }
+
 }

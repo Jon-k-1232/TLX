@@ -105,7 +105,7 @@ export default class Account extends React.Component {
         .then((res) => res.json())
         .then((res) => {
           alert(
-            "Contact information changed successfully. You have been logged out for your security."
+            "Contact information changed successfully. You have now been logged out."
           );
           this.props.history.push("/Sign-in");
           this.context.setLoggedIn(false);
@@ -164,45 +164,7 @@ export default class Account extends React.Component {
       <main className="accountPage">
         <h1>Account</h1>
 
-        <div className="accountPassword">
-          <h3>Change Password</h3>
-          <form onSubmit={(e) => this.handleSubmitPassword(e)}>
-            <div>
-              <p>{this.state.checkMessage}</p>
-              <input
-                id="changePassword"
-                type="text"
-                name="password"
-                placeholder="8 Character Minimum"
-                minLength="8"
-                maxLength="25"
-                onChange={(e) => this.change(e)}
-                value={this.state.password}
-                required
-              />
-            </div>
-
-            <div>
-              <input
-                id="confirmPassword"
-                type="text"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                minLength="8"
-                maxLength="25"
-                onChange={(e) => this.change(e)}
-                value={this.state.confirmPassword}
-                required
-              />
-            </div>
-            <div className="updtPasswordButtonContainer">
-              <button id="updatePasswordButton" type="submit">
-                Save
-              </button>
-            </div>
-          </form>
-        </div>
-
+        <div className="contactBlock">
         <div className="accountContact">
           <h3>Contact information</h3>
 
@@ -362,7 +324,7 @@ export default class Account extends React.Component {
               value={this.state.phone}
               required
             />
-            <div>
+            <div className="emailAlert">
               <p id="emailWarn">
                 * You will be logged out should your email be changed.
               </p>
@@ -374,11 +336,54 @@ export default class Account extends React.Component {
             </div>
           </form>
         </div>
-
-        <div className="accountPropManager">
-          <h3>Property Manager:</h3>
-          <p>{this.context.contactInfo.managerName}</p>
         </div>
+
+        <div className='passManager'>
+          <div className="accountPassword">
+            <h3>Change Password</h3>
+            <form onSubmit={(e) => this.handleSubmitPassword(e)}>
+              <div>
+                <p>{this.state.checkMessage}</p>
+                <input
+                    id="changePassword"
+                    type="text"
+                    name="password"
+                    placeholder="8 Character Minimum"
+                    minLength="8"
+                    maxLength="25"
+                    onChange={(e) => this.change(e)}
+                    value={this.state.password}
+                    required
+                />
+              </div>
+
+              <div>
+                <input
+                    id="confirmPassword"
+                    type="text"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    minLength="8"
+                    maxLength="25"
+                    onChange={(e) => this.change(e)}
+                    value={this.state.confirmPassword}
+                    required
+                />
+              </div>
+              <div className="updtPasswordButtonContainer">
+                <button id="updatePasswordButton" type="submit">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="accountPropManager">
+            <h3>Property Manager:</h3>
+            <p>{this.context.contactInfo.managerName}</p>
+          </div>
+        </div>
+
       </main>
     );
   }

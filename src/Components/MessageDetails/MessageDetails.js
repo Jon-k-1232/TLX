@@ -44,21 +44,26 @@ export default class MessageDetails extends React.Component {
 
     return messageNumber ? (
       <main className="messageDetailsPage">
-        <div className="messageDetailsReply">
-          <p>
-            <Link to="/Communications">Inbox</Link>
-          </p>
-          <p>
-            <Link to="/Communications/Sent">Sent box</Link>
-          </p>
-          <p>
-            <Link to={`/Communications/New/${messageNumber.subjectId}`}>
-              Reply
-            </Link>
-          </p>
+        <div className="detailsContainer">
+          <div className="messageDetailsReply">
+            <p>
+              <Link to={`/Communications/New/${messageNumber.subjectId}`}>
+                New Message
+              </Link>
+            </p>
+            <p>
+              <Link to="/Communications">Inbox</Link>
+            </p>
+            <p>
+              <Link to="/Communications/Sent">Sent box</Link>
+            </p>
+          </div>
+
+          <div className="messageDetailsContainer">
+            {threadMaker}
+          </div>
         </div>
 
-        {threadMaker}
       </main>
     ) : (
       ""

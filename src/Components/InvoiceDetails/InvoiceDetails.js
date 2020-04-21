@@ -20,6 +20,7 @@ export default class InvoiceDetails extends React.Component {
     return bills ? (
       <main className="invoicePage">
         <h1>Invoice</h1>
+        <div className="invoiceContain">
 
         <p id="backLink">
           <Link to="/Billing">Back</Link>
@@ -34,28 +35,30 @@ export default class InvoiceDetails extends React.Component {
           <h4>Due: {bills.dueDate}</h4>
         </div>
 
-        {/*
-        Make Payments to.
-        */}
-        <div className="makePaymentTo">
-          <h3>Make payment to:</h3>
-          <h4>{manager.company}</h4>
-          <p>{manager.street}</p>
-          <p>
-            {manager.city}, {manager.state} {manager.zip}
-          </p>
-        </div>
+        <div className='billingNames'>
+          {/*
+          Make Payments to.
+          */}
+          <div className="makePaymentTo">
+            <h3>Make payment to:</h3>
+            <h4>{manager.company}</h4>
+            <p>{manager.street}</p>
+            <p>
+              {manager.city}, {manager.state} {manager.zip}
+            </p>
+          </div>
 
-        {/*
-        Invoice to.
-        */}
-        <div className="billToContainer">
-          <h3>Bill to:</h3>
-          <h4>{company.company}</h4>
-          <p>{company.street}</p>
-          <p>
-            {company.city}, {company.state} {company.zip}
-          </p>
+          {/*
+          Invoice to.
+          */}
+          <div className="billToContainer">
+            <h3>Bill to:</h3>
+            <h4>{company.company}</h4>
+            <p>{company.street}</p>
+            <p>
+              {company.city}, {company.state} {company.zip}
+            </p>
+          </div>
         </div>
 
         {/*
@@ -160,6 +163,7 @@ export default class InvoiceDetails extends React.Component {
             </div>
           </div>
         )}
+        </div>
       </main>
     ) : (
       ""

@@ -8,9 +8,12 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
+
 .messageDetailsReply {
+  width: 100%;
   display: inline-flex;
-  justify-content: space-between;
+}
+.messageDetailsReply p{
   margin: 10px;
 }
 
@@ -32,4 +35,34 @@
 .messageDetailsBox h4,
 .messageDetailsBox p {
   margin-left: 5px;
+}
+
+
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+@media only screen and (min-width: 850px) {
+
+  .detailsContainer{
+    display: flex;
+    justify-content: center;
+  }
+
+  .messageDetailsReply{
+    margin: 0px 17px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: normal;
+    width: 110px;
+  }
+
+  .messageDetailsBox{
+    width: 740px;
+  }
+
+  .messageDetailsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 }

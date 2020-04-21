@@ -71,26 +71,41 @@ export default class Coms extends React.Component {
 
     return (
       <main className="comPage">
-        <h1>Communications</h1>
-        <div className="comPageNav">
-          <p id="newCommLink">
-            <Link to={`/Communications/New/${allMessages}`}>New</Link>
-          </p>
-          <p id="historyCommLink">
-            <Link to="/Communications/Sent">Sent Box</Link>
-          </p>
-        </div>
+        <h1>Inbox</h1>
 
         {/*
           If there are no sent messages, no messages will render, but if there
           are 1 or more messages the messages will render
           */}
         {arr <= 0 ? (
-          <div className="noMessageContainer">
-            <p> No Messages</p>
+          <div className='comPageLarge'>
+            <div className="comPageNavNo">
+              <p id="newCommLink">
+                <Link to={`/Communications/New/${allMessages}`}>New Message</Link>
+              </p>
+              <p id="historyCommLink">
+                <Link to="/Communications/Sent">Sent Box</Link>
+              </p>
+            </div>
+
+            <div className="noMessageContainer">
+              <p> No Messages</p>
+            </div>
           </div>
         ) : (
-          arraySort()
+          <div className='comPageLarge'>
+            <div className="comPageNav">
+              <p id="newCommLink">
+                <Link to={`/Communications/New/${allMessages}`}>New Message</Link>
+              </p>
+              <p id="historyCommLink">
+                <Link to="/Communications/Sent">Sent Box</Link>
+              </p>
+            </div>
+            <div className="messagesContainer">
+              {arraySort()}
+            </div>
+          </div>
         )}
       </main>
     );

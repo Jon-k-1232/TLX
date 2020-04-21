@@ -66,3 +66,43 @@
 #backLink a:hover {
   color: #00adedb8;
 }
+
+
+/******************************\\\\\\\\\\  TABLET  /////////******************************/
+
+
+@media only screen and (min-width: 550px) {
+
+  .billDueContainer{
+    text-align: center;
+  }
+
+  .billingNames{
+    display: inline-flex;
+    width: 100%;
+  }
+
+  .makePaymentTo{
+    width: 50%;
+  }
+
+  .billToContainer{
+    width: 50%;
+  }
+
+}
+
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+
+
+@media only screen and (min-width: 1050px) {
+
+  .invoicePage{
+    align-items: center;
+  }
+
+  .invoiceContain{
+    width:1000px;
+  }
+
+}

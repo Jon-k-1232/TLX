@@ -8,20 +8,46 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
-.messageHistoryPage h1,
-#historyBack {
+.messageHistoryPage h1{
   text-align: center;
 }
 
-#historyBack a {
+.sentNav{
+  display: inline-flex;
+}
+
+.sentNav a {
   color: #00aded;
 }
 
-#historyBack a:hover {
+.sentNav a:hover {
   color: #00adedb8;
   cursor: pointer;
 }
 
 .historyContainer {
   text-align: left;
+}
+
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+@media only screen and (min-width: 855px) {
+
+  .sentLarge {
+    display: flex;
+    justify-content: center;
+  }
+
+  .sentMessages{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .sentNav{
+    margin: 0px 17px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
 }

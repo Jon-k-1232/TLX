@@ -153,7 +153,9 @@ export default class Billing extends React.Component {
           <h3>Payment History</h3>
         </div>
 
-        {billingHistory}
+        <div className="bills">
+          {billingHistory}
+        </div>
       </main>
     ) : (
       <main className="billingPage">
