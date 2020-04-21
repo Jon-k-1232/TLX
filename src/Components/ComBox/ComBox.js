@@ -6,10 +6,10 @@ import "./ComBox.css";
 export default function ComBox(props) {
   return props.messageInfo ? (
     <div className="messageBox">
-        <div className='infoWithLink'>
-            <p>{props.messageInfo.date}</p>
-            <p id="quickView">View</p>
-        </div>
+      <div className="infoWithLink">
+        <p>{props.messageInfo.date}</p>
+        <p id="quickView">View</p>
+      </div>
       <h4>From: {props.messageInfo.from}</h4>
       <h5>Subject: {props.messageInfo.subject}</h5>
       <p>{props.messageInfo.messageContent}</p>

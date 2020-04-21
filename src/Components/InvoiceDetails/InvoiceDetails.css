@@ -67,42 +67,35 @@
   color: #00adedb8;
 }
 
-
 /******************************\\\\\\\\\\  TABLET  /////////******************************/
 
-
 @media only screen and (min-width: 550px) {
-
-  .billDueContainer{
+  .billDueContainer {
     text-align: center;
   }
 
-  .billingNames{
+  .billingNames {
     display: inline-flex;
     width: 100%;
   }
 
-  .makePaymentTo{
+  .makePaymentTo {
     width: 50%;
   }
 
-  .billToContainer{
+  .billToContainer {
     width: 50%;
   }
-
 }
 
 /******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
 
-
 @media only screen and (min-width: 1050px) {
-
-  .invoicePage{
+  .invoicePage {
     align-items: center;
   }
 
-  .invoiceContain{
-    width:1000px;
+  .invoiceContain {
+    width: 1000px;
   }
-
 }

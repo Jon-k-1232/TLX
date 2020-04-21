@@ -59,11 +59,8 @@ export default class MessageDetails extends React.Component {
             </p>
           </div>
 
-          <div className="messageDetailsContainer">
-            {threadMaker}
-          </div>
+          <div className="messageDetailsContainer">{threadMaker}</div>
         </div>
-
       </main>
     ) : (
       ""

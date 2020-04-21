@@ -8,11 +8,11 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
-.messageHistoryPage h1{
+.sentIcon {
   text-align: center;
 }
 
-.sentNav{
+.sentNav {
   display: inline-flex;
 }
 
@@ -31,23 +31,21 @@
 
 /******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
 @media only screen and (min-width: 855px) {
-
   .sentLarge {
     display: flex;
     justify-content: center;
   }
 
-  .sentMessages{
+  .sentMessages {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .sentNav{
+  .sentNav {
     margin: 0px 17px 0px 10px;
     display: flex;
     flex-direction: column;
     text-align: left;
   }
-
 }

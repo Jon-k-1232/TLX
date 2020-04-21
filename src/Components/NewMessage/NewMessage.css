@@ -23,7 +23,7 @@
   flex-direction: column;
 }
 
-.newMessagePage h1 {
+.newIcon {
   text-align: center;
 }
 
@@ -67,3 +67,15 @@ textarea[type="text"] {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+@media only screen and (min-width: 900px) {
+  .newMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newMessageForm {
+    width: 900px;
+  }
+}

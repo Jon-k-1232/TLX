@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TokenService from "../Services/token-service.js";
 import config from "../../config.js";
 import AppContext from "../../Context.js";
+import newMessage from "../Images/newMessage.png";
 
 // New message form page. Used to type a new message.
 
@@ -115,12 +116,17 @@ export default class NewMessage extends React.Component {
 
     return (
       <main className="newMessagePage">
-        <h1>New Message</h1>
+        <div className="newIcon">
+          <img src={newMessage} alt="new email icon" />
+          <h2>New Message</h2>
+        </div>
 
         <div className="newMessage">
-          <p id="messageDiscard">
-            <Link to="/Communications">Discard</Link>
-          </p>
+          <div>
+            <p id="messageDiscard">
+              <Link to="/Communications">Discard</Link>
+            </p>
+          </div>
 
           {/*
             Conditionally renders the subject line based on if a subject line is present or not.

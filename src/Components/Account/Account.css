@@ -17,10 +17,10 @@
   width: 100%;
 }
 
-.accountPage h1,
 .accountPassword h3,
 .accountContact h3,
-.accountAddress h3 {
+.accountAddress h3,
+.accountIcon {
   text-align: center;
 }
 
@@ -98,34 +98,36 @@
   background-color: #00adedb8;
 }
 
-
 /******************************\\\\\\\\\\  TABLET  /////////******************************/
 
 @media only screen and (min-width: 550px) {
-
-  .contactBlock, .passManager{
+  .contactBlock,
+  .passManager {
     display: inline-flex;
   }
 
-  .accountContact, .accountAddress, .accountPassword, .accountPropManager{
+  .accountContact,
+  .accountAddress,
+  .accountPassword,
+  .accountPropManager {
     width: 50%;
   }
 
-  .emailAlert{
+  .emailAlert {
     display: flex;
   }
-
 }
 
 /******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
-@media only screen and (min-width: 1500px) {
-
-  .accountPage{
+@media only screen and (min-width: 1350px) {
+  .accountPage {
     align-items: center;
   }
 
-  .accountContact, .accountAddress, .accountPassword, .accountPropManager{
+  .accountContact,
+  .accountAddress,
+  .accountPassword,
+  .accountPropManager {
     width: 650px;
   }
-
 }

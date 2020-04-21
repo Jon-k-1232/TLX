@@ -5,6 +5,7 @@ import config from "../../config.js";
 import AppContext from "../../Context.js";
 import ComBox from "../ComBox/ComBox.js";
 import TokenService from "../Services/token-service.js";
+import inbox from "../Images/inbox.png";
 
 // Communications page
 
@@ -71,17 +72,22 @@ export default class Coms extends React.Component {
 
     return (
       <main className="comPage">
-        <h1>Inbox</h1>
+        <div className="inboxIcon">
+          <img src={inbox} alt="inbox icon" />
+          <h2>Inbox</h2>
+        </div>
 
         {/*
           If there are no sent messages, no messages will render, but if there
           are 1 or more messages the messages will render
           */}
         {arr <= 0 ? (
-          <div className='comPageLarge'>
+          <div className="comPageLarge">
             <div className="comPageNavNo">
               <p id="newCommLink">
-                <Link to={`/Communications/New/${allMessages}`}>New Message</Link>
+                <Link to={`/Communications/New/${allMessages}`}>
+                  New Message
+                </Link>
               </p>
               <p id="historyCommLink">
                 <Link to="/Communications/Sent">Sent Box</Link>
@@ -93,18 +99,18 @@ export default class Coms extends React.Component {
             </div>
           </div>
         ) : (
-          <div className='comPageLarge'>
+          <div className="comPageLarge">
             <div className="comPageNav">
               <p id="newCommLink">
-                <Link to={`/Communications/New/${allMessages}`}>New Message</Link>
+                <Link to={`/Communications/New/${allMessages}`}>
+                  New Message
+                </Link>
               </p>
               <p id="historyCommLink">
                 <Link to="/Communications/Sent">Sent Box</Link>
               </p>
             </div>
-            <div className="messagesContainer">
-              {arraySort()}
-            </div>
+            <div className="messagesContainer">{arraySort()}</div>
           </div>
         )}
       </main>

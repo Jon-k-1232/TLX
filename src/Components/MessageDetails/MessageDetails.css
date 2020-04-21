@@ -8,12 +8,11 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
-
 .messageDetailsReply {
   width: 100%;
   display: inline-flex;
 }
-.messageDetailsReply p{
+.messageDetailsReply p {
   margin: 10px;
 }
 
@@ -37,16 +36,14 @@
   margin-left: 5px;
 }
 
-
 /******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
 @media only screen and (min-width: 850px) {
-
-  .detailsContainer{
+  .detailsContainer {
     display: flex;
     justify-content: center;
   }
 
-  .messageDetailsReply{
+  .messageDetailsReply {
     margin: 0px 17px 0px 10px;
     display: flex;
     flex-direction: column;
@@ -55,14 +52,13 @@
     width: 110px;
   }
 
-  .messageDetailsBox{
+  .messageDetailsBox {
     width: 740px;
   }
 
-  .messageDetailsContainer{
+  .messageDetailsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
 }

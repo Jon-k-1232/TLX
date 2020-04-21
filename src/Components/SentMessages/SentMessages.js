@@ -5,6 +5,7 @@ import TokenService from "../Services/token-service.js";
 import ComBox from "../ComBox/ComBox.js";
 import AppContext from "../../Context.js";
 import config from "../../config.js";
+import sentBox from "../Images/sentBox.png";
 
 // Sent message page, similar to a sent box in email.
 
@@ -67,11 +68,16 @@ export default class SentMessages extends React.Component {
 
     return arr ? (
       <main className="messageHistoryPage">
-        <h1>Sent Box</h1>
+        <div className="sentIcon">
+          <img src={sentBox} alt="sent box icon" />
+          <h2>Sent</h2>
+        </div>
         <div className="sentLarge">
           <div className="sentNav">
             <p>
-              <Link to={`/Communications/New/${this.context.messages.length + 1}`}>
+              <Link
+                to={`/Communications/New/${this.context.messages.length + 1}`}
+              >
                 New Message
               </Link>
             </p>
@@ -88,11 +94,9 @@ export default class SentMessages extends React.Component {
             <div className="noMessageContainer">
               <p> No Messages</p>
             </div>
-        ) : (
-              <div className="sentMessages">
-          {arraySort()}
-              </div>
-        )}
+          ) : (
+            <div className="sentMessages">{arraySort()}</div>
+          )}
         </div>
       </main>
     ) : (

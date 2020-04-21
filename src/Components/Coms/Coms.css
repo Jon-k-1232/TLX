@@ -8,7 +8,7 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
-.comPage h1 {
+.inboxIcon {
   text-align: center;
 }
 
@@ -16,11 +16,11 @@
   display: inline-flex;
 }
 
-.comPageNavNo{
+.comPageNavNo {
   display: inline-flex;
 }
 
-.sentNav p{
+.sentNav p {
   margin: 10px;
 }
 
@@ -56,47 +56,45 @@
   text-overflow: ellipsis;
 }
 
-.messagesContainer{
+.messagesContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.hitItemContainer{
+.hitItemContainer {
   width: 100%;
 }
 
-
 /******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
 @media only screen and (min-width: 855px) {
-
-  .messagesContainer{
+  .messagesContainer {
     justify-content: center;
   }
 
-  .comPageLarge{
+  .comPageLarge {
     display: flex;
     justify-content: center;
   }
 
-  .comPageNav{
+  .comPageNav {
     margin: 0px 17px 0px 10px;
     display: flex;
     flex-direction: column;
     text-align: left;
   }
 
-  #newCommLink, #historyCommLink {
+  #newCommLink,
+  #historyCommLink {
     text-align: left;
   }
 
-  .noMessageContainer{
+  .noMessageContainer {
     text-align: center;
     width: 70%;
   }
 
-  .comPageNavNo{
-    width:20%
+  .comPageNavNo {
+    width: 20%;
   }
-
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Account.css";
+import account from "../Images/account.png";
 import TokenService from "../Services/token-service.js";
 import AppContext from "../../Context.js";
 import config from "../../config.js";
@@ -162,212 +163,215 @@ export default class Account extends React.Component {
 
     return (
       <main className="accountPage">
-        <h1>Account</h1>
+        <div className="accountIcon">
+          <img src={account} alt="account icon" />
+          <h2>Account</h2>
+        </div>
 
         <div className="contactBlock">
-        <div className="accountContact">
-          <h3>Contact information</h3>
+          <div className="accountContact">
+            <h3>Contact information</h3>
 
-          <div className="contactCompanyName">
-            <h5>Company: </h5>
-            <div>
-              <p>{contactInfo.company}</p>
+            <div className="contactCompanyName">
+              <h5>Company: </h5>
+              <div>
+                <p>{contactInfo.company}</p>
+              </div>
+            </div>
+
+            <div className="contactAddress">
+              <h5>Address: </h5>
+              <div>
+                <p>{contactInfo.street}</p> <br />
+                <p>
+                  {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
+                </p>
+              </div>
+            </div>
+
+            <div className="contactPhone">
+              <h5>Phone: </h5>
+              <div>
+                <p>{contactInfo.phone}</p>
+              </div>
+            </div>
+
+            <div className="contactEmail">
+              <h5>Email: </h5>
+              <div>
+                <p>{contactInfo.email}</p>
+              </div>
             </div>
           </div>
 
-          <div className="contactAddress">
-            <h5>Address: </h5>
-            <div>
-              <p>{contactInfo.street}</p> <br />
-              <p>
-                {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
-              </p>
-            </div>
-          </div>
-
-          <div className="contactPhone">
-            <h5>Phone: </h5>
-            <div>
-              <p>{contactInfo.phone}</p>
-            </div>
-          </div>
-
-          <div className="contactEmail">
-            <h5>Email: </h5>
-            <div>
-              <p>{contactInfo.email}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="accountAddress">
-          <h3>Update your contact information</h3>
-          <form
-            className="contactInformation"
-            onSubmit={(e) => this.handleSubmit(e)}
-          >
-            <input
-              type="text"
-              name="company"
-              placeholder="Company Name"
-              maxLength="40"
-              onChange={(e) => this.change(e)}
-              value={this.state.company}
-              required
-            />
-            <input
-              type="text"
-              name="street"
-              maxLength="45"
-              placeholder="Street Address"
-              onChange={(e) => this.change(e)}
-              value={this.state.street}
-              required
-            />
-            <input
-              type="text"
-              name="city"
-              placeholder="City"
-              minLength="3"
-              maxLength="25"
-              onChange={(e) => this.change(e)}
-              value={this.state.city}
-              required
-            />
-            <select
-              name="state"
-              id="state"
-              onChange={(e) => this.change(e)}
-              value={this.state.state}
-              required
+          <div className="accountAddress">
+            <h3>Update your contact information</h3>
+            <form
+              className="contactInformation"
+              onSubmit={(e) => this.handleSubmit(e)}
             >
-              <option value="">Select a State</option>
-              <option value="AL">Alabama</option>
-              <option value="AK">Alaska</option>
-              <option value="AZ">Arizona</option>
-              <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="DE">Delaware</option>
-              <option value="DC">District Of Columbia</option>
-              <option value="FL">Florida</option>
-              <option value="GA">Georgia</option>
-              <option value="HI">Hawaii</option>
-              <option value="ID">Idaho</option>
-              <option value="IL">Illinois</option>
-              <option value="IN">Indiana</option>
-              <option value="IA">Iowa</option>
-              <option value="KS">Kansas</option>
-              <option value="KY">Kentucky</option>
-              <option value="LA">Louisiana</option>
-              <option value="ME">Maine</option>
-              <option value="MD">Maryland</option>
-              <option value="MA">Massachusetts</option>
-              <option value="MI">Michigan</option>
-              <option value="MN">Minnesota</option>
-              <option value="MS">Mississippi</option>
-              <option value="MO">Missouri</option>
-              <option value="MT">Montana</option>
-              <option value="NE">Nebraska</option>
-              <option value="NV">Nevada</option>
-              <option value="NH">New Hampshire</option>
-              <option value="NJ">New Jersey</option>
-              <option value="NM">New Mexico</option>
-              <option value="NY">New York</option>
-              <option value="NC">North Carolina</option>
-              <option value="ND">North Dakota</option>
-              <option value="OH">Ohio</option>
-              <option value="OK">Oklahoma</option>
-              <option value="OR">Oregon</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="RI">Rhode Island</option>
-              <option value="SC">South Carolina</option>
-              <option value="SD">South Dakota</option>
-              <option value="TN">Tennessee</option>
-              <option value="TX">Texas</option>
-              <option value="UT">Utah</option>
-              <option value="VT">Vermont</option>
-              <option value="VA">Virginia</option>
-              <option value="WA">Washington</option>
-              <option value="WV">West Virginia</option>
-              <option value="WI">Wisconsin</option>
-              <option value="WY">Wyoming</option>
-            </select>
+              <input
+                type="text"
+                name="company"
+                placeholder="Company Name"
+                maxLength="40"
+                onChange={(e) => this.change(e)}
+                value={this.state.company}
+                required
+              />
+              <input
+                type="text"
+                name="street"
+                maxLength="45"
+                placeholder="Street Address"
+                onChange={(e) => this.change(e)}
+                value={this.state.street}
+                required
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                minLength="3"
+                maxLength="25"
+                onChange={(e) => this.change(e)}
+                value={this.state.city}
+                required
+              />
+              <select
+                name="state"
+                id="state"
+                onChange={(e) => this.change(e)}
+                value={this.state.state}
+                required
+              >
+                <option value="">Select a State</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
 
-            <input
-              type="text"
-              name="zip"
-              placeholder="Zip"
-              maxLength="5"
-              onChange={(e) => this.change(e)}
-              value={this.state.zip}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              maxLength="45"
-              onChange={(e) => this.change(e)}
-              value={this.state.email}
-              required
-            />
-            <input
-              type="tel"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              name="phone"
-              minLength="12"
-              maxLength="12"
-              placeholder="Phone"
-              onChange={(e) => this.change(e)}
-              value={this.state.phone}
-              required
-            />
-            <div className="emailAlert">
-              <p id="emailWarn">
-                * You will be logged out should your email be changed.
-              </p>
-            </div>
-            <div className="infoButtonContainer">
-              <button id="updateContactButton" type="submit">
-                Save
-              </button>
-            </div>
-          </form>
-        </div>
+              <input
+                type="text"
+                name="zip"
+                placeholder="Zip"
+                maxLength="5"
+                onChange={(e) => this.change(e)}
+                value={this.state.zip}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                maxLength="45"
+                onChange={(e) => this.change(e)}
+                value={this.state.email}
+                required
+              />
+              <input
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                name="phone"
+                minLength="12"
+                maxLength="12"
+                placeholder="Phone"
+                onChange={(e) => this.change(e)}
+                value={this.state.phone}
+                required
+              />
+              <div className="emailAlert">
+                <p id="emailWarn">
+                  * You will be logged out should your email be changed.
+                </p>
+              </div>
+              <div className="infoButtonContainer">
+                <button id="updateContactButton" type="submit">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
 
-        <div className='passManager'>
+        <div className="passManager">
           <div className="accountPassword">
             <h3>Change Password</h3>
             <form onSubmit={(e) => this.handleSubmitPassword(e)}>
               <div>
                 <p>{this.state.checkMessage}</p>
                 <input
-                    id="changePassword"
-                    type="text"
-                    name="password"
-                    placeholder="8 Character Minimum"
-                    minLength="8"
-                    maxLength="25"
-                    onChange={(e) => this.change(e)}
-                    value={this.state.password}
-                    required
+                  id="changePassword"
+                  type="text"
+                  name="password"
+                  placeholder="8 Character Minimum"
+                  minLength="8"
+                  maxLength="25"
+                  onChange={(e) => this.change(e)}
+                  value={this.state.password}
+                  required
                 />
               </div>
 
               <div>
                 <input
-                    id="confirmPassword"
-                    type="text"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    minLength="8"
-                    maxLength="25"
-                    onChange={(e) => this.change(e)}
-                    value={this.state.confirmPassword}
-                    required
+                  id="confirmPassword"
+                  type="text"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  minLength="8"
+                  maxLength="25"
+                  onChange={(e) => this.change(e)}
+                  value={this.state.confirmPassword}
+                  required
                 />
               </div>
               <div className="updtPasswordButtonContainer">
@@ -383,7 +387,6 @@ export default class Account extends React.Component {
             <p>{this.context.contactInfo.managerName}</p>
           </div>
         </div>
-
       </main>
     );
   }

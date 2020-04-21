@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import config from "../../config.js";
 import AppContext from "../../Context.js";
 import TokenService from "../Services/token-service.js";
+import billing from "../Images/billing.png";
 
 // Billing page
 
@@ -142,7 +143,10 @@ export default class Billing extends React.Component {
 
     return currentBill ? (
       <main className="billingPage">
-        <h1>Billing</h1>
+        <div className="billingIcon">
+          <img src={billing} alt="billing icon" />
+          <h2>Billing</h2>
+        </div>
         <div className="balance">
           <h2>Balance</h2>
           <h3>${currentBill.totalDue}</h3>
@@ -153,13 +157,15 @@ export default class Billing extends React.Component {
           <h3>Payment History</h3>
         </div>
 
-        <div className="bills">
-          {billingHistory}
-        </div>
+        <div className="bills">{billingHistory}</div>
       </main>
     ) : (
       <main className="billingPage">
-        <h1>Billing</h1>
+        <div className="billingIcon">
+          <img src={billing} alt="billing icon" />
+          <h2>Billing</h2>
+        </div>
+
         <div className="balance">
           <p>No bills at this time.</p>
         </div>
