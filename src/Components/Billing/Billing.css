@@ -12,18 +12,17 @@
   text-align: center;
 }
 
-img {
-  width: 70px;
-}
-
 .paymentHistory,
 .noPaymentsHistory {
   text-align: center;
 }
 
 .balance {
+  width: 300px;
   text-align: center;
   margin: 30px;
+  border: 1px solid #00aded;
+  border-radius: 9px;
 }
 
 .paymentInvoiceHistory {

@@ -12,6 +12,14 @@ form textarea {
   border: #363538;
 }
 
+img {
+  width: 70px;
+}
+
+link {
+  cursor: pointer;
+}
+
 .mainPage {
   min-height: 86vh;
   display: flex;
@@ -20,4 +28,38 @@ form textarea {
   color: #00aded;
   background: #363538;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+.mainPage h2 {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.homeCall {
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.homeCall div {
+  width: 120px;
+  color: #00aded;
+}
+
+.mainPage h3:hover {
+  color: #00adedb8;
+}
+
+/******************************\\\\\\\\\\  TABLET SCREEN  /////////******************************/
+@media only screen and (min-width: 550px) {
+  .homeCall div {
+    width: 180px;
+  }
+}
+
+/******************************\\\\\\\\\\  LARGE SCREEN  /////////******************************/
+@media only screen and (min-width: 900px) {
+  .homeCall div {
+    width: 220px;
+  }
 }
