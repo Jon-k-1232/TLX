@@ -55,7 +55,7 @@ export default class MessageDetails extends React.Component {
               <Link to="/Communications">Inbox</Link>
             </p>
             <p>
-              <Link to="/Communications/Sent">Sent box</Link>
+              <Link to="/Communications/Sent">Sent</Link>
             </p>
           </div>
 

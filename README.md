@@ -12,7 +12,7 @@
 
 ## Live
 
-[Live Site](Paste WebLink)
+[Live Site] - https://tlxs.herokuapp.com/
 
 ---
 
@@ -25,8 +25,18 @@ Specifically, tenants and property managers can converse through messages, as we
 
 ## Screen Shots
 
-<!-- ![Image 1](ScreenShots/1.png) -->
-
+![Image 1](screenShots/home.png)
+![Image 1](screenShots/register.png)
+![Image 1](screenShots/signIn.png)
+![Image 1](screenShots/statements.png)
+![Image 1](screenShots/invoiceDetails.png)
+![Image 1](screenShots/invoiceDetailsBottom.png)
+![Image 1](screenShots/inbox.png)
+![Image 1](screenShots/messageThread.png)
+![Image 1](screenShots/sent.png)
+![Image 1](screenShots/newMessage.png)
+![Image 1](screenShots/accountBottom.png)
+![Image 1](screenShots/accountTop.png)
 
 ---
 
@@ -45,7 +55,6 @@ Specifically, tenants and property managers can converse through messages, as we
 - Express
 - KNEX
 - PostgreSQL
-
 
 #### Testing
 

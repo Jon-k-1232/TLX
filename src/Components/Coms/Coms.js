@@ -90,7 +90,7 @@ export default class Coms extends React.Component {
                 </Link>
               </p>
               <p id="historyCommLink">
-                <Link to="/Communications/Sent">Sent Box</Link>
+                <Link to="/Communications/Sent">Sent</Link>
               </p>
             </div>
 
@@ -107,7 +107,7 @@ export default class Coms extends React.Component {
                 </Link>
               </p>
               <p id="historyCommLink">
-                <Link to="/Communications/Sent">Sent Box</Link>
+                <Link to="/Communications/Sent">Sent</Link>
               </p>
             </div>
             <div className="messagesContainer">{arraySort()}</div>
