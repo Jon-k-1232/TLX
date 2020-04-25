@@ -1,8 +1,9 @@
 import React from "react";
 import "./Billing.css";
 import { Link } from "react-router-dom";
-import config from "../../config.js";
 import AppContext from "../../Context.js";
+import config from "../../config.js";
+import UserService from "../Services/user-service.js";
 import TokenService from "../Services/token-service.js";
 import billing from "../Images/billing.png";
 
@@ -11,10 +12,10 @@ import billing from "../Images/billing.png";
 export default class Billing extends React.Component {
   static contextType = AppContext;
 
-  componentDidMount() {
-    const userId = this.context.contactInfo.userid;
 
-    fetch(`${config.API_ENDPOINT}/contacts/data/${userId}`, {
+  componentDidMount() {
+
+    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -25,13 +26,14 @@ export default class Billing extends React.Component {
         if (!resp.ok) {
           this.context.setReset();
           TokenService.clearAuthToken();
-          this.context.setLoggedIn(false);
+          UserService.clearUserId();
           this.props.history.push("/");
           alert(`Your session has expired, please login.`);
         }
         return resp.json();
       })
       .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
         this.context.setManagerInfo(data.userManagerInfo[0]);
       })
       .catch((error) => {
@@ -39,7 +41,7 @@ export default class Billing extends React.Component {
       });
 
     // Gets user bills
-    fetch(`${config.API_ENDPOINT}/bills/${userId}`, {
+    fetch(`${config.API_ENDPOINT}/bills/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -50,8 +52,8 @@ export default class Billing extends React.Component {
         if (!resp.ok) {
           this.context.setReset();
           TokenService.clearAuthToken();
+          UserService.clearUserId();
           this.props.history.push("/");
-          this.context.setLoggedIn(false);
         }
         return resp.json();
       })

@@ -1,12 +1,69 @@
 import React from "react";
 import "./InvoiceDetails.css";
 import { Link } from "react-router-dom";
+import UserService from "../Services/user-service.js";
+import TokenService from "../Services/token-service.js";
+import config from "../../config.js";
 import AppContext from "../../Context.js";
 
 // Invoice details page
 
 export default class InvoiceDetails extends React.Component {
   static contextType = AppContext;
+
+  componentDidMount() {
+
+    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
+      },
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            this.context.setReset();
+            TokenService.clearAuthToken();
+            UserService.clearUserId();
+            this.context.setLoggedIn(false);
+            this.props.history.push("/");
+            alert(`Your session has expired, please login.`);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setContactInfo(data.userContactInfo[0]);
+          this.context.setManagerInfo(data.userManagerInfo[0]);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+
+    // Gets user bills
+    fetch(`${config.API_ENDPOINT}/bills/${UserService.getUserId()}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
+      },
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            this.context.setReset();
+            TokenService.clearAuthToken();
+            UserService.clearUserId();
+            this.props.history.push("/");
+            this.context.setLoggedIn(false);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setBillsInfo(data.userBills);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+  }
 
   render() {
     // reads the passed prop and finds the matching ID in the bills array.

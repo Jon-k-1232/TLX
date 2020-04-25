@@ -6,6 +6,7 @@ import ComBox from "../ComBox/ComBox.js";
 import AppContext from "../../Context.js";
 import config from "../../config.js";
 import sentBox from "../Images/sentBox.png";
+import UserService from "../Services/user-service.js";
 
 // Sent message page, similar to a sent box in email.
 
@@ -14,9 +15,8 @@ export default class SentMessages extends React.Component {
 
   // Gets INBOX, SENT, and ALL messages
   componentDidMount() {
-    const userId = this.context.contactInfo.userid;
 
-    fetch(`${config.API_ENDPOINT}/messages/${userId}`, {
+    fetch(`${config.API_ENDPOINT}/messages/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -27,8 +27,8 @@ export default class SentMessages extends React.Component {
         if (!resp.ok) {
           this.context.setReset();
           TokenService.clearAuthToken();
+          UserService.clearUserId();
           this.props.history.push("/");
-          this.context.setLoggedIn(false);
           alert(`Your session has expired, please login.`);
         }
         return resp.json();
@@ -41,6 +41,31 @@ export default class SentMessages extends React.Component {
       .catch((error) => {
         alert(error);
       });
+
+    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
+      },
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            this.context.setReset();
+            TokenService.clearAuthToken();
+            UserService.clearUserId();
+            this.props.history.push("/");
+            alert(`Your session has expired, please login.`);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setContactInfo(data.userContactInfo[0]);
+          this.context.setManagerInfo(data.userManagerInfo[0]);
+        })
+        .catch((error) => {
+          alert(error);
+        });
   }
 
   render() {

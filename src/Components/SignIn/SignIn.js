@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AppContext from "../../Context.js";
 import AuthApiService from "../Services/auth-api-service.js";
 import TokenService from "../Services/token-service.js";
+import UserService from "../Services/user-service.js";
 
 // Sign in page
 export default class SignIn extends React.Component {
@@ -36,10 +37,8 @@ export default class SignIn extends React.Component {
     })
       .then((res) => {
         TokenService.saveAuthToken(res.authToken);
-        // Manages the rendering of the login and log out in header menu
-        this.context.setLoggedIn(true);
         // Sets user info so the rest of the api calls work
-        this.context.setContactInfo(res.dbUser);
+        UserService.saveUserId(res.dbUser.userid,res.dbUser.company)
         this.props.history.push("/Billing");
       })
       .catch((res) => {

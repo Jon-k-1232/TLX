@@ -5,6 +5,7 @@ import TokenService from "../Services/token-service.js";
 import config from "../../config.js";
 import AppContext from "../../Context.js";
 import newMessage from "../Images/newMessage.png";
+import UserService from "../Services/user-service.js";
 
 // New message form page. Used to type a new message.
 
@@ -23,6 +24,33 @@ export default class NewMessage extends React.Component {
     messageContent: "",
     groupId: "",
   };
+
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
+      },
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            this.context.setReset();
+            TokenService.clearAuthToken();
+            UserService.clearUserId();
+            this.props.history.push("/");
+            alert(`Your session has expired, please login.`);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setContactInfo(data.userContactInfo[0]);
+          this.context.setManagerInfo(data.userManagerInfo[0]);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+  }
 
   // Sets the subject and initial message data when no subject is being passed
   updateSubject = (subject) => {
@@ -88,9 +116,8 @@ export default class NewMessage extends React.Component {
     e.preventDefault();
 
     const sendMessage = { ...this.state };
-    const userId = this.context.contactInfo.userid;
 
-    fetch(`${config.API_ENDPOINT}/messages/${userId}`, {
+    fetch(`${config.API_ENDPOINT}/messages/${UserService.getUserId()}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

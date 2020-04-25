@@ -18,16 +18,12 @@ import PrivateRoute from "../Components/Utils/PrivateRoute.js";
 
 export default class App extends React.Component {
   state = {
-    loggedIn: false,
     contactInfo: {},
     managerInfo: {},
     messages: [],
     inboxMessages: [],
     sentMessages: [],
     bills: [],
-    setLoggedIn: (status) => {
-      this.setState({ loggedIn: status });
-    },
     setContactInfo: (company) => {
       this.setState({ contactInfo: company });
     },

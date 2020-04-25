@@ -4,6 +4,7 @@ import account from "../Images/account.png";
 import TokenService from "../Services/token-service.js";
 import AppContext from "../../Context.js";
 import config from "../../config.js";
+import UserService from "../Services/user-service.js";
 
 // User account page
 
@@ -25,9 +26,8 @@ export default class Account extends React.Component {
 
   componentDidMount() {
     // Gets user contact info along with linked property manager
-    const userId = this.context.contactInfo.userid;
 
-    fetch(`${config.API_ENDPOINT}/contacts/data/${userId}`, {
+    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -38,8 +38,8 @@ export default class Account extends React.Component {
         if (!resp.ok) {
           this.context.setReset();
           TokenService.clearAuthToken();
+          UserService.clearUserId();
           this.props.history.push("/");
-          this.context.setLoggedIn(false);
           alert(`Your session has expired, please login.`);
         }
         return resp.json();
@@ -73,7 +73,7 @@ export default class Account extends React.Component {
      */
     if (this.context.contactInfo.email === this.state.email) {
       fetch(
-        `${config.API_ENDPOINT}/contacts/data/${this.context.contactInfo.userid}`,
+        `${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`,
         {
           method: "POST",
           headers: {
@@ -92,7 +92,7 @@ export default class Account extends React.Component {
         .catch((error) => alert(error));
     } else {
       fetch(
-        `${config.API_ENDPOINT}/contacts/data/${this.context.contactInfo.userid}`,
+        `${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`,
         {
           method: "POST",
           headers: {
@@ -109,8 +109,8 @@ export default class Account extends React.Component {
             "Contact information changed successfully. You have now been logged out."
           );
           this.props.history.push("/Sign-in");
-          this.context.setLoggedIn(false);
           TokenService.clearAuthToken();
+          UserService.clearUserId();
         })
         .catch((error) => alert(error));
     }
@@ -128,7 +128,7 @@ export default class Account extends React.Component {
       newPassword = { password: tempPassword };
 
       fetch(
-        `${config.API_ENDPOINT}/contacts/change/${this.context.contactInfo.userid}`,
+        `${config.API_ENDPOINT}/contacts/change/${UserService.getUserId()}`,
         {
           method: "POST",
           headers: {

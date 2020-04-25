@@ -1,5 +1,8 @@
 import React from "react";
 import "./MessageDetails.css";
+import config from "../../config.js";
+import UserService from "../Services/user-service.js";
+import TokenService from "../Services/token-service.js";
 import AppContext from "../../Context.js";
 import { Link } from "react-router-dom";
 
@@ -8,6 +11,61 @@ import { Link } from "react-router-dom";
  */
 export default class MessageDetails extends React.Component {
   static contextType = AppContext;
+
+  // Gets INBOX, SENT, and ALL messages
+  componentDidMount() {
+
+    fetch(`${config.API_ENDPOINT}/messages/${UserService.getUserId()}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
+      },
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            this.context.setReset();
+            TokenService.clearAuthToken();
+            UserService.clearUserId();
+            this.props.history.push("/");
+            alert(`Your session has expired, please login.`);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setInboxMessage(data.inboxMessages);
+          this.context.setSentMessage(data.sentMessages);
+          this.context.setMessage(data.allMessages);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+
+    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+        Origin: `${config.FRONT_WEB}`,
+      },
+    })
+        .then((resp) => {
+          if (!resp.ok) {
+            this.context.setReset();
+            TokenService.clearAuthToken();
+            UserService.clearUserId();
+            this.props.history.push("/");
+            alert(`Your session has expired, please login.`);
+          }
+          return resp.json();
+        })
+        .then((data) => {
+          this.context.setContactInfo(data.userContactInfo[0]);
+          this.context.setManagerInfo(data.userManagerInfo[0]);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+  }
 
   render() {
     // reading message id passed in params and searching context for matching ID. Setting the message to messageNumber

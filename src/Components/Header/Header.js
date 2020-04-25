@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import UserService from "../Services/user-service.js";
 import AppContext from "../../Context.js";
 import TokenService from "../Services/token-service.js";
 
@@ -19,8 +20,8 @@ export default class Header extends React.Component {
   // handles log out and redirects back to login screen
   handleLogOut = (e) => {
     e.preventDefault();
-    this.context.setLoggedIn(false);
     TokenService.clearAuthToken();
+    UserService.clearUserId();
   };
 
   render() {
@@ -70,7 +71,7 @@ export default class Header extends React.Component {
             {/*
               Conditionally renders the login and logout button in menu
             */}
-            {this.context.loggedIn === true ? (
+            {UserService.getUserId() >= 1 ? (
               <li>
                 <p id="logButtonMenu" onClick={this.handleLogOut}>
                   <Link to="/Sign-in">Logout</Link>
