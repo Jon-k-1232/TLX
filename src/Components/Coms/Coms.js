@@ -43,7 +43,7 @@ export default class Coms extends React.Component {
         alert(error);
       });
 
-    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+    fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,

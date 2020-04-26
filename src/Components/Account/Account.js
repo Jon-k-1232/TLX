@@ -27,7 +27,7 @@ export default class Account extends React.Component {
   componentDidMount() {
     // Gets user contact info along with linked property manager
 
-    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+    fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -73,9 +73,9 @@ export default class Account extends React.Component {
      */
     if (this.context.contactInfo.email === this.state.email) {
       fetch(
-        `${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`,
+        `${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "content-type": "application/json",
             authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -86,15 +86,15 @@ export default class Account extends React.Component {
       )
         .then((res) => res.json())
         .then((res) => {
-          alert("Contact information changed successfully");
+          alert(res.message);
           this.context.setContactInfo(res.userContactInfo[0]);
         })
         .catch((error) => alert(error));
     } else {
       fetch(
-        `${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`,
+        `${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "content-type": "application/json",
             authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -128,9 +128,9 @@ export default class Account extends React.Component {
       newPassword = { password: tempPassword };
 
       fetch(
-        `${config.API_ENDPOINT}/contacts/change/${UserService.getUserId()}`,
+        `${config.API_ENDPOINT}/contacts/pass/${UserService.getUserId()}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "content-type": "application/json",
             authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -141,7 +141,7 @@ export default class Account extends React.Component {
       )
         .then((res) => res.json())
         .then((res) => {
-          alert(res.status);
+          alert(res.message);
           this.setState({ checkMessage: "" });
         })
         .catch((error) => alert(error));

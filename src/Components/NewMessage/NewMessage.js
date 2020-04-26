@@ -26,7 +26,7 @@ export default class NewMessage extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+    fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -128,7 +128,7 @@ export default class NewMessage extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        alert("Message sent successfully");
+        alert(res.message);
       })
       .catch((error) => alert(error));
 

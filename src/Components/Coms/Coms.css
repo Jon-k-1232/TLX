@@ -94,7 +94,15 @@
     width: 70%;
   }
 
+  .noMessageContainer p{
+    position: absolute;
+    top: 56%;
+    right: 46%;
+  }
+
   .comPageNavNo {
+    display: flex;
+    flex-direction: column;
     width: 20%;
   }
 }

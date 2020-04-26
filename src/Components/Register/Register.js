@@ -114,8 +114,7 @@ export default class Register extends React.Component {
       })
         .then((res) => res.json())
         .then((res) => {
-          alert(res.status);
-          this.setState({ checkMessage: "" });
+          alert(res.message);
         })
         .catch((error) =>
           alert(`${error}: Unable to add your account at this time.`)

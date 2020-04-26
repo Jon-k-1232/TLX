@@ -13,7 +13,7 @@ export default class InvoiceDetails extends React.Component {
 
   componentDidMount() {
 
-    fetch(`${config.API_ENDPOINT}/contacts/data/${UserService.getUserId()}`, {
+    fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${TokenService.getAuthToken()}`,
