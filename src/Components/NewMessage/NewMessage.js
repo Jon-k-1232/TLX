@@ -33,23 +33,23 @@ export default class NewMessage extends React.Component {
         Origin: `${config.FRONT_WEB}`,
       },
     })
-        .then((resp) => {
-          if (!resp.ok) {
-            this.context.setReset();
-            TokenService.clearAuthToken();
-            UserService.clearUserId();
-            this.props.history.push("/");
-            alert(`Your session has expired, please login.`);
-          }
-          return resp.json();
-        })
-        .then((data) => {
-          this.context.setContactInfo(data.userContactInfo[0]);
-          this.context.setManagerInfo(data.userManagerInfo[0]);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      .then((resp) => {
+        if (!resp.ok) {
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          UserService.clearUserId();
+          this.props.history.push("/");
+          alert(`Your session has expired, please login.`);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
+        this.context.setManagerInfo(data.userManagerInfo[0]);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   // Sets the subject and initial message data when no subject is being passed

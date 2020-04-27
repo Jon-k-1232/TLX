@@ -1,5 +1,6 @@
 .comPage {
-  min-height: 86vh;
+  margin-top: 3vh;
+  min-height: 83vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +95,7 @@
     width: 70%;
   }
 
-  .noMessageContainer p{
+  .noMessageContainer p {
     position: absolute;
     top: 56%;
     right: 46%;

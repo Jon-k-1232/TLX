@@ -1,11 +1,16 @@
 .messageDetailsPage {
-  min-height: 86vh;
+  margin-top: 3vh;
+  min-height: 83vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: #00aded;
   background: #363538;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+.messageIcon {
+  text-align: center;
 }
 
 .messageDetailsReply {

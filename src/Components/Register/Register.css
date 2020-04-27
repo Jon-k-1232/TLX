@@ -1,5 +1,6 @@
-.RegisterPage {
-  min-height: 86vh;
+.registerPage {
+  margin-top: 3vh;
+  min-height: 83vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +9,7 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
-.RegisterPage h2 {
+.registerPage h2 {
   text-align: center;
   margin: 0px 0px 50px 0px;
 }
@@ -88,4 +89,14 @@
   font-weight: 600;
   background-color: #00aded;
   color: #3f4149;
+}
+
+/******************************\\\\\\\\\\  TABLET  /////////******************************/
+
+@media only screen and (min-width: 550px) {
+  .registerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

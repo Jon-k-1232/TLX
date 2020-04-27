@@ -5,6 +5,7 @@ import UserService from "../Services/user-service.js";
 import TokenService from "../Services/token-service.js";
 import AppContext from "../../Context.js";
 import { Link } from "react-router-dom";
+import read from "../Images/read.png";
 
 /*
  Message details. When a user Clicks on a message in the communications page the user is routed here.
@@ -14,7 +15,6 @@ export default class MessageDetails extends React.Component {
 
   // Gets INBOX, SENT, and ALL messages
   componentDidMount() {
-
     fetch(`${config.API_ENDPOINT}/messages/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
@@ -22,24 +22,24 @@ export default class MessageDetails extends React.Component {
         Origin: `${config.FRONT_WEB}`,
       },
     })
-        .then((resp) => {
-          if (!resp.ok) {
-            this.context.setReset();
-            TokenService.clearAuthToken();
-            UserService.clearUserId();
-            this.props.history.push("/");
-            alert(`Your session has expired, please login.`);
-          }
-          return resp.json();
-        })
-        .then((data) => {
-          this.context.setInboxMessage(data.inboxMessages);
-          this.context.setSentMessage(data.sentMessages);
-          this.context.setMessage(data.allMessages);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      .then((resp) => {
+        if (!resp.ok) {
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          UserService.clearUserId();
+          this.props.history.push("/");
+          alert(`Your session has expired, please login.`);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setInboxMessage(data.inboxMessages);
+        this.context.setSentMessage(data.sentMessages);
+        this.context.setMessage(data.allMessages);
+      })
+      .catch((error) => {
+        alert(error);
+      });
 
     fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
@@ -48,23 +48,23 @@ export default class MessageDetails extends React.Component {
         Origin: `${config.FRONT_WEB}`,
       },
     })
-        .then((resp) => {
-          if (!resp.ok) {
-            this.context.setReset();
-            TokenService.clearAuthToken();
-            UserService.clearUserId();
-            this.props.history.push("/");
-            alert(`Your session has expired, please login.`);
-          }
-          return resp.json();
-        })
-        .then((data) => {
-          this.context.setContactInfo(data.userContactInfo[0]);
-          this.context.setManagerInfo(data.userManagerInfo[0]);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      .then((resp) => {
+        if (!resp.ok) {
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          UserService.clearUserId();
+          this.props.history.push("/");
+          alert(`Your session has expired, please login.`);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
+        this.context.setManagerInfo(data.userManagerInfo[0]);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   render() {
@@ -102,6 +102,10 @@ export default class MessageDetails extends React.Component {
 
     return messageNumber ? (
       <main className="messageDetailsPage">
+        <div className="messageIcon">
+          <img src={read} alt="reading email icon" />
+          <h2>Message</h2>
+        </div>
         <div className="detailsContainer">
           <div className="messageDetailsReply">
             <p>

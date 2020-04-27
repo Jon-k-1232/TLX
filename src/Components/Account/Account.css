@@ -1,5 +1,6 @@
 .accountPage {
-  min-height: 86vh;
+  margin-top: 3vh;
+  min-height: 83vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,6 +89,24 @@
   background-color: #00aded;
   color: #363538;
   cursor: pointer;
+}
+
+.accountContact,
+.accountAddress,
+.accountPassword,
+.accountPropManager {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infoButtonContainer,
+.updtPasswordButtonContainer {
+  text-align: center;
+}
+
+.emailAlert {
+  display: flex;
 }
 
 #updateContactButton:hover {

@@ -12,7 +12,6 @@ export default class InvoiceDetails extends React.Component {
   static contextType = AppContext;
 
   componentDidMount() {
-
     fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
@@ -20,24 +19,24 @@ export default class InvoiceDetails extends React.Component {
         Origin: `${config.FRONT_WEB}`,
       },
     })
-        .then((resp) => {
-          if (!resp.ok) {
-            this.context.setReset();
-            TokenService.clearAuthToken();
-            UserService.clearUserId();
-            this.context.setLoggedIn(false);
-            this.props.history.push("/");
-            alert(`Your session has expired, please login.`);
-          }
-          return resp.json();
-        })
-        .then((data) => {
-          this.context.setContactInfo(data.userContactInfo[0]);
-          this.context.setManagerInfo(data.userManagerInfo[0]);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      .then((resp) => {
+        if (!resp.ok) {
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          UserService.clearUserId();
+          this.context.setLoggedIn(false);
+          this.props.history.push("/");
+          alert(`Your session has expired, please login.`);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setContactInfo(data.userContactInfo[0]);
+        this.context.setManagerInfo(data.userManagerInfo[0]);
+      })
+      .catch((error) => {
+        alert(error);
+      });
 
     // Gets user bills
     fetch(`${config.API_ENDPOINT}/bills/${UserService.getUserId()}`, {
@@ -47,22 +46,22 @@ export default class InvoiceDetails extends React.Component {
         Origin: `${config.FRONT_WEB}`,
       },
     })
-        .then((resp) => {
-          if (!resp.ok) {
-            this.context.setReset();
-            TokenService.clearAuthToken();
-            UserService.clearUserId();
-            this.props.history.push("/");
-            this.context.setLoggedIn(false);
-          }
-          return resp.json();
-        })
-        .then((data) => {
-          this.context.setBillsInfo(data.userBills);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      .then((resp) => {
+        if (!resp.ok) {
+          this.context.setReset();
+          TokenService.clearAuthToken();
+          UserService.clearUserId();
+          this.props.history.push("/");
+          this.context.setLoggedIn(false);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        this.context.setBillsInfo(data.userBills);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   render() {
@@ -203,7 +202,7 @@ export default class InvoiceDetails extends React.Component {
                   <div className="paidAmount">
                     <p>Amount Paid:</p>
                     <div>
-                      <p>{bills.amountPaid}</p>
+                      <p>${bills.amountPaid}</p>
                     </div>
                   </div>
                 </div>

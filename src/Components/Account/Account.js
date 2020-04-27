@@ -72,18 +72,15 @@ export default class Account extends React.Component {
     out if the email is changed.
      */
     if (this.context.contactInfo.email === this.state.email) {
-      fetch(
-        `${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${TokenService.getAuthToken()}`,
-            Origin: `${config.FRONT_WEB}`,
-          },
-          body: JSON.stringify(updateCntct),
-        }
-      )
+      fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${TokenService.getAuthToken()}`,
+          Origin: `${config.FRONT_WEB}`,
+        },
+        body: JSON.stringify(updateCntct),
+      })
         .then((res) => res.json())
         .then((res) => {
           alert(res.message);
@@ -91,18 +88,15 @@ export default class Account extends React.Component {
         })
         .catch((error) => alert(error));
     } else {
-      fetch(
-        `${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${TokenService.getAuthToken()}`,
-            Origin: `${config.FRONT_WEB}`,
-          },
-          body: JSON.stringify(updateCntct),
-        }
-      )
+      fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${TokenService.getAuthToken()}`,
+          Origin: `${config.FRONT_WEB}`,
+        },
+        body: JSON.stringify(updateCntct),
+      })
         .then((res) => res.json())
         .then((res) => {
           alert(
@@ -127,18 +121,15 @@ export default class Account extends React.Component {
     if (tempPassword === confirmPassword) {
       newPassword = { password: tempPassword };
 
-      fetch(
-        `${config.API_ENDPOINT}/contacts/pass/${UserService.getUserId()}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${TokenService.getAuthToken()}`,
-            Origin: `${config.FRONT_WEB}`,
-          },
-          body: JSON.stringify(newPassword),
-        }
-      )
+      fetch(`${config.API_ENDPOINT}/contacts/pass/${UserService.getUserId()}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${TokenService.getAuthToken()}`,
+          Origin: `${config.FRONT_WEB}`,
+        },
+        body: JSON.stringify(newPassword),
+      })
         .then((res) => res.json())
         .then((res) => {
           alert(res.message);
@@ -172,34 +163,36 @@ export default class Account extends React.Component {
           <div className="accountContact">
             <h3>Contact information</h3>
 
-            <div className="contactCompanyName">
-              <h5>Company: </h5>
-              <div>
-                <p>{contactInfo.company}</p>
+            <div>
+              <div className="contactCompanyName">
+                <h5>Company: </h5>
+                <div>
+                  <p>{contactInfo.company}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="contactAddress">
-              <h5>Address: </h5>
-              <div>
-                <p>{contactInfo.street}</p> <br />
-                <p>
-                  {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
-                </p>
+              <div className="contactAddress">
+                <h5>Address: </h5>
+                <div>
+                  <p>{contactInfo.street}</p> <br />
+                  <p>
+                    {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="contactPhone">
-              <h5>Phone: </h5>
-              <div>
-                <p>{contactInfo.phone}</p>
+              <div className="contactPhone">
+                <h5>Phone: </h5>
+                <div>
+                  <p>{contactInfo.phone}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="contactEmail">
-              <h5>Email: </h5>
-              <div>
-                <p>{contactInfo.email}</p>
+              <div className="contactEmail">
+                <h5>Email: </h5>
+                <div>
+                  <p>{contactInfo.email}</p>
+                </div>
               </div>
             </div>
           </div>

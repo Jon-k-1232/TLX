@@ -38,7 +38,7 @@ export default class SignIn extends React.Component {
       .then((res) => {
         TokenService.saveAuthToken(res.authToken);
         // Sets user info so the rest of the api calls work
-        UserService.saveUserId(res.dbUser.userid,res.dbUser.company)
+        UserService.saveUserId(res.dbUser.userid, res.dbUser.company);
         this.props.history.push("/Billing");
       })
       .catch((res) => {

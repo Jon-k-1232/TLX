@@ -12,9 +12,7 @@ import billing from "../Images/billing.png";
 export default class Billing extends React.Component {
   static contextType = AppContext;
 
-
   componentDidMount() {
-
     fetch(`${config.API_ENDPOINT}/contacts/${UserService.getUserId()}`, {
       method: "GET",
       headers: {
