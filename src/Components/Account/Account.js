@@ -62,14 +62,16 @@ export default class Account extends React.Component {
   */
   checkDemo = (e) => {
     e.preventDefault();
-    if(`${UserService.getUserId()}` === '2'){
-      alert("Sorry, for demonstration purposes you are unable to update user information on" +
-          " this account. For non-demonstration accounts user information will be updated.")
-    }else{
+    if (`${UserService.getUserId()}` === "2") {
+      alert(
+        "Sorry, for demonstration purposes you are unable to update user information on" +
+          " this account. For non-demonstration accounts user information will be updated."
+      );
+    } else {
       // continues to update the user information
-      this.handleSubmit(e)
+      this.handleSubmit(e);
     }
-  }
+  };
 
   // handles submit for contact info update
   handleSubmit = (e) => {

@@ -57,7 +57,7 @@ input[type="text"] {
   background-color: #00adedb8;
 }
 
-#signInNewUser a{
+#signInNewUser a {
   text-decoration: none;
   font-size: 18px;
   color: #00aded;
@@ -67,7 +67,7 @@ input[type="text"] {
   color: #00adedb8;
 }
 
-#demoToggle:hover{
+#demoToggle:hover {
   color: #00adedb8;
   cursor: pointer;
 }

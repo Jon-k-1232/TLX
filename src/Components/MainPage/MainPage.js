@@ -34,7 +34,10 @@ export default class MainPage extends React.Component {
             </div>
           </Link>
         </div>
-        <h2 id="callToAction"> <Link to="/Sign-in">Get started now!</Link></h2>
+        <h2 id="callToAction">
+          {" "}
+          <Link to="/Sign-in">Get started now!</Link>
+        </h2>
       </main>
     );
   }
