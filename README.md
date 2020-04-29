@@ -14,6 +14,10 @@
 
 [Live Site] - https://tlxs.herokuapp.com/
 
+#### Login
+
+To log in click demo on sign in screen.
+
 ---
 
 ## Description
