@@ -48,14 +48,31 @@ link {
   color: #00aded;
 }
 
-.mainPage h3:hover {
+.homeCall p {
+  font-size: 19px;
+}
+
+.homeCall p:hover {
+  color: #00adedb8;
+}
+
+#callToAction a{
+  color: #00aded;
+}
+
+#callToAction {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#callToAction a:hover{
   color: #00adedb8;
 }
 
 /******************************\\\\\\\\\\  TABLET SCREEN  /////////******************************/
 @media only screen and (min-width: 550px) {
   .homeCall div {
-    width: 180px;
+    width: 183px;
   }
 }
 

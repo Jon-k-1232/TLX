@@ -17,23 +17,24 @@ export default class MainPage extends React.Component {
           <Link to="/Sign-in">
             <div>
               <img src={billing} alt="billing icon" />
-              <h3>Better Statements</h3>
+              <p>Better Statements</p>
             </div>
           </Link>
 
           <Link to="/Sign-in">
             <div>
               <img src={communication} alt="message icon" />
-              <h3>Better Communication</h3>
+              <p>Better Communication</p>
             </div>
           </Link>
           <Link to="/Sign-in">
             <div>
               <img src={handShake} alt="message icon" />
-              <h3>Better Relations</h3>
+              <p>Better Relations</p>
             </div>
           </Link>
         </div>
+        <h2 id="callToAction"> <Link to="/Sign-in">Get started now!</Link></h2>
       </main>
     );
   }

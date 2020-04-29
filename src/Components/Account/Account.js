@@ -53,6 +53,24 @@ export default class Account extends React.Component {
       });
   }
 
+  /*
+  If demo account (user 2) than will stop submit and disallow.
+  This is needed so other users can view demo version.
+  If a demo user were to change the email or password it would lock other users out of the demo.
+  This is also validated on backend however since the api call updates user info, and the endpoint on the backend
+   would be blocked, the user would be presented an error.
+  */
+  checkDemo = (e) => {
+    e.preventDefault();
+    if(`${UserService.getUserId()}` === '2'){
+      alert("Sorry, for demonstration purposes you are unable to update user information on" +
+          " this account. For non-demonstration accounts user information will be updated.")
+    }else{
+      // continues to update the user information
+      this.handleSubmit(e)
+    }
+  }
+
   // handles submit for contact info update
   handleSubmit = (e) => {
     e.preventDefault();
@@ -110,7 +128,7 @@ export default class Account extends React.Component {
     }
   };
 
-  // handles submit for password with password validation
+  // handles submit for password with password validation. Demo user validation on backend.
   handleSubmitPassword(e) {
     e.preventDefault();
 
@@ -201,7 +219,7 @@ export default class Account extends React.Component {
             <h3>Update your contact information</h3>
             <form
               className="contactInformation"
-              onSubmit={(e) => this.handleSubmit(e)}
+              onSubmit={(e) => this.checkDemo(e)}
             >
               <input
                 type="text"
