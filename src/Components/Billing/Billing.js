@@ -56,7 +56,8 @@ export default class Billing extends React.Component {
         return resp.json();
       })
       .then((data) => {
-        this.context.setBillsInfo(data.userBills);
+        // reverse method used in order to keep new at top and the current balance to show to newest bill
+        this.context.setBillsInfo(data.userBills.reverse());
       })
       .catch((error) => {
         alert(error);
@@ -66,8 +67,8 @@ export default class Billing extends React.Component {
   render() {
     let currentBill = this.context.bills[0];
     let bills = this.context.bills;
+    let role = this.context.contactInfo.role;
     let billingHistory = [];
-
     /*
        This function will generate each quick view billing box. Additionally it contains conditional
        rendering for if there is a history or not and then also if the bill has been paid or not.
@@ -141,35 +142,57 @@ export default class Billing extends React.Component {
       }
     }
 
-    return currentBill ? (
+    // Used in order to conditionally display if no bill or if there is a bill for the user.
+    const current = (currentBill) => {
+      if (currentBill >= [0]) {
+        return (
+          <main className="billingPage">
+            <div className="billingIcon">
+              <img src={billing} alt="billing icon" />
+              <h2>Billing</h2>
+            </div>
+            <div className="balance">
+              <h2>Balance</h2>
+              <h3>${currentBill.totalDue}</h3>
+              <p>Due {currentBill.dueDate}</p>
+            </div>
+
+            <div className="paymentHistory">
+              <h3>Payment History</h3>
+            </div>
+
+            <div className="bills">{billingHistory}</div>
+          </main>
+        );
+      } else {
+        return (
+          <main className="billingPage">
+            <div className="billingIcon">
+              <img src={billing} alt="billing icon" />
+              <h2>Billing</h2>
+            </div>
+
+            <div className="balance">
+              <p>No bills at this time.</p>
+            </div>
+          </main>
+        );
+      }
+    };
+
+    return role === "manager" ? (
       <main className="billingPage">
         <div className="billingIcon">
           <img src={billing} alt="billing icon" />
-          <h2>Billing</h2>
-        </div>
-        <div className="balance">
-          <h2>Balance</h2>
-          <h3>${currentBill.totalDue}</h3>
-          <p>Due {currentBill.dueDate}</p>
-        </div>
-
-        <div className="paymentHistory">
-          <h3>Payment History</h3>
-        </div>
-
-        <div className="bills">{billingHistory}</div>
-      </main>
-    ) : (
-      <main className="billingPage">
-        <div className="billingIcon">
-          <img src={billing} alt="billing icon" />
-          <h2>Billing</h2>
+          <h2>Billing MANAGER</h2>
         </div>
 
         <div className="balance">
           <p>No bills at this time.</p>
         </div>
       </main>
+    ) : (
+      <div>{current(currentBill)}</div>
     );
   }
 }

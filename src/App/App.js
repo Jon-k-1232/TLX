@@ -12,6 +12,7 @@ import Billing from "../Components/Billing/Billing.js";
 import InvoiceDetails from "../Components/InvoiceDetails/InvoiceDetails.js";
 import MessageDetails from "../Components/MessageDetails/MessageDetails.js";
 import MainPage from "../Components/MainPage/MainPage.js";
+import Alerts from "../Components/Alerts/Alerts.js";
 import AppContext from "../Context.js";
 import PublicOnlyRoute from "../Components/Utils/PublicOnlyRoute.js";
 import PrivateRoute from "../Components/Utils/PrivateRoute.js";
@@ -85,6 +86,7 @@ export default class App extends React.Component {
                 component={SentMessages}
               />
               <PrivateRoute path="/Account/" component={Account} />
+              <PrivateRoute path="/Alerts" component={Alerts} />
             </Switch>
             <Footer />
           </BrowserRouter>

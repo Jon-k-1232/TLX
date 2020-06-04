@@ -16,7 +16,7 @@
 
 #### Login
 
-To log in click demo on sign in screen.
+- To log in click demo on sign in screen.
 
 ---
 

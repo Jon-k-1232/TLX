@@ -67,6 +67,13 @@ export default class Header extends React.Component {
             <li>
               <Link to="/Account">Account</Link>
             </li>
+            {// Conditionally renders manager only function to create and push alerts.
+               }
+            {this.context.contactInfo.role === 'manager' ? (
+                <li>
+                  <Link to="/Alerts">Alerts</Link>
+                </li>
+            ):('')}
 
             {/*
               Conditionally renders the login and logout button in menu
